@@ -45,8 +45,7 @@ CREATE TABLE `data_karyawan` (
 --
 
 INSERT INTO `data_karyawan` (`id_karyawan`, `nama_karyawan`, `jenis_kelamin`, `no_telp`, `alamat`, `jabatan`, `password`, `tanggal_masuk`) VALUES
-('K001', 'Fardan', 'Laki-laki', '08123456789', 'Indonesia', 'Admin', 'admin123', '2025-04-26'),
-('K002', 'Alip', 'Laki-laki', '0987523', 'Indonesia', 'Karyawan', 'admin123', '2025-04-28');
+('K001', 'Alip', 'Laki-laki', '08123456789', 'Indonesia', 'Admin', 'admin123', '2025-04-26'),
 
 -- --------------------------------------------------------
 
