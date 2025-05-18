@@ -9,15 +9,15 @@ import main.java.app.database.Koneksi;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.DefaultComboBoxModel;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+
 
 /**
  *
  * @author aliframadhan
  */
-public class FormPelanggan extends javax.swing.JDialog {
+public class FormPelanggan extends javax.swing.JFrame {
     String tanggal;
     
     private Connection koneksi = new Koneksi().connect();
@@ -26,8 +26,7 @@ public class FormPelanggan extends javax.swing.JDialog {
     /**
      * Creates new form FormPelanggan
      */
-    public FormPelanggan(java.awt.Frame parent, boolean modal) {
-        super(parent, modal); 
+    public FormPelanggan() {
         initComponents();
         
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -60,6 +59,26 @@ public class FormPelanggan extends javax.swing.JDialog {
         buttonGroup1.clearSelection();
         cbmodel.setSelectedItem(null);
         txtplat.setText("");
+    }
+    
+    private String generateIdPelanggan(){
+        String prefix = "CS";
+        String sql = "SELECT id_pelanggan FROM data_pelanggan ORDER BY id_pelanggan DESC LIMIT 1";
+        try {
+            Statement stat = koneksi.createStatement();
+            ResultSet rs = stat.executeQuery(sql);
+            if (rs.next()) {
+                String lastId = rs.getString("id_pelanggan");
+                int number = Integer.parseInt(lastId.substring(2));
+                number++;
+                return String.format(prefix + "%03d", number);
+            } else {
+                return prefix + "001";
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Gagal generate ID: " + e);
+            return null;
+        }
     }
     
     protected void datatable(){
@@ -96,27 +115,6 @@ public class FormPelanggan extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Data gagal dipanggil"+e);
         }
     }
-    
-    private String generateIdPelanggan(){
-        String prefix = "CS";
-        String sql = "SELECT id_pelanggan FROM data_pelanggan ORDER BY id_pelanggan DESC LIMIT 1";
-        try {
-            Statement stat = koneksi.createStatement();
-            ResultSet rs = stat.executeQuery(sql);
-            if (rs.next()) {
-                String lastId = rs.getString("id_pelanggan");
-                int number = Integer.parseInt(lastId.substring(2));
-                number++;
-                return String.format(prefix + "%03d", number);
-            } else {
-                return prefix + "001";
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Gagal generate ID: " + e);
-            return null;
-        }
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -151,15 +149,15 @@ public class FormPelanggan extends javax.swing.JDialog {
         btnhapus = new javax.swing.JButton();
         btnedit = new javax.swing.JButton();
         btnsimpan = new javax.swing.JButton();
+        btnkembali = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btncari = new javax.swing.JButton();
         txtcari = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablepelanggan = new javax.swing.JTable();
-        btnkeluar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -220,7 +218,12 @@ public class FormPelanggan extends javax.swing.JDialog {
 
         txtplat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        cbmodel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matic", "Bebek", "Sport", "Moge", "Sedan", "Coupe", "SUV", "MPV", "Hatchback", "Truck", "Pick-Up" }));
+        cbmodel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Motor Besar", "Motor Kecil", "Sedan", "SUV", "MPV", "Hatchback", "Truck", "Pick-Up" }));
+        cbmodel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbmodelActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Tanggal Cuci");
@@ -228,32 +231,36 @@ public class FormPelanggan extends javax.swing.JDialog {
         txttanggal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txttanggal.setEnabled(false);
 
-        btnbatal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnbatal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnbatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/assets/icons/batal.png"))); // NOI18N
+        btnbatal.setText("Batal");
         btnbatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnbatalActionPerformed(evt);
             }
         });
 
-        btnhapus.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnhapus.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnhapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/assets/icons/hapus.png"))); // NOI18N
+        btnhapus.setText("Hapus");
         btnhapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnhapusActionPerformed(evt);
             }
         });
 
-        btnedit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnedit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnedit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/assets/icons/edit.png"))); // NOI18N
+        btnedit.setText("Edit");
         btnedit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btneditActionPerformed(evt);
             }
         });
 
-        btnsimpan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnsimpan.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnsimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/assets/icons/save.png"))); // NOI18N
+        btnsimpan.setText("Simpan");
         btnsimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnsimpanActionPerformed(evt);
@@ -295,14 +302,14 @@ public class FormPelanggan extends javax.swing.JDialog {
                             .addComponent(txttanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78)
-                        .addComponent(btnsimpan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnsimpan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnedit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(btnedit)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnhapus)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnbatal)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnbatal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnhapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -333,19 +340,29 @@ public class FormPelanggan extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1))
-                        .addGap(0, 37, Short.MAX_VALUE))
+                        .addGap(0, 38, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(txttanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnbatal, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnhapus, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnedit, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnsimpan, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnsimpan)
+                            .addComponent(btnhapus))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnedit)
+                            .addComponent(btnbatal))))
                 .addContainerGap())
         );
+
+        btnkembali.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnkembali.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/assets/icons/kembali.png"))); // NOI18N
+        btnkembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnkembaliActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -402,24 +419,16 @@ public class FormPelanggan extends javax.swing.JDialog {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btncari))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-
-        btnkeluar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnkeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/assets/icons/keluar.png"))); // NOI18N
-        btnkeluar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnkeluarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -429,30 +438,46 @@ public class FormPelanggan extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnkeluar))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnkembali)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 75, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnkeluar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnkembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jmotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmotorActionPerformed
+        // TODO add your handling code here:
+        String[] modelMotor = {"Motor Besar", "Motor Kecil"};
+        cbmodel.setModel(new javax.swing.DefaultComboBoxModel<>(modelMotor));
+    }//GEN-LAST:event_jmotorActionPerformed
+
+    private void jmobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmobilActionPerformed
+        // TODO add your handling code here:
+        String[] modelMobil = {"Sedan", "SUV", "MPV", "Hatchback", "Truck", "Pick-Up"};
+        cbmodel.setModel(new javax.swing.DefaultComboBoxModel<>(modelMobil));
+    }//GEN-LAST:event_jmobilActionPerformed
+
+    private void cbmodelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmodelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbmodelActionPerformed
 
     private void btnsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsimpanActionPerformed
         // TODO add your handling code here:
@@ -464,10 +489,10 @@ public class FormPelanggan extends javax.swing.JDialog {
             jenis = "Mobil";
         }
         if (nama.isEmpty()){
-                JOptionPane.showMessageDialog(null, "Data karyawan harus terisi semua.");
-                txtid.requestFocus();
-                return;
-            }
+            JOptionPane.showMessageDialog(null, "Data karyawan harus terisi semua.");
+            txtid.requestFocus();
+            return;
+        }
         String cekSql = "SELECT id_karyawan FROM data_karyawan WHERE id_karyawan = ?";
         try {
             PreparedStatement cekStat = koneksi.prepareStatement(cekSql);
@@ -493,7 +518,7 @@ public class FormPelanggan extends javax.swing.JDialog {
             stat.setString(6, cbmodel.getSelectedItem().toString());
             stat.setString(7, txtplat.getText());
             stat.setString(8, txttanggal.getText());
-            
+
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan.");
             kosong();
@@ -514,10 +539,10 @@ public class FormPelanggan extends javax.swing.JDialog {
             jenis = "Mobil";
         }
         if (nama.isEmpty()){
-                JOptionPane.showMessageDialog(null, "Data Pelanggan harus terisi semua.");
-                txtid.requestFocus();
-                return;
-            }
+            JOptionPane.showMessageDialog(null, "Data Pelanggan harus terisi semua.");
+            txtid.requestFocus();
+            return;
+        }
         try{
             String sql = "UPDATE data_pelanggan set nama_pelanggan=?, no_telp=?, alamat=?, jenis_kendaraan=?, model_kendaraan=?, plat_nomor=? WHERE id_pelanggan='"+txtid.getText()+"'";
             PreparedStatement stat = koneksi.prepareStatement(sql);
@@ -527,7 +552,7 @@ public class FormPelanggan extends javax.swing.JDialog {
             stat.setString(4, jenis);
             stat.setString(5, cbmodel.getSelectedItem().toString());
             stat.setString(6, txtplat.getText());
-            
+
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil diubah");
             kosong();
@@ -567,17 +592,17 @@ public class FormPelanggan extends javax.swing.JDialog {
             datatable();
         }
     }//GEN-LAST:event_btnhapusActionPerformed
-
+    
     private void btnbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbatalActionPerformed
         // TODO add your handling code here:
         kosong();
         txtid.requestFocus();
     }//GEN-LAST:event_btnbatalActionPerformed
 
-    private void btnkeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkeluarActionPerformed
+    private void btnkembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkembaliActionPerformed
         // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_btnkeluarActionPerformed
+    }//GEN-LAST:event_btnkembaliActionPerformed
 
     private void btncariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncariActionPerformed
         // TODO add your handling code here:
@@ -600,7 +625,7 @@ public class FormPelanggan extends javax.swing.JDialog {
         txtnama.setText(b);
         txttelp.setText(c);
         txtalamat.setText(d);
-        
+
         if (e != null) {
             if (e.equalsIgnoreCase("Motor")) {
                 jmotor.setSelected(true);
@@ -615,18 +640,6 @@ public class FormPelanggan extends javax.swing.JDialog {
         txtplat.setText(g);
         txttanggal.setText(h);
     }//GEN-LAST:event_tablepelangganMouseClicked
-
-    private void jmotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmotorActionPerformed
-        // TODO add your handling code here:
-        String[] modelMotor = {"Bebek", "Matic", "Sport", "Moge"};
-        cbmodel.setModel(new javax.swing.DefaultComboBoxModel<>(modelMotor));
-    }//GEN-LAST:event_jmotorActionPerformed
-
-    private void jmobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmobilActionPerformed
-        // TODO add your handling code here:
-        String[] modelMobil = {"Sedan", "Coupe", "SUV", "MPV", "Hatchback", "Truck", "Pick-Up"};
-        cbmodel.setModel(new javax.swing.DefaultComboBoxModel<>(modelMobil));
-    }//GEN-LAST:event_jmobilActionPerformed
 
     /**
      * @param args the command line arguments
@@ -654,13 +667,14 @@ public class FormPelanggan extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(FormPelanggan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                new FormPelanggan().setVisible(true);
-                // Memanggil FormPelanggan dengan parameter 'this' sebagai parent dan true untuk modal
-                new FormPelanggan(new javax.swing.JFrame(), true).setVisible(true);
+                new FormPelanggan().setVisible(true);
             }
         });
     }
@@ -670,7 +684,7 @@ public class FormPelanggan extends javax.swing.JDialog {
     private javax.swing.JButton btncari;
     private javax.swing.JButton btnedit;
     private javax.swing.JButton btnhapus;
-    private javax.swing.JButton btnkeluar;
+    private javax.swing.JButton btnkembali;
     private javax.swing.JButton btnsimpan;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbmodel;

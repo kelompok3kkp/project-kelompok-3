@@ -8,7 +8,6 @@ package main.java.app.view;
 import main.java.app.database.Koneksi;
 import main.java.app.model.UserID;
 import java.sql.*;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**

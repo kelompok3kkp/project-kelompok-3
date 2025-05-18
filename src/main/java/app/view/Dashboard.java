@@ -5,9 +5,9 @@
  */
 package main.java.app.view;
 
-import javax.swing.JFrame;
 import main.java.app.view.master.FormKaryawan;
 import main.java.app.view.master.FormPelanggan;
+import main.java.app.view.master.FormLayananCuci;
 
 /**
  *
@@ -100,6 +100,11 @@ public class Dashboard extends javax.swing.JFrame {
         mmaster.add(menuPelanggan);
 
         menuLayanan.setText("Layanan");
+        menuLayanan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuLayananActionPerformed(evt);
+            }
+        });
         mmaster.add(menuLayanan);
 
         jMenuBar1.add(mmaster);
@@ -141,19 +146,30 @@ public class Dashboard extends javax.swing.JFrame {
             return;
         }
         
-        FormKaryawan form = new FormKaryawan(this, true);
-//        form.setAlwaysOnTop(true);
-        form.setLocationRelativeTo(null);
+        FormKaryawan form = new FormKaryawan();
+        form.setLocationRelativeTo(this);
         form.setVisible(true);
+        form.toFront();
+        form.requestFocus();
     }//GEN-LAST:event_menuKaryawanActionPerformed
 
     private void menuPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPelangganActionPerformed
         // TODO add your handling code here:
-        FormPelanggan form = new FormPelanggan(this, true);
-//        form.setAlwaysOnTop(true);
-        form.setLocationRelativeTo(null);
+        FormPelanggan form = new FormPelanggan();
+        form.setLocationRelativeTo(this);
         form.setVisible(true);
+        form.toFront();
+        form.requestFocus();
     }//GEN-LAST:event_menuPelangganActionPerformed
+
+    private void menuLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLayananActionPerformed
+        // TODO add your handling code here:
+        FormLayananCuci form = new FormLayananCuci();
+        form.setLocationRelativeTo(this);
+        form.setVisible(true);
+        form.toFront();
+        form.requestFocus();
+    }//GEN-LAST:event_menuLayananActionPerformed
 
     /**
      * @param args the command line arguments
