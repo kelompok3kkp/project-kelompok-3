@@ -5,6 +5,7 @@
  */
 package main.java.app.view;
 
+import javax.swing.JFrame;
 import main.java.app.database.Koneksi;
 import main.java.app.model.UserID;
 import java.sql.*;
@@ -82,25 +83,21 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(118, 118, 118)
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtuser)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtpass, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(btnlogin)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnbatal, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap())
+                                .addComponent(btnlogin)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnbatal, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtuser, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,7 +119,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(86, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(344, 339));
+        setSize(new java.awt.Dimension(303, 339));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -134,21 +131,20 @@ public class Login extends javax.swing.JFrame {
             ResultSet hasil = stat.executeQuery(sql);
 
             if (hasil.next()) {
-                // Ambil id_karyawan dan nama_karyawan
                 String idKaryawan = hasil.getString("id_karyawan");
                 String namaUser = hasil.getString("nama_karyawan");
                 String jabatanUser = hasil.getString("jabatan");
 
-                // Cek apakah namaUser null atau kosong
                 if (namaUser != null && !namaUser.isEmpty()) {
                     UserID.setuserLogin(idKaryawan);
                     JOptionPane.showMessageDialog(null, "Login Berhasil");
 
-                    // Menampilkan Dashboard dengan namaUser
                     this.setVisible(false);
                     Dashboard main = new Dashboard(namaUser, jabatanUser); 
+                    
                     main.setLocationRelativeTo(null);
                     main.setVisible(true);
+                    main.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 } else {
                     JOptionPane.showMessageDialog(null, "Nama karyawan kosong di database!");
                 }
@@ -162,7 +158,7 @@ public class Login extends javax.swing.JFrame {
 
     private void btnbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbatalActionPerformed
         // TODO add your handling code here:
-        dispose();
+        System.exit(0);
     }//GEN-LAST:event_btnbatalActionPerformed
 
     /**
