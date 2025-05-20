@@ -124,8 +124,6 @@ public class FormLayananCuci extends javax.swing.JFrame {
         txtharga = new javax.swing.JTextField();
         jmotor = new javax.swing.JRadioButton();
         jmobil = new javax.swing.JRadioButton();
-        cbmodel = new javax.swing.JComboBox<>();
-        cblayanan = new javax.swing.JComboBox<>();
         panelLayananTambahan = new javax.swing.JPanel();
         btnbatal1 = new javax.swing.JButton();
         btnhapus1 = new javax.swing.JButton();
@@ -134,6 +132,8 @@ public class FormLayananCuci extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtketerangan = new javax.swing.JTextArea();
+        cblayanan = new javax.swing.JComboBox<>();
+        cbmodel = new javax.swing.JComboBox<>();
         btnkembali = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         btncari = new javax.swing.JButton();
@@ -193,22 +193,6 @@ public class FormLayananCuci extends javax.swing.JFrame {
             }
         });
 
-        cbmodel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cbmodel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Motor Kecil", "Motor Besar", "Sedan", "Hatchback", "SUV", "MPV", "Pick-Up" }));
-        cbmodel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbmodelActionPerformed(evt);
-            }
-        });
-
-        cblayanan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cblayanan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuci Motor Biasa", "Cuci Motor Lengkap", "Cuci Motor Premium", "Cuci Mobill Biasa", "Cuci Mobill Lengkap", "Cuci Mobill Premium" }));
-        cblayanan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cblayananActionPerformed(evt);
-            }
-        });
-
         panelLayananTambahan.setLayout(new java.awt.CardLayout());
 
         btnbatal1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -254,15 +238,20 @@ public class FormLayananCuci extends javax.swing.JFrame {
         txtketerangan.setRows(5);
         jScrollPane1.setViewportView(txtketerangan);
 
+        cblayanan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cblayanan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuci Motor Biasa", "Cuci Motor Lengkap", "Cuci Motor Premium", "Cuci Mobill Biasa", "Cuci Mobill Lengkap", "Cuci Mobill Premium" }));
+
+        cbmodel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cbmodel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Motor Besar", "Motor Kecil", "Mobil Sedan", "Mobil SUV", "Mobil MPV", "Mobil Hatchback", "Mobil Pick-Up" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnsimpan1)
                         .addGap(18, 18, 18)
                         .addComponent(btnedit1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -273,14 +262,6 @@ public class FormLayananCuci extends javax.swing.JFrame {
                         .addGap(72, 72, 72))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGap(62, 62, 62)
-                                .addComponent(cblayanan, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addGap(42, 42, 42)
-                                .addComponent(cbmodel, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10)
@@ -291,8 +272,16 @@ public class FormLayananCuci extends javax.swing.JFrame {
                                         .addComponent(jmotor)
                                         .addGap(27, 27, 27)
                                         .addComponent(jmobil))
-                                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel11))
+                                .addGap(42, 42, 42)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cblayanan, 0, 246, Short.MAX_VALUE)
+                                    .addComponent(cbmodel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelLayananTambahan, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(80, 80, 80)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -326,9 +315,9 @@ public class FormLayananCuci extends javax.swing.JFrame {
                                     .addComponent(jLabel16)
                                     .addComponent(cbmodel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(cblayanan, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cblayanan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -357,7 +346,7 @@ public class FormLayananCuci extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btncari.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btncari.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btncari.setText("Cari");
         btncari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -416,8 +405,8 @@ public class FormLayananCuci extends javax.swing.JFrame {
                     .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btncari))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -444,7 +433,7 @@ public class FormLayananCuci extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnkembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnkembali, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -470,21 +459,13 @@ public class FormLayananCuci extends javax.swing.JFrame {
 
     private void jmobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmobilActionPerformed
         // TODO add your handling code here:
-        String[] modelMobil = {"Sedan", "Hatchback", "SUV", "MPV", "Pick-Up"};
+        String[] modelMobil = {"Mobil Sedan", "Mobil Hatchback", "Mobil SUV", "Mobil MPV", "Mobil Pick-Up"};
         cbmodel.setModel(new javax.swing.DefaultComboBoxModel<>(modelMobil));
         
         String[] layananMobil = {"Cuci Mobil Biasa", "Cuci Mobil Premium"};
         cblayanan.setModel(new javax.swing.DefaultComboBoxModel<>(layananMobil));
     }//GEN-LAST:event_jmobilActionPerformed
     
-    private void cbmodelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmodelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbmodelActionPerformed
-
-    private void cblayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cblayananActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cblayananActionPerformed
-
     private void btnsimpan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsimpan1ActionPerformed
         // TODO add your handling code here:
         String jenis = null;

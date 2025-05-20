@@ -8,6 +8,7 @@ package main.java.app.view;
 import main.java.app.view.master.FormKaryawan;
 import main.java.app.view.master.FormPelanggan;
 import main.java.app.view.master.FormLayananCuci;
+import main.java.app.view.transaksi.FormTransaksiCuci;
 
 /**
  *
@@ -56,6 +57,7 @@ public class Dashboard extends javax.swing.JFrame {
         menuPelanggan = new javax.swing.JMenuItem();
         menuLayanan = new javax.swing.JMenuItem();
         mtransaksi = new javax.swing.JMenu();
+        menuTransaksiCuci = new javax.swing.JMenuItem();
         mlaporan = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -126,6 +128,15 @@ public class Dashboard extends javax.swing.JFrame {
         jMenuBar1.add(mmaster);
 
         mtransaksi.setText("Transaksi");
+
+        menuTransaksiCuci.setText("Transaksi Cuci");
+        menuTransaksiCuci.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuTransaksiCuciActionPerformed(evt);
+            }
+        });
+        mtransaksi.add(menuTransaksiCuci);
+
         jMenuBar1.add(mtransaksi);
 
         mlaporan.setText("Laporan");
@@ -204,6 +215,15 @@ public class Dashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnlogoutActionPerformed
 
+    private void menuTransaksiCuciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTransaksiCuciActionPerformed
+        // TODO add your handling code here:
+        FormTransaksiCuci form = new FormTransaksiCuci();
+        form.setLocationRelativeTo(this);
+        form.setVisible(true);
+        form.toFront();
+        form.requestFocus();
+    }//GEN-LAST:event_menuTransaksiCuciActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -251,6 +271,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuKaryawan;
     private javax.swing.JMenuItem menuLayanan;
     private javax.swing.JMenuItem menuPelanggan;
+    private javax.swing.JMenuItem menuTransaksiCuci;
     private javax.swing.JMenu mlaporan;
     private javax.swing.JMenu mmaster;
     private javax.swing.JMenu mtransaksi;

@@ -12,9 +12,9 @@ import java.sql.*;
  * @author aliframadhan
  */
 public class Koneksi {
-    private Connection koneksi;
+    private static Connection koneksi;
     
-    public Connection connect(){
+    public static Connection connect(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("Berhasil Terhubung");

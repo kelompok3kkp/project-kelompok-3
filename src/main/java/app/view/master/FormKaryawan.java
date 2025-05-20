@@ -49,7 +49,7 @@ public class FormKaryawan extends javax.swing.JFrame {
     }
     
     protected void aktif(){
-        txtid.requestFocus();
+        txtnama.requestFocus();
     }
     
     protected void kosong(){
@@ -217,7 +217,7 @@ public class FormKaryawan extends javax.swing.JFrame {
 
         txtpass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        txttanggal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txttanggal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txttanggal.setEnabled(false);
 
         btnbatal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -364,7 +364,7 @@ public class FormKaryawan extends javax.swing.JFrame {
 
         txtcari.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        btncari.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btncari.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btncari.setText("Cari");
         btncari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -419,7 +419,7 @@ public class FormKaryawan extends javax.swing.JFrame {
                     .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btncari))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -454,11 +454,11 @@ public class FormKaryawan extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnkembali1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(312, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -475,7 +475,7 @@ public class FormKaryawan extends javax.swing.JFrame {
         }
         if (nama.isEmpty()){
             JOptionPane.showMessageDialog(null, "Data karyawan harus terisi semua.");
-            txtid.requestFocus();
+            txtnama.requestFocus();
             return;
         }
         String cekSql = "SELECT id_karyawan FROM data_karyawan WHERE id_karyawan = ?";
@@ -485,7 +485,7 @@ public class FormKaryawan extends javax.swing.JFrame {
             ResultSet rs = cekStat.executeQuery();
             if (rs.next()){
                 JOptionPane.showMessageDialog(null, "ID sudah digunakan.");
-                txtid.requestFocus();
+                txtnama.requestFocus();
                 return;
             }
         } catch (Exception e) {
@@ -507,7 +507,7 @@ public class FormKaryawan extends javax.swing.JFrame {
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan.");
             kosong();
-            txtid.requestFocus();
+            txtnama.requestFocus();
         } catch (SQLException e){
             JOptionPane.showMessageDialog(null, "Data gagal disimpan."+e);
         }
@@ -525,7 +525,7 @@ public class FormKaryawan extends javax.swing.JFrame {
         }
         if (nama.isEmpty()){
             JOptionPane.showMessageDialog(null, "Data karyawan harus terisi semua.");
-            txtid.requestFocus();
+            txtnama.requestFocus();
             return;
         }
         try{
@@ -541,7 +541,7 @@ public class FormKaryawan extends javax.swing.JFrame {
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil diubah");
             kosong();
-            txtid.requestFocus();
+            txtnama.requestFocus();
         } catch (SQLException e){
             JOptionPane.showMessageDialog(null, "Data gagal diubah" +e);
         }
@@ -555,7 +555,7 @@ public class FormKaryawan extends javax.swing.JFrame {
             String id = txtid.getText().trim();
             if (id.isEmpty()){
                 JOptionPane.showMessageDialog(null, "ID karyawan tidak boleh kosong.");
-                txtid.requestFocus();
+                txtnama.requestFocus();
                 return;
             }
             String sql = "DELETE FROM data_karyawan WHERE id_karyawan = ?";
@@ -567,7 +567,7 @@ public class FormKaryawan extends javax.swing.JFrame {
                 if (rowsAffected > 0) {
                     JOptionPane.showMessageDialog(null, "Data berhasil dihapus.");
                     kosong();
-                    txtid.requestFocus();
+                    txtnama.requestFocus();
                 } else {
                     JOptionPane.showMessageDialog(null, "Data tidak ditemukan atau sudah dihapus.");
                 }
@@ -581,7 +581,12 @@ public class FormKaryawan extends javax.swing.JFrame {
     private void btnbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbatalActionPerformed
         // TODO add your handling code here:
         kosong();
-        txtid.requestFocus();
+        
+        Date date = new Date();
+        SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
+        txttanggal.setText(tgl.format(date));
+        
+        txtnama.requestFocus();
     }//GEN-LAST:event_btnbatalActionPerformed
     
     private void btnkembali1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkembali1ActionPerformed
