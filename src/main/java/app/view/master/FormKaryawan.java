@@ -7,7 +7,7 @@ package main.java.app.view.master;
 
 import main.java.app.database.Koneksi;
 import java.sql.*;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -29,16 +29,17 @@ public class FormKaryawan extends javax.swing.JFrame {
     public FormKaryawan() {
         initComponents();
         
+        jtanggal.setModel(new javax.swing.SpinnerDateModel());
+        JSpinner.DateEditor tgl = new JSpinner.DateEditor(jtanggal, "yyyy-MM-dd");
+        jtanggal.setEditor(tgl);
+        jtanggal.setValue(new Date());
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         
         kosong();
         aktif();
         datatable();
         
-        Date date = new Date();
-        SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
-        
-        txttanggal.setText(tgl.format(date));
         txtalamat.setLineWrap(true);
         txtalamat.setWrapStyleWord(true);
         txtcari.addActionListener(new java.awt.event.ActionListener(){
@@ -60,6 +61,7 @@ public class FormKaryawan extends javax.swing.JFrame {
         txtalamat.setText("");
         cbjabatan.setSelectedItem(null);
         txtpass.setText("");
+        jtanggal.setValue(new Date());
     }
 
     
@@ -147,11 +149,11 @@ public class FormKaryawan extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         cbjabatan = new javax.swing.JComboBox<>();
         txtpass = new javax.swing.JPasswordField();
-        txttanggal = new javax.swing.JTextField();
         btnbatal = new javax.swing.JButton();
         btnsimpan = new javax.swing.JButton();
         btnedit = new javax.swing.JButton();
         btnhapus = new javax.swing.JButton();
+        jtanggal = new javax.swing.JSpinner();
         jPanel2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         txtcari = new javax.swing.JTextField();
@@ -217,9 +219,6 @@ public class FormKaryawan extends javax.swing.JFrame {
 
         txtpass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        txttanggal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txttanggal.setEnabled(false);
-
         btnbatal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnbatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/assets/icons/batal.png"))); // NOI18N
         btnbatal.setText("Batal");
@@ -256,6 +255,10 @@ public class FormKaryawan extends javax.swing.JFrame {
             }
         });
 
+        jtanggal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jtanggal.setModel(new javax.swing.SpinnerDateModel());
+        jtanggal.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -291,19 +294,19 @@ public class FormKaryawan extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(jLabel7))
                         .addGap(33, 33, 33)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbjabatan, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txttanggal, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                                .addComponent(txtpass))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnedit, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnbatal, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnsimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnhapus)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbjabatan, 0, 245, Short.MAX_VALUE)
+                            .addComponent(txtpass, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                            .addComponent(jtanggal)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(btnedit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnbatal, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(btnsimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnhapus))))
                 .addGap(17, 17, 17))
         );
         jPanel1Layout.setVerticalGroup(
@@ -334,12 +337,12 @@ public class FormKaryawan extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel8))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(klaki)
                             .addComponent(kperempuan)
                             .addComponent(jLabel9)
-                            .addComponent(txttanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txttelp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
@@ -419,7 +422,7 @@ public class FormKaryawan extends javax.swing.JFrame {
                     .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btncari))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -502,7 +505,10 @@ public class FormKaryawan extends javax.swing.JFrame {
             stat.setString(5, txtalamat.getText());
             stat.setString(6, cbjabatan.getSelectedItem().toString());
             stat.setString(7, txtpass.getText());
-            stat.setString(8, txttanggal.getText());
+            
+            Date tanggal = (Date) jtanggal.getValue();
+            SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
+            stat.setString(8, tgl.format(tanggal));
 
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan.");
@@ -529,6 +535,9 @@ public class FormKaryawan extends javax.swing.JFrame {
             return;
         }
         try{
+            Date tanggal = (Date) jtanggal.getValue();
+            SimpleDateFormat tgl = new SimpleDateFormat("yyy-MM-dd");
+            String tanggalFormatted = tgl.format(tanggal);
             String sql = "UPDATE data_karyawan set nama_karyawan=?, jenis_kelamin=?, no_telp=?, alamat=?, jabatan=?, password=? WHERE id_karyawan='"+txtid.getText()+"'";
             PreparedStatement stat = koneksi.prepareStatement(sql);
             stat.setString(1, txtnama.getText());
@@ -567,6 +576,7 @@ public class FormKaryawan extends javax.swing.JFrame {
                 if (rowsAffected > 0) {
                     JOptionPane.showMessageDialog(null, "Data berhasil dihapus.");
                     kosong();
+                    jtanggal.setValue(new Date());
                     txtnama.requestFocus();
                 } else {
                     JOptionPane.showMessageDialog(null, "Data tidak ditemukan atau sudah dihapus.");
@@ -581,11 +591,7 @@ public class FormKaryawan extends javax.swing.JFrame {
     private void btnbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbatalActionPerformed
         // TODO add your handling code here:
         kosong();
-        
-        Date date = new Date();
-        SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
-        txttanggal.setText(tgl.format(date));
-        
+        jtanggal.setValue(new Date());
         txtnama.requestFocus();
     }//GEN-LAST:event_btnbatalActionPerformed
     
@@ -626,7 +632,14 @@ public class FormKaryawan extends javax.swing.JFrame {
         txtalamat.setText(e);
         cbjabatan.setSelectedItem(f);
         txtpass.setText(g);
-        txttanggal.setText(h);
+        
+        try {
+            SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
+            Date tanggal = tgl.parse(h);
+            jtanggal.setValue(tanggal);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Format tanggal tidak valid: " + h);
+        }
     }//GEN-LAST:event_tablekaryawanMouseClicked
 
     /**
@@ -702,6 +715,7 @@ public class FormKaryawan extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSpinner jtanggal;
     private javax.swing.JRadioButton klaki;
     private javax.swing.JRadioButton kperempuan;
     private javax.swing.JTable tablekaryawan;
@@ -710,7 +724,6 @@ public class FormKaryawan extends javax.swing.JFrame {
     private javax.swing.JTextField txtid;
     private javax.swing.JTextField txtnama;
     private javax.swing.JPasswordField txtpass;
-    private javax.swing.JTextField txttanggal;
     private javax.swing.JTextField txttelp;
     // End of variables declaration//GEN-END:variables
 }

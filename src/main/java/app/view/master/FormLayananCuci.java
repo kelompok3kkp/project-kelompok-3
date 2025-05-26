@@ -7,7 +7,7 @@ package main.java.app.view.master;
 
 import main.java.app.database.Koneksi;
 import java.sql.*;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -619,9 +619,13 @@ public class FormLayananCuci extends javax.swing.JFrame {
         if (b.equalsIgnoreCase("motor")) {
             jmotor.setSelected(true);
             jmobil.setSelected(false);
+            String[] layananMotor = {"Cuci Motor Biasa", "Cuci Motor Premium"};
+            cblayanan.setModel(new DefaultComboBoxModel<>(layananMotor));
         } else if (b.equalsIgnoreCase("mobil")) {
             jmobil.setSelected(true);
             jmotor.setSelected(false);
+            String[] layananMobil = {"Cuci Mobil Biasa", "Cuci Mobil Premium"};
+            cblayanan.setModel(new DefaultComboBoxModel<>(layananMobil));
         }
 
         cbmodel.setSelectedItem(c);

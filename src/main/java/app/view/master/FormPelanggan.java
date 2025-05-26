@@ -7,7 +7,7 @@ package main.java.app.view.master;
 
 import main.java.app.database.Koneksi;
 import java.sql.*;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -31,17 +31,17 @@ public class FormPelanggan extends javax.swing.JFrame {
     public FormPelanggan() {
         initComponents();
         
+        jtanggal.setModel(new javax.swing.SpinnerDateModel());
+        JSpinner.DateEditor tgl = new JSpinner.DateEditor(jtanggal, "yyyy-MM-dd");
+        jtanggal.setEditor(tgl);
+        jtanggal.setValue(new Date());
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         
         kosong();
         aktif();
         datatable();
-//        loadComboBoxData();
         
-        Date date = new Date();
-        SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
-        
-        txttanggal.setText(tgl.format(date));
         txtalamat.setWrapStyleWord(true);
         txtcari.addActionListener(new java.awt.event.ActionListener(){
           public void actionPerformed(java.awt.event.ActionEvent ect){
@@ -51,7 +51,7 @@ public class FormPelanggan extends javax.swing.JFrame {
     }
     
     protected void aktif(){
-        txtid.requestFocus();
+        txtnama.requestFocus();
     }
     
     protected void kosong(){
@@ -63,6 +63,7 @@ public class FormPelanggan extends javax.swing.JFrame {
         cbmodel.setSelectedItem(null);
         cblayanan.setSelectedItem(null);
         txtplat.setText("");
+        jtanggal.setValue(new Date());
     }
     
     private String generateIdPelanggan(){
@@ -89,7 +90,6 @@ public class FormPelanggan extends javax.swing.JFrame {
         Object[] Baris = {"ID Pelanggan", "Nama Pelanggan", "No. Telepon", "Alamat", "Jenis Kendaraan", "Model Kendaraan", "Jenis Layanan", "Plat Nomor", "Tanggal Cuci"};
             model = new DefaultTableModel(null, Baris);
             String cariitem = txtcari.getText();
-            
             try {
                 String sql = "SELECT *FROM data_pelanggan WHERE id_pelanggan LIKE '%" + cariitem + "%' " 
                         + "OR nama_pelanggan LIKE '%" + cariitem + "%' " 
@@ -150,7 +150,6 @@ public class FormPelanggan extends javax.swing.JFrame {
         jmobil = new javax.swing.JRadioButton();
         txtplat = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txttanggal = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         btnedit = new javax.swing.JButton();
         btnsimpan = new javax.swing.JButton();
@@ -158,6 +157,7 @@ public class FormPelanggan extends javax.swing.JFrame {
         btnbatal = new javax.swing.JButton();
         cbmodel = new javax.swing.JComboBox<>();
         cblayanan = new javax.swing.JComboBox<>();
+        jtanggal = new javax.swing.JSpinner();
         btnkembali = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btncari = new javax.swing.JButton();
@@ -230,9 +230,6 @@ public class FormPelanggan extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Tanggal Cuci");
 
-        txttanggal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txttanggal.setEnabled(false);
-
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("Jenis Layanan");
 
@@ -278,6 +275,10 @@ public class FormPelanggan extends javax.swing.JFrame {
         cblayanan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cblayanan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Motor Besar", "Motor Kecil", "Mobil Sedan", "Mobil SUV", "Mobil MPV", "Mobil Hatchback", "Mobil Pick-Up" }));
 
+        jtanggal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jtanggal.setModel(new javax.swing.SpinnerDateModel());
+        jtanggal.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -298,7 +299,7 @@ public class FormPelanggan extends javax.swing.JFrame {
                                 .addComponent(txttelp)
                                 .addComponent(txtid))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
@@ -309,21 +310,21 @@ public class FormPelanggan extends javax.swing.JFrame {
                                 .addGap(50, 50, 50))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel9)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                                    .addComponent(txttanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtplat, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel11)
                                         .addComponent(jLabel8))
                                     .addGap(38, 38, 38)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(cbmodel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cblayanan, 0, 200, Short.MAX_VALUE))))))
+                                        .addComponent(cblayanan, 0, 200, Short.MAX_VALUE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel7)
+                                        .addComponent(jLabel9))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtplat, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                        .addComponent(jtanggal))))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnsimpan)
@@ -374,10 +375,10 @@ public class FormPelanggan extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtplat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
+                        .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(txttanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnhapus)
@@ -523,7 +524,7 @@ public class FormPelanggan extends javax.swing.JFrame {
         }
         if (nama.isEmpty()){
             JOptionPane.showMessageDialog(null, "Data karyawan harus terisi semua.");
-            txtid.requestFocus();
+            txtnama.requestFocus();
             return;
         }
         String cekSql = "SELECT id_karyawan FROM data_karyawan WHERE id_karyawan = ?";
@@ -533,7 +534,7 @@ public class FormPelanggan extends javax.swing.JFrame {
             ResultSet rs = cekStat.executeQuery();
             if (rs.next()){
                 JOptionPane.showMessageDialog(null, "ID sudah digunakan.");
-                txtid.requestFocus();
+                txtnama.requestFocus();
                 return;
             }
         } catch (Exception e) {
@@ -551,12 +552,15 @@ public class FormPelanggan extends javax.swing.JFrame {
             stat.setString(6, cbmodel.getSelectedItem().toString());
             stat.setString(7, cblayanan.getSelectedItem().toString());
             stat.setString(8, txtplat.getText());
-            stat.setString(9, txttanggal.getText());
+            
+            Date tanggal = (Date) jtanggal.getValue();
+            SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
+            stat.setString(9, tgl.format(tanggal));
 
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan.");
             kosong();
-            txtid.requestFocus();
+            txtnama.requestFocus();
         } catch (SQLException e){
             JOptionPane.showMessageDialog(null, "Data gagal disimpan."+e);
         }
@@ -574,10 +578,13 @@ public class FormPelanggan extends javax.swing.JFrame {
         }
         if (nama.isEmpty()){
             JOptionPane.showMessageDialog(null, "Data Pelanggan harus terisi semua.");
-            txtid.requestFocus();
+            txtnama.requestFocus();
             return;
         }
         try{
+            Date tanggal = (Date) jtanggal.getValue();
+            SimpleDateFormat tgl = new SimpleDateFormat("yyy-MM-dd");
+            String tanggalFormatted = tgl.format(tanggal);
             String sql = "UPDATE data_pelanggan set nama_pelanggan=?, no_telp=?, alamat=?, jenis_kendaraan=?, model_kendaraan=?, jenis_layanan=?, plat_nomor=? WHERE id_pelanggan='"+txtid.getText()+"'";
             PreparedStatement stat = koneksi.prepareStatement(sql);
             stat.setString(1, txtnama.getText());
@@ -591,7 +598,7 @@ public class FormPelanggan extends javax.swing.JFrame {
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil diubah");
             kosong();
-            txtid.requestFocus();
+            txtnama.requestFocus();
         } catch (SQLException e){
             JOptionPane.showMessageDialog(null, "Data gagal diubah" +e);
         }
@@ -605,7 +612,7 @@ public class FormPelanggan extends javax.swing.JFrame {
             String id = txtid.getText().trim();
             if (id.isEmpty()){
                 JOptionPane.showMessageDialog(null, "ID Pelanggan tidak boleh kosong.");
-                txtid.requestFocus();
+                txtnama.requestFocus();
                 return;
             }
             String sql = "DELETE FROM data_pelanggan WHERE id_pelanggan = ?";
@@ -617,7 +624,7 @@ public class FormPelanggan extends javax.swing.JFrame {
                 if (rowsAffected > 0) {
                     JOptionPane.showMessageDialog(null, "Data berhasil dihapus.");
                     kosong();
-                    txtid.requestFocus();
+                    txtnama.requestFocus();
                 } else {
                     JOptionPane.showMessageDialog(null, "Data tidak ditemukan atau sudah dihapus.");
                 }
@@ -631,12 +638,8 @@ public class FormPelanggan extends javax.swing.JFrame {
     private void btnbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbatalActionPerformed
         // TODO add your handling code here:
         kosong();
-        
-        Date date = new Date();
-        SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
-        txttanggal.setText(tgl.format(date));
-        
-        txtid.requestFocus();
+        jtanggal.setValue(new Date());
+        txtnama.requestFocus();
     }//GEN-LAST:event_btnbatalActionPerformed
 
     private void btnkembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkembaliActionPerformed
@@ -671,16 +674,33 @@ public class FormPelanggan extends javax.swing.JFrame {
             if (e.equalsIgnoreCase("Motor")) {
                 jmotor.setSelected(true);
                 jmobil.setSelected(false);
+                String[] modelMotor = {"Motor Besar", "Motor Kecil"};
+                cbmodel.setModel(new javax.swing.DefaultComboBoxModel<>(modelMotor));
+
+                String[] layananMotor = {"Cuci Motor Biasa", "Cuci Motor Premium"};
+                cblayanan.setModel(new javax.swing.DefaultComboBoxModel<>(layananMotor));
             } else if (e.equalsIgnoreCase("Mobil")) {
                 jmobil.setSelected(true);
                 jmotor.setSelected(false);
+                String[] modelMobil = {"Mobil Sedan", "Mobil SUV", "Mobil MPV", "Mobil Hatchback", "Mobil Pick-Up"};
+                cbmodel.setModel(new javax.swing.DefaultComboBoxModel<>(modelMobil));
+
+                String[] layananMobil = {"Cuci Mobil Biasa", "Cuci Mobil Premium"};
+                cblayanan.setModel(new javax.swing.DefaultComboBoxModel<>(layananMobil));
             }
         }
 
         cbmodel.setSelectedItem(f);
         cblayanan.setSelectedItem(g);
         txtplat.setText(h);
-        txttanggal.setText(i);
+        
+        try {
+            SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
+            Date tanggal = tgl.parse(i);
+            jtanggal.setValue(tanggal);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Format tanggal tidak valid: " + i);
+        }
     }//GEN-LAST:event_tablepelangganMouseClicked
 
     /**
@@ -748,13 +768,13 @@ public class FormPelanggan extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JRadioButton jmobil;
     private javax.swing.JRadioButton jmotor;
+    private javax.swing.JSpinner jtanggal;
     private javax.swing.JTable tablepelanggan;
     private javax.swing.JTextArea txtalamat;
     private javax.swing.JTextField txtcari;
     private javax.swing.JTextField txtid;
     private javax.swing.JTextField txtnama;
     private javax.swing.JTextField txtplat;
-    private javax.swing.JTextField txttanggal;
     private javax.swing.JTextField txttelp;
     // End of variables declaration//GEN-END:variables
 }

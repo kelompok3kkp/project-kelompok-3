@@ -7,13 +7,13 @@ package main.java.app.view.transaksi;
 
 import main.java.app.database.Koneksi;
 import java.sql.*;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import javax.swing.JComboBox;
+//import javax.swing.JComboBox;
 
 /**
  *
@@ -31,17 +31,18 @@ public class FormTransaksiCuci extends javax.swing.JFrame {
     public FormTransaksiCuci() {
         initComponents();
         
+        jtanggal.setModel(new javax.swing.SpinnerDateModel());
+        JSpinner.DateEditor tgl = new JSpinner.DateEditor(jtanggal, "yyyy-MM-dd");
+        jtanggal.setEditor(tgl);
+        jtanggal.setValue(new Date());
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         
         kosong();
         aktif();
         datatable();
-        loadComboBoxData();
+        loadComboBoxData();        
         
-        Date date = new Date();
-        SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
-        
-        txttanggal.setText(tgl.format(date));
         txtcari.addActionListener(new java.awt.event.ActionListener(){
             public void actionPerformed(java.awt.event.ActionEvent ect){
                 datatable();
@@ -75,6 +76,7 @@ public class FormTransaksiCuci extends javax.swing.JFrame {
         txtnamapelanggan.setText("");
         txtnamakaryawan.setText("");
         txtjenislayanan.setText("");
+        jtanggal.setValue(new Date());
     }
     
     private String generateIdTrx(){
@@ -243,7 +245,6 @@ public class FormTransaksiCuci extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txttanggal = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -269,6 +270,7 @@ public class FormTransaksiCuci extends javax.swing.JFrame {
         cblayanan = new javax.swing.JComboBox<>();
         txtnamakaryawan = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jtanggal = new javax.swing.JSpinner();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         txtcari = new javax.swing.JTextField();
@@ -290,9 +292,6 @@ public class FormTransaksiCuci extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Tanggal Transaksi");
-
-        txttanggal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txttanggal.setEnabled(false);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("ID Karyawan");
@@ -390,6 +389,10 @@ public class FormTransaksiCuci extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Nama Karyawan");
 
+        jtanggal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jtanggal.setModel(new javax.swing.SpinnerDateModel());
+        jtanggal.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -407,17 +410,17 @@ public class FormTransaksiCuci extends javax.swing.JFrame {
                     .addComponent(jLabel8))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txttanggal)
                     .addComponent(cbkaryawan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbpelanggan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtharga)
                     .addComponent(txtdiskon)
                     .addComponent(cbpembayaran, 0, 246, Short.MAX_VALUE)
                     .addComponent(txtid)
-                    .addComponent(cblayanan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cblayanan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtanggal))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnsimpan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnhapus, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -454,7 +457,7 @@ public class FormTransaksiCuci extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(txttanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
@@ -545,16 +548,15 @@ public class FormTransaksiCuci extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jLabel6)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
                                 .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btncari))
-                            .addComponent(jLabel6))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(btncari)))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -566,9 +568,9 @@ public class FormTransaksiCuci extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btncari))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         btnkembali.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -605,8 +607,8 @@ public class FormTransaksiCuci extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 469, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -635,7 +637,11 @@ public class FormTransaksiCuci extends javax.swing.JFrame {
         try {
             PreparedStatement stat = koneksi.prepareStatement(sql);
             stat.setString(1, txtid.getText());
-            stat.setString(2, txttanggal.getText());
+
+            Date tanggal = (Date) jtanggal.getValue();
+            SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
+            stat.setString(2, tgl.format(tanggal));
+
             stat.setString(3, cbkaryawan.getSelectedItem().toString());
             stat.setString(4, cbpelanggan.getSelectedItem().toString());
             stat.setString(5, cblayanan.getSelectedItem().toString());
@@ -656,15 +662,17 @@ public class FormTransaksiCuci extends javax.swing.JFrame {
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
         // TODO add your handling code here:
         try{
-            String sql = "UPDATE transaksi_cuci set tanggal_transaksi=?, id_karyawan=?, id_pelanggan=?, id_layanan=?, harga=?, diskon=?, metode_pembayaran=? WHERE id_transaksi='"+txtid.getText()+"'";
+            Date tanggal = (Date) jtanggal.getValue();
+            SimpleDateFormat tgl = new SimpleDateFormat("yyy-MM-dd");
+            String tanggalFormatted = tgl.format(tanggal);
+            String sql = "UPDATE transaksi_cuci set id_karyawan=?, id_pelanggan=?, id_layanan=?, harga=?, diskon=?, metode_pembayaran=? WHERE id_transaksi='"+txtid.getText()+"'";
             PreparedStatement stat = koneksi.prepareStatement(sql);
-            stat.setString(1, txttanggal.getText());
-            stat.setString(2, cbkaryawan.getSelectedItem().toString());
-            stat.setString(3, cbpelanggan.getSelectedItem().toString());
-            stat.setString(4, cblayanan.getSelectedItem().toString());
-            stat.setString(5, txtharga.getText());
-            stat.setString(6, txtdiskon.getText());
-            stat.setString(7, cbpembayaran.getSelectedItem().toString());
+            stat.setString(1, cbkaryawan.getSelectedItem().toString());
+            stat.setString(2, cbpelanggan.getSelectedItem().toString());
+            stat.setString(3, cblayanan.getSelectedItem().toString());
+            stat.setString(4, txtharga.getText());
+            stat.setString(5, txtdiskon.getText());
+            stat.setString(6, cbpembayaran.getSelectedItem().toString());
 
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil diubah");
@@ -709,9 +717,7 @@ public class FormTransaksiCuci extends javax.swing.JFrame {
     private void btnbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbatalActionPerformed
         // TODO add your handling code here:
         kosong();
-        Date date = new Date();
-        SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
-        txttanggal.setText(tgl.format(date));
+        jtanggal.setValue(new Date());
     }//GEN-LAST:event_btnbatalActionPerformed
 
     private void btncariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncariActionPerformed
@@ -737,7 +743,15 @@ public class FormTransaksiCuci extends javax.swing.JFrame {
         String h = model.getValueAt(bar, 7).toString();
 
         txtid.setText(a);
-        txttanggal.setText(b);
+        
+        try {
+            SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
+            Date tanggal = tgl.parse(b);
+            jtanggal.setValue(tanggal);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Format tanggal tidak valid: " + b);
+        }
+        
         cbkaryawan.setSelectedItem(c);
         cbpelanggan.setSelectedItem(d);
         cblayanan.setSelectedItem(e);
@@ -810,6 +824,7 @@ public class FormTransaksiCuci extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jtanggal;
     private javax.swing.JTable tabletrx;
     private javax.swing.JTextField txtcari;
     private javax.swing.JTextField txtdiskon;
@@ -819,6 +834,5 @@ public class FormTransaksiCuci extends javax.swing.JFrame {
     private javax.swing.JTextField txtmodelkendaraan;
     private javax.swing.JTextField txtnamakaryawan;
     private javax.swing.JTextField txtnamapelanggan;
-    private javax.swing.JTextField txttanggal;
     // End of variables declaration//GEN-END:variables
 }
