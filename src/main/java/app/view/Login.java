@@ -50,7 +50,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("Login");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Username");
+        jLabel1.setText("ID Karyawan");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Password");
@@ -119,7 +119,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(86, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(303, 339));
+        setSize(new java.awt.Dimension(324, 339));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
