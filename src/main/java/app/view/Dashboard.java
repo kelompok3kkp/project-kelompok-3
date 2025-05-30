@@ -5,6 +5,7 @@
  */
 package main.java.app.view;
 
+import javax.swing.JFrame;
 import main.java.app.view.master.FormKaryawan;
 import main.java.app.view.master.FormPelanggan;
 import main.java.app.view.master.FormLayananCuci;
@@ -178,6 +179,7 @@ public class Dashboard extends javax.swing.JFrame {
         form.setVisible(true);
         form.toFront();
         form.requestFocus();
+        form.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }//GEN-LAST:event_menuKaryawanActionPerformed
 
     private void menuPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPelangganActionPerformed
@@ -187,6 +189,7 @@ public class Dashboard extends javax.swing.JFrame {
         form.setVisible(true);
         form.toFront();
         form.requestFocus();
+        form.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }//GEN-LAST:event_menuPelangganActionPerformed
 
     private void menuLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLayananActionPerformed
@@ -196,6 +199,7 @@ public class Dashboard extends javax.swing.JFrame {
         form.setVisible(true);
         form.toFront();
         form.requestFocus();
+        form.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }//GEN-LAST:event_menuLayananActionPerformed
 
     private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
@@ -222,6 +226,7 @@ public class Dashboard extends javax.swing.JFrame {
         form.setVisible(true);
         form.toFront();
         form.requestFocus();
+        form.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }//GEN-LAST:event_menuTransaksiCuciActionPerformed
 
     /**
