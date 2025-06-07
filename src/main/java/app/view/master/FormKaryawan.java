@@ -209,7 +209,7 @@ public class FormKaryawan extends javax.swing.JFrame {
         jLabel9.setText("Tanggal Masuk");
 
         cbjabatan.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cbjabatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Karyawan" }));
+        cbjabatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Washerman" }));
 
         txtpass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
