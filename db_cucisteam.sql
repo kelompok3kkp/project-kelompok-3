@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Jun 2025 pada 20.17
+-- Waktu pembuatan: 22 Jun 2025 pada 14.16
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -46,7 +46,29 @@ CREATE TABLE `data_karyawan` (
 
 INSERT INTO `data_karyawan` (`id_karyawan`, `nama_karyawan`, `jenis_kelamin`, `no_telp`, `alamat`, `jabatan`, `password`, `tanggal_masuk`) VALUES
 ('K001', 'Alip', 'Laki-laki', '0987523', 'Indonesia', 'Admin', 'admin123', '2025-04-28'),
-('K002', 'bayu', 'Laki-laki', '01234', 'Brazil', 'Washerman', 'karyawan123', '2025-04-30');
+('K002', 'Fardan', 'Laki-laki', '01234', 'Brazil', 'Washerman', 'karyawan123', '2025-04-30');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `data_kendaraan`
+--
+
+CREATE TABLE `data_kendaraan` (
+  `id_kendaraan` varchar(10) NOT NULL,
+  `id_pelanggan` varchar(10) NOT NULL,
+  `jenis_kendaraan` enum('Motor','Mobil') NOT NULL,
+  `model_kendaraan` varchar(50) DEFAULT NULL,
+  `plat_nomor` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `data_kendaraan`
+--
+
+INSERT INTO `data_kendaraan` (`id_kendaraan`, `id_pelanggan`, `jenis_kendaraan`, `model_kendaraan`, `plat_nomor`) VALUES
+('KD001', 'CS001', 'Motor', 'Motor Kecil', 'b123fvdsf'),
+('KD002', 'CS002', 'Mobil', 'Mobil MPV', 'b1234bd');
 
 -- --------------------------------------------------------
 
@@ -58,23 +80,18 @@ CREATE TABLE `data_pelanggan` (
   `id_pelanggan` varchar(10) NOT NULL,
   `nama_pelanggan` varchar(100) NOT NULL,
   `no_telp` varchar(15) DEFAULT NULL,
-  `alamat` text DEFAULT NULL,
-  `jenis_kendaraan` enum('Motor','Mobil') NOT NULL,
-  `model_kendaraan` varchar(50) DEFAULT NULL,
-  `jenis_layanan` varchar(50) DEFAULT NULL,
-  `plat_nomor` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `tanggal_cuci` date NOT NULL
+  `alamat` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `data_pelanggan`
 --
 
-INSERT INTO `data_pelanggan` (`id_pelanggan`, `nama_pelanggan`, `no_telp`, `alamat`, `jenis_kendaraan`, `model_kendaraan`, `jenis_layanan`, `plat_nomor`, `tanggal_cuci`) VALUES
-('CS001', 'Bayu', '122345455', 'Indonesia', 'Motor', 'Motor Besar', 'Cuci Motor Biasa', 'A 1234 BCD', '2025-04-28'),
-('CS002', 'Nopal', '012445', 'bogor', 'Motor', 'Motor Kecil', 'Cuci Motor Premium', 'B 1222 BDE', '2025-04-30'),
-('CS003', 'dfsfsdfs', '122345', 'fgfgfdgfgd', 'Mobil', 'Mobil Hatchback', 'Cuci Mobil Premium', 'f12123bb', '2025-05-24'),
-('CS004', 'Sdadad', '12134343', 'dfsdfsd', 'Mobil', 'Mobil Sedan', 'Cuci Mobil Premium', 'B12123', '2025-05-30');
+INSERT INTO `data_pelanggan` (`id_pelanggan`, `nama_pelanggan`, `no_telp`, `alamat`) VALUES
+('CS001', 'Bayu', '122345455', 'Indonesia'),
+('CS002', 'Ahmad', '012445', 'bogor'),
+('CS003', 'Ucok', '122345', 'fgfgfdgfgd'),
+('CS004', 'Arie', '12134343', 'dfsdfsd');
 
 -- --------------------------------------------------------
 
@@ -135,7 +152,9 @@ CREATE TABLE `transaksi_cuci` (
 INSERT INTO `transaksi_cuci` (`id_transaksi`, `tanggal_transaksi`, `id_karyawan`, `id_pelanggan`, `id_layanan`, `harga`, `diskon`, `metode_pembayaran`) VALUES
 ('TRX001', '2025-05-20', 'K001', 'CS001', 'L001', 15000.00, 0, 'E-Wallet'),
 ('TRX002', '2025-05-28', 'K002', 'CS002', 'L002', 25000.00, 0, 'Tunai'),
-('TRX003', '2025-05-30', 'K001', 'CS002', 'L002', 25000.00, 0, 'Transfer');
+('TRX003', '2025-05-30', 'K001', 'CS002', 'L002', 25000.00, 0, 'Transfer'),
+('TRX004', '2025-06-21', 'K002', 'CS002', 'L002', 25000.00, 0, 'Tunai'),
+('TRX005', '2025-06-21', 'K001', 'CS003', 'L006', 45000.00, 0, 'Transfer');
 
 --
 -- Indexes for dumped tables
@@ -146,6 +165,13 @@ INSERT INTO `transaksi_cuci` (`id_transaksi`, `tanggal_transaksi`, `id_karyawan`
 --
 ALTER TABLE `data_karyawan`
   ADD PRIMARY KEY (`id_karyawan`);
+
+--
+-- Indeks untuk tabel `data_kendaraan`
+--
+ALTER TABLE `data_kendaraan`
+  ADD PRIMARY KEY (`id_kendaraan`),
+  ADD KEY `id_pelanggan` (`id_pelanggan`);
 
 --
 -- Indeks untuk tabel `data_pelanggan`
@@ -171,6 +197,12 @@ ALTER TABLE `transaksi_cuci`
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
+
+--
+-- Ketidakleluasaan untuk tabel `data_kendaraan`
+--
+ALTER TABLE `data_kendaraan`
+  ADD CONSTRAINT `data_kendaraan_ibfk_1` FOREIGN KEY (`id_pelanggan`) REFERENCES `data_pelanggan` (`id_pelanggan`);
 
 --
 -- Ketidakleluasaan untuk tabel `transaksi_cuci`
