@@ -11,11 +11,10 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 
 /**
  *
- * @author aliframadhan
+ * @author frdn1120
  */
 public class FormKendaraan extends javax.swing.JFrame {
     private Connection koneksi = new Koneksi().connect();
