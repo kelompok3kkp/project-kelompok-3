@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Bulan Mei 2025 pada 05.56
+-- Waktu pembuatan: 07 Jun 2025 pada 20.17
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -37,7 +37,7 @@ CREATE TABLE `data_karyawan` (
   `alamat` text DEFAULT NULL,
   `jabatan` varchar(50) DEFAULT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `tanggal_masuk` date NOT NULL
+  `tanggal_masuk` date DEFAULT curdate()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `data_karyawan` (
 
 INSERT INTO `data_karyawan` (`id_karyawan`, `nama_karyawan`, `jenis_kelamin`, `no_telp`, `alamat`, `jabatan`, `password`, `tanggal_masuk`) VALUES
 ('K001', 'Alip', 'Laki-laki', '0987523', 'Indonesia', 'Admin', 'admin123', '2025-04-28'),
-('K002', 'bayu', 'Laki-laki', '01234', 'brazil', 'Karyawan', 'karyawan123', '2025-04-30');
+('K002', 'bayu', 'Laki-laki', '01234', 'Brazil', 'Washerman', 'karyawan123', '2025-04-30');
 
 -- --------------------------------------------------------
 
@@ -72,9 +72,9 @@ CREATE TABLE `data_pelanggan` (
 
 INSERT INTO `data_pelanggan` (`id_pelanggan`, `nama_pelanggan`, `no_telp`, `alamat`, `jenis_kendaraan`, `model_kendaraan`, `jenis_layanan`, `plat_nomor`, `tanggal_cuci`) VALUES
 ('CS001', 'Bayu', '122345455', 'Indonesia', 'Motor', 'Motor Besar', 'Cuci Motor Biasa', 'A 1234 BCD', '2025-04-28'),
-('CS002', 'nopal', '012445', 'bogor', 'Motor', 'Motor Kecil', 'Cuci Motor Premium', 'B 1222 BDE', '2025-04-30'),
-('CS003', 'sdad', '121123', 'asdada', 'Motor', 'Motor Besar', 'Cuci Motor Premium', 'B 121233 VDS', '2025-05-20'),
-('CS004', 'sdd', '12313', 'sdfsf', 'Mobil', 'Mobil Sedan', 'Cuci Mobil Premium', 'B 23123 DDS', '2025-05-20');
+('CS002', 'Nopal', '012445', 'bogor', 'Motor', 'Motor Kecil', 'Cuci Motor Premium', 'B 1222 BDE', '2025-04-30'),
+('CS003', 'dfsfsdfs', '122345', 'fgfgfdgfgd', 'Mobil', 'Mobil Hatchback', 'Cuci Mobil Premium', 'f12123bb', '2025-05-24'),
+('CS004', 'Sdadad', '12134343', 'dfsdfsd', 'Mobil', 'Mobil Sedan', 'Cuci Mobil Premium', 'B12123', '2025-05-30');
 
 -- --------------------------------------------------------
 
@@ -100,7 +100,7 @@ INSERT INTO `layanan_cuci` (`id_layanan`, `jenis_kendaraan`, `model_kendaraan`, 
 ('L002', 'motor', 'Motor Kecil', 'Cuci Motor Premium', '1. Semua layanan dari \"Cuci Motor Biasa\"\n2. Poles ringan bodi motor (plastik & tangki)\n3. Coating pelindung cat\n4. Pelumasan rantai (jika ada)\n5. Cuci dan pengharum helm', 25000.00),
 ('L003', 'motor', 'Motor Kecil', 'Cuci Motor Biasa', '1. Cuci seluruh bagian luar motor\n2. Pembersihan detail: sela bodi, \n3. kolong spakbor, velg\n4. Pembersihan rantai\n5. Semprotan air bertekanan tinggi\n6. Pengeringan dengan lap microfiber', 20000.00),
 ('L004', 'motor', 'Motor Besar', 'Cuci Motor Premium', '1. Semua layanan dari \"Cuci Motor Biasa\"\n2. Poles ringan bodi motor (plastik & tangki)\n3. Coating pelindung cat\n4. Pelumasan rantai (jika ada)\n5. Cuci dan pengharum helm', 30000.00),
-('L005', 'mobil', 'Mobil Sedan', 'Cuci Motor Biasa', '1. Cuci seluruh bagian luar mobil (body, kaca, spion, kap, dan bumper)\n2. Pembersihan detail: sela-sela pintu, handle pintu, wiper\n3. Pembersihan kolong spakbor dan velg\n4. Pembersihan dasar eksterior grill dan emblem\n5. Semprotan air bertekanan tinggi (steam pressure washer)\n6. Vacuum interior: jok, lantai, dan bagasi\n7. Pengeringan dengan lap microfiber', 35000.00),
+('L005', 'mobil', 'Mobil Sedan', 'Cuci Mobil Biasa', '1. Cuci seluruh bagian luar mobil (body, kaca, spion, kap, dan bumper)\n2. Pembersihan detail: sela-sela pintu, handle pintu, wiper\n3. Pembersihan kolong spakbor dan velg\n4. Pembersihan dasar eksterior grill dan emblem\n5. Semprotan air bertekanan tinggi (steam pressure washer)\n6. Vacuum interior: jok, lantai, dan bagasi\n7. Pengeringan dengan lap microfiber', 35000.00),
 ('L006', 'mobil', 'Mobil Sedan', 'Cuci Mobil Premium', '1. Semua layanan dari \"Cuci Mobil Biasa\"\n2. Poles ringan bodi mobil (terutama bagian plastik, krom, dan kap mesin)\n3. Coating pelindung cat sementara (wax atau sealant dasar)\n4. Pelumasan engsel pintu dan karet kaca (door trim)\n5. Semprotan parfum mobil (aroma segar atau sesuai pilihan)\n6. Semir ban dan poles velg ringan', 45000.00),
 ('L007', 'mobil', 'Mobil Hatchback', 'Cuci Mobil Biasa', '1. Cuci seluruh bagian luar mobil (body, kaca, spion, kap, dan bumper)\n2. Pembersihan detail: sela-sela pintu, handle pintu, wiper\n3. Pembersihan kolong spakbor dan velg\n4. Pembersihan dasar eksterior grill dan emblem\n5. Semprotan air bertekanan tinggi (steam pressure washer)\n6. Vacuum interior: jok, lantai, dan bagasi\n7. Pengeringan dengan lap microfiber', 40000.00),
 ('L008', 'mobil', 'Mobil Hatchback', 'Cuci Mobil Premium', '1. Semua layanan dari \"Cuci Mobil Biasa\"\n2. Poles ringan bodi mobil (terutama bagian plastik, krom, dan kap mesin)\n3. Coating pelindung cat sementara (wax atau sealant dasar)\n4. Pelumasan engsel pintu dan karet kaca (door trim)\n5. Semprotan parfum mobil (aroma segar atau sesuai pilihan)\n6. Semir ban dan poles velg ringan', 50000.00),
@@ -133,7 +133,9 @@ CREATE TABLE `transaksi_cuci` (
 --
 
 INSERT INTO `transaksi_cuci` (`id_transaksi`, `tanggal_transaksi`, `id_karyawan`, `id_pelanggan`, `id_layanan`, `harga`, `diskon`, `metode_pembayaran`) VALUES
-('TRX001', '2025-05-20', 'K001', 'CS004', 'L006', 45000.00, 0, 'Tunai');
+('TRX001', '2025-05-20', 'K001', 'CS001', 'L001', 15000.00, 0, 'E-Wallet'),
+('TRX002', '2025-05-28', 'K002', 'CS002', 'L002', 25000.00, 0, 'Tunai'),
+('TRX003', '2025-05-30', 'K001', 'CS002', 'L002', 25000.00, 0, 'Transfer');
 
 --
 -- Indexes for dumped tables

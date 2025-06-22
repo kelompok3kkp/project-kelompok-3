@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import main.java.app.view.master.FormKaryawan;
 import main.java.app.view.master.FormPelanggan;
 import main.java.app.view.master.FormLayananCuci;
-import main.java.app.view.transaksi.FormTransaksiCuci;
+import main.java.app.view.master.FormKendaraan;
 
 /**
  *
@@ -57,8 +57,8 @@ public class Dashboard extends javax.swing.JFrame {
         menuKaryawan = new javax.swing.JMenuItem();
         menuPelanggan = new javax.swing.JMenuItem();
         menuLayanan = new javax.swing.JMenuItem();
+        mKendaraan = new javax.swing.JMenuItem();
         mtransaksi = new javax.swing.JMenu();
-        menuTransaksiCuci = new javax.swing.JMenuItem();
         mlaporan = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -126,18 +126,17 @@ public class Dashboard extends javax.swing.JFrame {
         });
         mmaster.add(menuLayanan);
 
+        mKendaraan.setText("Kendaraan");
+        mKendaraan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mKendaraanActionPerformed(evt);
+            }
+        });
+        mmaster.add(mKendaraan);
+
         jMenuBar1.add(mmaster);
 
         mtransaksi.setText("Transaksi");
-
-        menuTransaksiCuci.setText("Transaksi Cuci");
-        menuTransaksiCuci.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuTransaksiCuciActionPerformed(evt);
-            }
-        });
-        mtransaksi.add(menuTransaksiCuci);
-
         jMenuBar1.add(mtransaksi);
 
         mlaporan.setText("Laporan");
@@ -219,15 +218,15 @@ public class Dashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnlogoutActionPerformed
 
-    private void menuTransaksiCuciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTransaksiCuciActionPerformed
+    private void mKendaraanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mKendaraanActionPerformed
         // TODO add your handling code here:
-        FormTransaksiCuci form = new FormTransaksiCuci();
+        FormKendaraan form = new FormKendaraan();
         form.setLocationRelativeTo(this);
         form.setVisible(true);
         form.toFront();
         form.requestFocus();
         form.setExtendedState(JFrame.MAXIMIZED_BOTH);
-    }//GEN-LAST:event_menuTransaksiCuciActionPerformed
+    }//GEN-LAST:event_mKendaraanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,10 +272,10 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem mKendaraan;
     private javax.swing.JMenuItem menuKaryawan;
     private javax.swing.JMenuItem menuLayanan;
     private javax.swing.JMenuItem menuPelanggan;
-    private javax.swing.JMenuItem menuTransaksiCuci;
     private javax.swing.JMenu mlaporan;
     private javax.swing.JMenu mmaster;
     private javax.swing.JMenu mtransaksi;
