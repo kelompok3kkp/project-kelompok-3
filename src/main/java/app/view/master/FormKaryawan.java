@@ -11,6 +11,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 
 /**
@@ -39,6 +41,7 @@ public class FormKaryawan extends javax.swing.JFrame {
         kosong();
         aktif();
         datatable();
+        loadComboBoxData();
         
         txtalamat.setLineWrap(true);
         txtalamat.setWrapStyleWord(true);
@@ -47,6 +50,22 @@ public class FormKaryawan extends javax.swing.JFrame {
                datatable();
            } 
         });
+    }
+    
+    public void loadComboBoxData(){
+        try {
+            Connection koneksi = Koneksi.connect();
+            Statement stat = koneksi.createStatement();
+            
+            ResultSet rsShift = stat.executeQuery("SELECT shift FROM shift");
+            while (rsShift.next()){
+                cbshift.addItem(rsShift.getString("shift"));
+            }
+            rsShift.close();
+        } catch (Exception e) {
+             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Gagal load data combobox: "+ e.getMessage());
+        }
     }
     
     protected void aktif(){
@@ -64,7 +83,6 @@ public class FormKaryawan extends javax.swing.JFrame {
         jtanggal.setValue(new Date());
     }
 
-    
     private String generateIdKaryawan(){
         String prefix = "K";
         String sql = "SELECT id_karyawan FROM data_karyawan ORDER BY id_karyawan DESC LIMIT 1";
@@ -86,7 +104,7 @@ public class FormKaryawan extends javax.swing.JFrame {
     }
     
     protected void datatable(){
-        Object[] Baris = {"ID Karyawan", "Nama Karyawan", "Jenis Kelamin", "No. Telepon", "Alamat", "Jabatan", "Password", "Tanggal Masuk"};
+        Object[] Baris = {"ID Karyawan", "Nama Karyawan", "Jenis Kelamin", "No. Telepon", "Alamat", "Jabatan","Shift", "Password", "Tanggal Masuk"};
             model = new DefaultTableModel(null, Baris);
             String cariitem = txtcari.getText();
             
@@ -97,6 +115,7 @@ public class FormKaryawan extends javax.swing.JFrame {
                         + "OR no_telp LIKE '%" + cariitem + "%' " 
                         + "OR alamat LIKE '%" + cariitem + "%' " 
                         + "OR jabatan LIKE '%" + cariitem + "%' " 
+                        + "OR shift LIKE '%" + cariitem + "%' "
                         + "OR password LIKE '%" + cariitem + "%' " 
                         + "ORDER BY id_karyawan ASC";
                 Statement stat = koneksi.createStatement();
@@ -112,6 +131,7 @@ public class FormKaryawan extends javax.swing.JFrame {
                         hasil.getString(6),
                         hasil.getString(7),
                         hasil.getString(8),
+                        hasil.getString(9),
                     });
                 }
                 tablekaryawan.setModel(model);
@@ -158,6 +178,8 @@ public class FormKaryawan extends javax.swing.JFrame {
         btncari = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablekaryawan = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
+        cbshift = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         btnkembali = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -311,6 +333,11 @@ public class FormKaryawan extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setText("Shift");
+
+        cbshift.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -349,10 +376,12 @@ public class FormKaryawan extends javax.swing.JFrame {
                                     .addComponent(jScrollPane1))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(cbjabatan, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jtanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtpass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(txtpass)
+                                        .addComponent(cbshift, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                    .addComponent(jLabel10))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnsimpan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -402,23 +431,28 @@ public class FormKaryawan extends javax.swing.JFrame {
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addComponent(cbjabatan)
-                                    .addGap(756, 756, 756))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(24, 24, 24)
-                                    .addComponent(jLabel7)
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel8)
-                                        .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel9)
-                                        .addComponent(jtanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(0, 0, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cbjabatan)
+                                        .addGap(58, 58, 58))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(24, 24, 24)
+                                        .addComponent(jLabel7)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel10)
+                                            .addComponent(cbshift, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jtanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(633, 633, 633))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(btnhapus)
@@ -512,7 +546,7 @@ public class FormKaryawan extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat mengecek ID: " + e);
             return;
         }
-        String sql = "INSERT into data_karyawan values (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT into data_karyawan values (?,?,?,?,?,?,?,?,?)";
         try{
             PreparedStatement stat = koneksi.prepareStatement(sql);
             stat.setString(1, txtid.getText());
@@ -521,11 +555,13 @@ public class FormKaryawan extends javax.swing.JFrame {
             stat.setString(4, txttelp.getText());
             stat.setString(5, txtalamat.getText());
             stat.setString(6, cbjabatan.getSelectedItem().toString());
-            stat.setString(7, txtpass.getText());
+            stat.setString(7, cbshift.getSelectedItem().toString());
+            stat.setString(8, txtpass.getText());
+
             
             Date tanggal = (Date) jtanggal.getValue();
             SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
-            stat.setString(8, tgl.format(tanggal));
+            stat.setString(9, tgl.format(tanggal));
 
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan.");
@@ -555,14 +591,15 @@ public class FormKaryawan extends javax.swing.JFrame {
             Date tanggal = (Date) jtanggal.getValue();
             SimpleDateFormat tgl = new SimpleDateFormat("yyy-MM-dd");
             String tanggalFormatted = tgl.format(tanggal);
-            String sql = "UPDATE data_karyawan set nama_karyawan=?, jenis_kelamin=?, no_telp=?, alamat=?, jabatan=?, password=? WHERE id_karyawan='"+txtid.getText()+"'";
+            String sql = "UPDATE data_karyawan set nama_karyawan=?, jenis_kelamin=?, no_telp=?, alamat=?, jabatan=?, shift=?, password=? WHERE id_karyawan='"+txtid.getText()+"'";
             PreparedStatement stat = koneksi.prepareStatement(sql);
             stat.setString(1, txtnama.getText());
             stat.setString(2, jenis);
             stat.setString(3, txttelp.getText());
             stat.setString(4, txtalamat.getText());
             stat.setString(5, cbjabatan.getSelectedItem().toString());
-            stat.setString(6, txtpass.getText());
+            stat.setString(6, cbshift.getSelectedItem().toString());
+            stat.setString(7, txtpass.getText());
 
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil diubah");
@@ -625,19 +662,32 @@ public class FormKaryawan extends javax.swing.JFrame {
     private void tablekaryawanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablekaryawanMouseClicked
         // TODO add your handling code here:
         int bar = tablekaryawan.getSelectedRow();
-        String a = model.getValueAt(bar, 0).toString();
-        String b = model.getValueAt(bar, 1).toString();
-        String c = model.getValueAt(bar, 2).toString();
-        String d = model.getValueAt(bar, 3).toString();
-        String e = model.getValueAt(bar, 4).toString();
-        String f = model.getValueAt(bar, 5).toString();
-        String g = model.getValueAt(bar, 6).toString();
-        String h = model.getValueAt(bar, 7).toString();
+    
+    if (bar < 0) {
+        // Tidak ada baris terpilih
+        return;
+    }
+    
+    if (model == null) {
+        JOptionPane.showMessageDialog(this, "Model tabel belum diisi!");
+        return;
+    }
+    
+    try {
+        String a = model.getValueAt(bar, 0) != null ? model.getValueAt(bar, 0).toString() : "";
+        String b = model.getValueAt(bar, 1) != null ? model.getValueAt(bar, 1).toString() : "";
+        String c = model.getValueAt(bar, 2) != null ? model.getValueAt(bar, 2).toString() : "";
+        String d = model.getValueAt(bar, 3) != null ? model.getValueAt(bar, 3).toString() : "";
+        String e = model.getValueAt(bar, 4) != null ? model.getValueAt(bar, 4).toString() : "";
+        String f = model.getValueAt(bar, 5) != null ? model.getValueAt(bar, 5).toString() : "";
+        String g = model.getValueAt(bar, 6) != null ? model.getValueAt(bar, 6).toString() : "";
+        String h = model.getValueAt(bar, 7) != null ? model.getValueAt(bar, 7).toString() : "";
+        String i = model.getValueAt(bar, 8) != null ? model.getValueAt(bar, 8).toString() : "";
 
         txtid.setText(a);
         txtnama.setText(b);
 
-        if (c != null && c.equalsIgnoreCase("Laki-laki")) {
+        if (c.equalsIgnoreCase("Laki-laki")) {
             klaki.setSelected(true);
             kperempuan.setSelected(false);
         } else {
@@ -648,15 +698,20 @@ public class FormKaryawan extends javax.swing.JFrame {
         txttelp.setText(d);
         txtalamat.setText(e);
         cbjabatan.setSelectedItem(f);
-        txtpass.setText(g);
-        
-        try {
+        cbshift.setSelectedItem(g);
+        txtpass.setText(h);
+
+        if (!i.isEmpty()) {
             SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
-            Date tanggal = tgl.parse(h);
+            Date tanggal = tgl.parse(i);
             jtanggal.setValue(tanggal);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Format tanggal tidak valid: " + h);
+        } else {
+            jtanggal.setValue(new Date()); // default ke hari ini kalau kosong
         }
+        
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Error saat memuat data: " + ex.getMessage());
+    }
     }//GEN-LAST:event_tablekaryawanMouseClicked
 
     /**
@@ -718,7 +773,9 @@ public class FormKaryawan extends javax.swing.JFrame {
     private javax.swing.JButton btnsimpan;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbjabatan;
+    private javax.swing.JComboBox<String> cbshift;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
