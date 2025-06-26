@@ -5,11 +5,11 @@
  */
 package main.java.app.view;
 
-import javax.swing.JFrame;
 import main.java.app.view.master.FormKaryawan;
 import main.java.app.view.master.FormPelanggan;
 import main.java.app.view.master.FormLayananCuci;
 import main.java.app.view.master.FormKendaraan;
+import main.java.app.view.master.FormShift;
 
 /**
  *
@@ -55,9 +55,10 @@ public class Dashboard extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         mmaster = new javax.swing.JMenu();
         menuKaryawan = new javax.swing.JMenuItem();
-        menuPelanggan = new javax.swing.JMenuItem();
         menuLayanan = new javax.swing.JMenuItem();
+        menuPelanggan = new javax.swing.JMenuItem();
         mKendaraan = new javax.swing.JMenuItem();
+        mShift = new javax.swing.JMenuItem();
         mtransaksi = new javax.swing.JMenu();
         mlaporan = new javax.swing.JMenu();
 
@@ -101,7 +102,10 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         mmaster.setText("Master");
+        mmaster.setFocusable(false);
+        mmaster.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
+        menuKaryawan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         menuKaryawan.setText("Karyawan");
         menuKaryawan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,14 +114,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
         mmaster.add(menuKaryawan);
 
-        menuPelanggan.setText("Pelanggan");
-        menuPelanggan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuPelangganActionPerformed(evt);
-            }
-        });
-        mmaster.add(menuPelanggan);
-
+        menuLayanan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         menuLayanan.setText("Layanan");
         menuLayanan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +123,16 @@ public class Dashboard extends javax.swing.JFrame {
         });
         mmaster.add(menuLayanan);
 
+        menuPelanggan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuPelanggan.setText("Pelanggan");
+        menuPelanggan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPelangganActionPerformed(evt);
+            }
+        });
+        mmaster.add(menuPelanggan);
+
+        mKendaraan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         mKendaraan.setText("Kendaraan");
         mKendaraan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,12 +141,23 @@ public class Dashboard extends javax.swing.JFrame {
         });
         mmaster.add(mKendaraan);
 
+        mShift.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        mShift.setText("Shift");
+        mShift.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mShiftActionPerformed(evt);
+            }
+        });
+        mmaster.add(mShift);
+
         jMenuBar1.add(mmaster);
 
         mtransaksi.setText("Transaksi");
+        mtransaksi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jMenuBar1.add(mtransaksi);
 
         mlaporan.setText("Laporan");
+        mlaporan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jMenuBar1.add(mlaporan);
 
         setJMenuBar(jMenuBar1);
@@ -160,7 +178,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addContainerGap(493, Short.MAX_VALUE))
+                .addContainerGap(487, Short.MAX_VALUE))
         );
 
         setBounds(0, 0, 727, 657);
@@ -178,7 +196,6 @@ public class Dashboard extends javax.swing.JFrame {
         form.setVisible(true);
         form.toFront();
         form.requestFocus();
-        form.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }//GEN-LAST:event_menuKaryawanActionPerformed
 
     private void menuPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPelangganActionPerformed
@@ -188,7 +205,6 @@ public class Dashboard extends javax.swing.JFrame {
         form.setVisible(true);
         form.toFront();
         form.requestFocus();
-        form.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }//GEN-LAST:event_menuPelangganActionPerformed
 
     private void menuLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLayananActionPerformed
@@ -198,7 +214,6 @@ public class Dashboard extends javax.swing.JFrame {
         form.setVisible(true);
         form.toFront();
         form.requestFocus();
-        form.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }//GEN-LAST:event_menuLayananActionPerformed
 
     private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
@@ -225,8 +240,16 @@ public class Dashboard extends javax.swing.JFrame {
         form.setVisible(true);
         form.toFront();
         form.requestFocus();
-        form.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }//GEN-LAST:event_mKendaraanActionPerformed
+
+    private void mShiftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mShiftActionPerformed
+        // TODO add your handling code here:
+        FormShift form = new FormShift();
+        form.setLocationRelativeTo(this);
+        form.setVisible(true);
+        form.toFront();
+        form.requestFocus();
+    }//GEN-LAST:event_mShiftActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,6 +296,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem mKendaraan;
+    private javax.swing.JMenuItem mShift;
     private javax.swing.JMenuItem menuKaryawan;
     private javax.swing.JMenuItem menuLayanan;
     private javax.swing.JMenuItem menuPelanggan;
