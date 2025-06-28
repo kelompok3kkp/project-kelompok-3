@@ -54,12 +54,12 @@ public class FormNota extends javax.swing.JFrame {
     
     protected void nama(){
         try {
-            String sql = "SELECT * FROM data_kasir WHERE id_kasir='"+jLabelID.getText()+"'";
+            String sql = "SELECT * FROM data_karyawan WHERE id_karyawan='"+jLabelID.getText()+"'";
             Statement stat = Koneksi.createStatement();
             ResultSet hasil = stat.executeQuery(sql);
             
             if(hasil.next()){
-                jLabel6.setText(hasil.getString("nama_kasir"));
+                jLabelNama.setText(hasil.getString("nama_karyawan"));
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "data gagal dipanggil"+e);
@@ -162,6 +162,7 @@ public class FormNota extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btnkembali = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -189,7 +190,7 @@ public class FormNota extends javax.swing.JFrame {
         txtplatk = new javax.swing.JTextField();
         btncarik = new javax.swing.JButton();
         jtanggal = new javax.swing.JSpinner();
-        jLabel6 = new javax.swing.JLabel();
+        jLabelNama = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -416,8 +417,8 @@ public class FormNota extends javax.swing.JFrame {
         jtanggal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jtanggal.setModel(new javax.swing.SpinnerDateModel());
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("jLabel6");
+        jLabelNama.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelNama.setText("jLabel6");
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data Layanan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
@@ -674,7 +675,7 @@ public class FormNota extends javax.swing.JFrame {
                                             .addComponent(jLabel9))
                                         .addGap(44, 44, 44)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6)
+                                            .addComponent(jLabelNama)
                                             .addComponent(jtanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -690,7 +691,7 @@ public class FormNota extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabelID)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabelNama))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -718,8 +719,10 @@ public class FormNota extends javax.swing.JFrame {
                     .addComponent(btnkeluar)
                     .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
+
+        jScrollPane4.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -727,17 +730,17 @@ public class FormNota extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addComponent(jScrollPane4))
         );
 
         pack();
@@ -929,11 +932,11 @@ public class FormNota extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelID;
+    private javax.swing.JLabel jLabelNama;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -944,6 +947,7 @@ public class FormNota extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jtanggal;
     private javax.swing.JTable tabledatanota;
     private javax.swing.JTextArea txtalamatp;
