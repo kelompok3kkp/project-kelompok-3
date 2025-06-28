@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Jun 2025 pada 10.45
+-- Waktu pembuatan: 28 Jun 2025 pada 11.36
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -48,6 +48,22 @@ CREATE TABLE `data_karyawan` (
 INSERT INTO `data_karyawan` (`id_karyawan`, `nama_karyawan`, `jenis_kelamin`, `no_telp`, `alamat`, `jabatan`, `shift`, `password`, `tanggal_masuk`) VALUES
 ('K001', 'Alip', 'Laki-laki', '0987523', 'Indonesia', 'Admin', 'Pagi', 'admin123', '2025-04-28'),
 ('K002', 'bayu', 'Laki-laki', '01234', 'brazil', 'Washerman', 'Malam', 'karyawan123', '2025-04-30');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `data_kasir`
+--
+
+CREATE TABLE `data_kasir` (
+  `id_kasir` varchar(10) NOT NULL,
+  `nama_kasir` varchar(50) NOT NULL,
+  `jenis_kelamin` varchar(10) NOT NULL,
+  `alamat` text NOT NULL,
+  `no_telp` varchar(15) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `tgl_masuk` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -137,12 +153,26 @@ INSERT INTO `layanan_cuci` (`id_layanan`, `jenis_kendaraan`, `model_kendaraan`, 
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `nota`
+--
+
+CREATE TABLE `nota` (
+  `id_nota` varchar(10) NOT NULL,
+  `tgl_nota` date DEFAULT NULL,
+  `id_pelanggan` varchar(10) DEFAULT NULL,
+  `total` decimal(10,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `shift`
 --
 
 CREATE TABLE `shift` (
   `id_shift` varchar(10) NOT NULL,
-  `shift` enum('Pagi','Malam') DEFAULT NULL,
+  `nama_shift` varchar(50) NOT NULL,
+  `shift` enum('PAGI','MALAM') DEFAULT NULL,
   `jam_mulai` time DEFAULT NULL,
   `jam_selesai` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -151,9 +181,33 @@ CREATE TABLE `shift` (
 -- Dumping data untuk tabel `shift`
 --
 
-INSERT INTO `shift` (`id_shift`, `shift`, `jam_mulai`, `jam_selesai`) VALUES
-('S01', 'Pagi', '08:00:00', '15:00:00'),
-('S02', 'Malam', '15:00:00', '21:00:00');
+INSERT INTO `shift` (`id_shift`, `nama_shift`, `shift`, `jam_mulai`, `jam_selesai`) VALUES
+('S01', 'Bayu', 'PAGI', '18:32:46', '15:00:00'),
+('S02', 'Alif', 'MALAM', '15:00:00', '21:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `transaksi_cuci`
+--
+
+CREATE TABLE `transaksi_cuci` (
+  `id_transaksi` varchar(10) NOT NULL,
+  `tanggal_transaksi` date NOT NULL,
+  `id_karyawan` varchar(10) NOT NULL,
+  `id_pelanggan` varchar(10) NOT NULL,
+  `id_layanan` varchar(10) NOT NULL,
+  `harga` decimal(10,2) NOT NULL,
+  `diskon` int(11) DEFAULT 0,
+  `metode_pembayaran` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `transaksi_cuci`
+--
+
+INSERT INTO `transaksi_cuci` (`id_transaksi`, `tanggal_transaksi`, `id_karyawan`, `id_pelanggan`, `id_layanan`, `harga`, `diskon`, `metode_pembayaran`) VALUES
+('TRX001', '2025-05-20', 'K001', 'CS004', 'L006', 45000.00, 0, 'Tunai');
 
 --
 -- Indexes for dumped tables
@@ -164,6 +218,12 @@ INSERT INTO `shift` (`id_shift`, `shift`, `jam_mulai`, `jam_selesai`) VALUES
 --
 ALTER TABLE `data_karyawan`
   ADD PRIMARY KEY (`id_karyawan`);
+
+--
+-- Indeks untuk tabel `data_kasir`
+--
+ALTER TABLE `data_kasir`
+  ADD PRIMARY KEY (`id_kasir`);
 
 --
 -- Indeks untuk tabel `data_pelanggan`
@@ -178,10 +238,37 @@ ALTER TABLE `layanan_cuci`
   ADD PRIMARY KEY (`id_layanan`);
 
 --
+-- Indeks untuk tabel `nota`
+--
+ALTER TABLE `nota`
+  ADD PRIMARY KEY (`id_nota`);
+
+--
 -- Indeks untuk tabel `shift`
 --
 ALTER TABLE `shift`
   ADD PRIMARY KEY (`id_shift`);
+
+--
+-- Indeks untuk tabel `transaksi_cuci`
+--
+ALTER TABLE `transaksi_cuci`
+  ADD PRIMARY KEY (`id_transaksi`),
+  ADD KEY `id_pelanggan` (`id_pelanggan`),
+  ADD KEY `id_karyawan` (`id_karyawan`),
+  ADD KEY `id_layanan` (`id_layanan`);
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `transaksi_cuci`
+--
+ALTER TABLE `transaksi_cuci`
+  ADD CONSTRAINT `transaksi_cuci_ibfk_1` FOREIGN KEY (`id_pelanggan`) REFERENCES `data_pelanggan` (`id_pelanggan`),
+  ADD CONSTRAINT `transaksi_cuci_ibfk_2` FOREIGN KEY (`id_karyawan`) REFERENCES `data_karyawan` (`id_karyawan`),
+  ADD CONSTRAINT `transaksi_cuci_ibfk_3` FOREIGN KEY (`id_layanan`) REFERENCES `layanan_cuci` (`id_layanan`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
