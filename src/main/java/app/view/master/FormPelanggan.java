@@ -55,6 +55,7 @@ public class FormPelanggan extends javax.swing.JFrame {
         buttonGroup1.clearSelection();
     }
     
+    
     private String generateIdPelanggan(){
         String prefix = "CS";
         String sql = "SELECT id_pelanggan FROM data_pelanggan ORDER BY id_pelanggan DESC LIMIT 1";

@@ -10,6 +10,7 @@ import main.java.app.view.master.FormPelanggan;
 import main.java.app.view.master.FormLayananCuci;
 import main.java.app.view.master.FormKendaraan;
 import main.java.app.view.master.FormShift;
+import main.java.app.view.transaksi.FormNota;
 
 /**
  *
@@ -60,6 +61,7 @@ public class Dashboard extends javax.swing.JFrame {
         mKendaraan = new javax.swing.JMenuItem();
         mShift = new javax.swing.JMenuItem();
         mtransaksi = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         mlaporan = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -154,6 +156,16 @@ public class Dashboard extends javax.swing.JFrame {
 
         mtransaksi.setText("Transaksi");
         mtransaksi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuItem1.setText("Nota");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        mtransaksi.add(jMenuItem1);
+
         jMenuBar1.add(mtransaksi);
 
         mlaporan.setText("Laporan");
@@ -251,6 +263,15 @@ public class Dashboard extends javax.swing.JFrame {
         form.requestFocus();
     }//GEN-LAST:event_mShiftActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        FormNota form = new FormNota();
+        form.setLocationRelativeTo(this);
+        form.setVisible(true);
+        form.toFront();
+        form.requestFocus();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -294,6 +315,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem mKendaraan;
     private javax.swing.JMenuItem mShift;
