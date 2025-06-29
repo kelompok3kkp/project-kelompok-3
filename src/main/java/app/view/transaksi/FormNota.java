@@ -71,7 +71,7 @@ public class FormNota extends javax.swing.JFrame {
         jtanggal.setEditor(new JSpinner.DateEditor(jtanggal,"yyy/MM/dd"));
         Object[] Baris = {"ID Layanan", "Jenis Layanan", "Keterangan", "Harga"};
         model = new DefaultTableModel(null, Baris);
-        tabledatanota.setModel(model);
+        tabletransaksi.setModel(model);
     }
     
      protected void kosong(){
@@ -150,6 +150,16 @@ public class FormNota extends javax.swing.JFrame {
         txtmodelk.setText(modelk);
         txtplatk.setText(pltnmr);
     }
+      
+      public void hitung(){
+          int total = 0;
+          for(int i = 0; i < tabletransaksi.getRowCount(); i++){
+              double amount = Double.valueOf(tabletransaksi.getValueAt(i, 3).toString());
+              total += amount;
+          }
+          txttotal.setText(Double.toString(total));
+      }
+      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -211,7 +221,7 @@ public class FormNota extends javax.swing.JFrame {
         btntambah = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tabledatanota = new javax.swing.JTable();
+        tabletransaksi = new javax.swing.JTable();
         btnhapus = new javax.swing.JButton();
         btnsimpan = new javax.swing.JButton();
         btnbatal = new javax.swing.JButton();
@@ -256,7 +266,7 @@ public class FormNota extends javax.swing.JFrame {
         );
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("ID Kasir");
+        jLabel2.setText("ID Karyawan");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("ID Nota");
@@ -267,7 +277,7 @@ public class FormNota extends javax.swing.JFrame {
         txtidnota.setEnabled(false);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Nama Kasir");
+        jLabel5.setText("Nama Karyawan");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data Pelanggan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
@@ -561,9 +571,9 @@ public class FormNota extends javax.swing.JFrame {
             }
         });
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data Nota", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Transaksi", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        tabledatanota.setModel(new javax.swing.table.DefaultTableModel(
+        tabletransaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -574,10 +584,15 @@ public class FormNota extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(tabledatanota);
+        jScrollPane3.setViewportView(tabletransaksi);
 
         btnhapus.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnhapus.setText("Hapus");
+        btnhapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnhapusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -626,11 +641,6 @@ public class FormNota extends javax.swing.JFrame {
         });
 
         txttotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txttotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txttotalActionPerformed(evt);
-            }
-        });
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel21.setText("Total Harga");
@@ -800,7 +810,7 @@ public class FormNota extends javax.swing.JFrame {
             String harga = txtharga.getText();
             
             model.addRow(new Object[]{id, jenisl, keterangan, harga});
-            tabledatanota.setModel(model);
+            tabletransaksi.setModel(model);
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -813,36 +823,35 @@ public class FormNota extends javax.swing.JFrame {
 
     private void btnsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsimpanActionPerformed
         // TODO add your handling code here:
-        
         Date tanggal = (Date) jtanggal.getValue();
          SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
          String sql = "insert into nota value(?,?,?,?)";
-         String sql2 = "insert into isi value(?,?,?,?,?)";
+         String sql2 = "insert into isi value(?,?,?,?)";
          try {
             PreparedStatement stat = Koneksi.prepareStatement(sql);
             stat.setString(1, txtidnota.getText());
             stat.setString(2, tgl.format(tanggal));
             stat.setString(3, txtidp.getText());
-            stat.setString(4, jLabelID.getText());
+            stat.setString(4, txtidkaryawan.getText());
             
             stat.executeUpdate();
             
-            int tbl = tabledatanota.getRowCount();
+            int tbl = tabletransaksi.getRowCount();
             for(int i = 0; i < tbl; i++){
-                String xjenis = tabledatanota.getValueAt(i, 0).toString();
-                String xketerangan = tabledatanota.getValueAt(i, 2).toString();
-                String xharga = tabledatanota.getValueAt(i, 3).toString();
+                String xid = tabletransaksi.getValueAt(i, 0).toString();
+                String xnama = tabletransaksi.getValueAt(i, 1).toString();
+                String xharga = tabletransaksi.getValueAt(i, 3).toString();
+                Double hargaDouble = Double.parseDouble(xharga);
                 
                 PreparedStatement stat2 = Koneksi.prepareStatement(sql2);
                 stat2.setString(1, txtidnota.getText());
-                stat2.setString(2, xjenis);
-                stat2.setString(3, xketerangan);
-                stat2.setString(4, xharga);
-
+                stat2.setString(2, xid);
+                stat2.setString(3, xnama);
+                stat2.setDouble(4, hargaDouble);
+                
                 stat2.executeUpdate();
             }
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
-//            cetak();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Data gagal disimpan" + e);
         }
@@ -863,9 +872,13 @@ public class FormNota extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnkeluarActionPerformed
 
-    private void txttotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalActionPerformed
+    private void btnhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhapusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txttotalActionPerformed
+        int index = tabletransaksi.getSelectedRow();
+        model.removeRow(index);
+        tabletransaksi.setModel(model);
+        hitung();
+    }//GEN-LAST:event_btnhapusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -949,7 +962,7 @@ public class FormNota extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jtanggal;
-    private javax.swing.JTable tabledatanota;
+    private javax.swing.JTable tabletransaksi;
     private javax.swing.JTextArea txtalamatp;
     private javax.swing.JTextField txtharga;
     private javax.swing.JTextField txtidk;
@@ -966,8 +979,4 @@ public class FormNota extends javax.swing.JFrame {
     private javax.swing.JTextField txtplatk;
     private javax.swing.JTextField txttotal;
     // End of variables declaration//GEN-END:variables
-
-    private void hitung() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
