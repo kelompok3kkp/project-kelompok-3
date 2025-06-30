@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c7f9d90f-da41-4297-a0b1-0d449657d355">
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     nota.`id_nota` AS nota_id_nota,
+     nota.`tgl_nota` AS nota_tgl_nota,
+     nota.`id_pelanggan` AS nota_id_pelanggan,
+     nota.`id_karyawan` AS nota_id_karyawan,
+     isi.`id_nota` AS isi_id_nota,
+     isi.`id_layanan` AS isi_id_layanan,
+     isi.`jenis_layanan` AS isi_jenis_layanan,
+     isi.`model_kendaraan` AS isi_model_kendaraan,
+     isi.`harga` AS isi_harga
+FROM
+     `nota` nota INNER JOIN `isi` isi ON nota.`id_nota` = isi.`id_nota`]]>
+	</queryString>
+	<field name="nota_id_nota" class="java.lang.String"/>
+	<field name="nota_tgl_nota" class="java.sql.Date"/>
+	<field name="nota_id_pelanggan" class="java.lang.String"/>
+	<field name="nota_id_karyawan" class="java.lang.String"/>
+	<field name="isi_id_layanan" class="java.lang.String"/>
+	<field name="isi_jenis_layanan" class="java.lang.String"/>
+	<field name="isi_harga" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
