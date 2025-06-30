@@ -9,8 +9,6 @@ import main.java.app.database.Koneksi;
 import java.sql.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.sql.ResultSet;
 import java.sql.Statement;
 

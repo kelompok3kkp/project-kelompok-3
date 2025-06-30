@@ -20,45 +20,49 @@ public class PopupKendaraan extends javax.swing.JFrame {
     private Connection koneksi = new Koneksi().connect();
     private DefaultTableModel model;
     public FormNota kendaraan = null;
+    private String idPelanggan;
 
     /**
      * Creates new form PopupPelanggan
      */
-    public PopupKendaraan() {
+    public PopupKendaraan(String idPelanggan) {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        datatable();
+        this.idPelanggan = idPelanggan;
+        datatable(idPelanggan);
     }
     
-     protected void datatable(){
+     protected void datatable(String idPelanggan){
         Object[] Baris = {"ID Kendaraan", "ID Pelanggan", "Jenis Kendaraan", "Model Kendaraan", "Plat Nomor"};
-            model = new DefaultTableModel(null, Baris);
-            String cariitem = txtcari.getText();
-            
-            try {
-                String sql = "SELECT *FROM data_kendaraan WHERE id_kendaraan LIKE '%" + cariitem + "%' " 
-                        + "OR id_pelanggan LIKE '%" + cariitem + "%' " 
-                        + "OR jenis_kendaraan LIKE '%" + cariitem + "%' " 
-                        + "OR model_kendaraan LIKE '%" + cariitem + "%' "
-                        + "OR plat_nomor LIKE '%" + cariitem + "%' "
-                        + "ORDER BY id_kendaraan ASC";
-                Statement stat = koneksi.createStatement();
-                ResultSet hasil = stat.executeQuery(sql);
-                
-                while (hasil.next()){
-                    model.addRow(new Object[]{
-                        hasil.getString(1),
-                        hasil.getString(2),
-                        hasil.getString(3),
-                        hasil.getString(4),
-                        hasil.getString(5),
-                    });
-                }
-                tablekendaraan.setModel(model);
+        model = new DefaultTableModel(null, Baris);
+        String cariitem = txtcari.getText();
+
+        try {
+            String sql = "SELECT * FROM data_kendaraan WHERE id_pelanggan = '" + idPelanggan + "' AND ("
+                       + "id_kendaraan LIKE '%" + cariitem + "%' OR "
+                       + "jenis_kendaraan LIKE '%" + cariitem + "%' OR "
+                       + "model_kendaraan LIKE '%" + cariitem + "%' OR "
+                       + "plat_nomor LIKE '%" + cariitem + "%') "
+                       + "ORDER BY id_kendaraan ASC";
+
+            Statement stat = koneksi.createStatement();
+            ResultSet hasil = stat.executeQuery(sql);
+
+            while (hasil.next()){
+                model.addRow(new Object[]{
+                    hasil.getString(1),
+                    hasil.getString(2),
+                    hasil.getString(3),
+                    hasil.getString(4),
+                    hasil.getString(5),
+                });
+            }
+            tablekendaraan.setModel(model);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Data gagal dipanggil"+e);
+            JOptionPane.showMessageDialog(null, "Data gagal dipanggil: " + e);
         }
     }
+
   
     /**
      * This method is called from within the constructor to initialize the form.
@@ -172,41 +176,44 @@ public class PopupKendaraan extends javax.swing.JFrame {
 
     private void btncariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncariActionPerformed
         // TODO add your handling code here:
-        datatable();
+        datatable(idPelanggan);
     }//GEN-LAST:event_btncariActionPerformed
 
     private void txtcariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcariKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            datatable();
+            datatable(idPelanggan);
         }
     }//GEN-LAST:event_txtcariKeyPressed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+//    public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PopupKendaraan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PopupKendaraan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PopupKendaraan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PopupKendaraan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+//    
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(PopupKendaraan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(PopupKendaraan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(PopupKendaraan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(PopupKendaraan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+        
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -217,12 +224,13 @@ public class PopupKendaraan extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PopupKendaraan().setVisible(true);
-            }
-        });
-    }
+        
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new PopupKendaraan().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btncari;

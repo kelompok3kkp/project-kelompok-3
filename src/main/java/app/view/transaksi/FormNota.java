@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JSpinner;
+import javax.swing.JTable;
 import main.java.app.database.Koneksi;
 import main.java.app.model.UserID;
 import main.java.app.view.popuptable.PopupPelanggan;
@@ -26,7 +27,7 @@ public class FormNota extends javax.swing.JFrame {
 
         public String id, nama, notlp, alamat;
         public String idk, namak, jenisk, notlpk, alamatk, jabatank, shiftk, passwordk, tanggalmasukk;
-        public String idl, jeniskl, modell, jenisl, keteranganl, hargal; 
+        public String idl, jenislayanan,modell, hargal; 
         public String idkk, jeniskk, modelk, pltnmr;
         private Connection Koneksi = new Koneksi().connect();
         private DefaultTableModel model;
@@ -51,7 +52,7 @@ public class FormNota extends javax.swing.JFrame {
         autonumber();
         nama();
     }
-    
+       
     protected void nama(){
         try {
             String sql = "SELECT * FROM data_karyawan WHERE id_karyawan='"+jLabelID.getText()+"'";
@@ -69,7 +70,7 @@ public class FormNota extends javax.swing.JFrame {
      protected void aktif(){
         txtidl.requestFocus();
         jtanggal.setEditor(new JSpinner.DateEditor(jtanggal,"yyy/MM/dd"));
-        Object[] Baris = {"ID Layanan", "Jenis Layanan", "Keterangan", "Harga"};
+        Object[] Baris = {"ID Layanan", "Jenis Layanan", "Model Kendaraan", "Harga"};
         model = new DefaultTableModel(null, Baris);
         tabletransaksi.setModel(model);
     }
@@ -81,8 +82,7 @@ public class FormNota extends javax.swing.JFrame {
         txtidkaryawan.setText("");
         txtnamakaryawan.setText("");
         txtidl.setText("");
-        txtjenisl.setText("");
-        txtketerangan.setText("");
+        txtmodel.setText("");
         txtharga.setText("");
         txtidk.setText("");
         txtjenisk.setText("");
@@ -137,14 +137,12 @@ public class FormNota extends javax.swing.JFrame {
         PopupLayanan pp = new PopupLayanan();
         pp.layanan = this;
         txtidl.setText(idl);
-        txtjenisl.setText(jenisl);
-        txtketerangan.setText(keteranganl);
+        txtmodel.setText(jenislayanan);
+        txtjenisl.setText(modell);
         txtharga.setText(hargal);
     }
       
       public void itemTerpilihKndrn(){
-        PopupKendaraan pp = new PopupKendaraan();
-        pp.kendaraan = this;
         txtidk.setText(idkk);
         txtjenisk.setText(jeniskk);
         txtmodelk.setText(modelk);
@@ -160,6 +158,10 @@ public class FormNota extends javax.swing.JFrame {
           txttotal.setText(Double.toString(total));
       }
       
+      public JTable getTableTransaksi() {
+          return tabletransaksi;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -204,14 +206,13 @@ public class FormNota extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        txtjenisl = new javax.swing.JTextField();
+        txtmodel = new javax.swing.JTextField();
         txtidl = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtketerangan = new javax.swing.JTextArea();
         btncaril = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         txtharga = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtjenisl = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -438,17 +439,10 @@ public class FormNota extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("Jenis Layanan");
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel17.setText("Keterangan");
-
-        txtjenisl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtmodel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         txtidl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtidl.setEnabled(false);
-
-        txtketerangan.setColumns(20);
-        txtketerangan.setRows(5);
-        jScrollPane2.setViewportView(txtketerangan);
 
         btncaril.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btncaril.setText("Cari");
@@ -461,25 +455,39 @@ public class FormNota extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setText("Harga");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Model Kendaraan");
+
+        txtjenisl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel20))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtjenisl)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                    .addComponent(txtidl)
-                    .addComponent(txtharga))
-                .addGap(18, 18, 18)
-                .addComponent(btncaril)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel20))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtharga)
+                                    .addComponent(txtmodel, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtjenisl, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)))
+                        .addGap(77, 77, 77))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtidl)
+                        .addGap(18, 18, 18)
+                        .addComponent(btncaril)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -493,11 +501,11 @@ public class FormNota extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(txtjenisl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtmodel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtjenisl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
@@ -601,7 +609,7 @@ public class FormNota extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 906, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnhapus)))
@@ -610,10 +618,11 @@ public class FormNota extends javax.swing.JFrame {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnhapus)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnsimpan.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -690,7 +699,7 @@ public class FormNota extends javax.swing.JFrame {
                                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btntambah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 123, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -718,18 +727,18 @@ public class FormNota extends javax.swing.JFrame {
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btntambah)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnsimpan)
                     .addComponent(btnbatal)
                     .addComponent(btnkeluar)
                     .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         jScrollPane4.setViewportView(jPanel1);
@@ -741,7 +750,7 @@ public class FormNota extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -749,8 +758,9 @@ public class FormNota extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addComponent(jScrollPane4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1067, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -772,29 +782,34 @@ public class FormNota extends javax.swing.JFrame {
 
     private void btncarikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncarikActionPerformed
         // TODO add your handling code here:
-        PopupKendaraan pp = new PopupKendaraan();
-        pp.kendaraan = this;
-        pp.setVisible(true);
-        pp.setResizable(false);
-        pp.setLocationRelativeTo(null);
+        String idPelanggan = txtidp.getText();
+        if (!idPelanggan.isEmpty()){
+            PopupKendaraan pk = new PopupKendaraan(idPelanggan);
+            pk.kendaraan = this;
+            pk.setVisible(true);
+            pk.setResizable(false);
+            pk.setLocationRelativeTo(null);
+        } else {
+            JOptionPane.showMessageDialog(this, "Silahkan isi ID Pelanggan terlebih dahulu!");
+        }
     }//GEN-LAST:event_btncarikActionPerformed
 
     private void btncarikaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncarikaryawanActionPerformed
         // TODO add your handling code here:
-        PopupKaryawan pp = new PopupKaryawan();
-        pp.karyawan = this;
-        pp.setVisible(true);
-        pp.setResizable(false);
-        pp.setLocationRelativeTo(null);
+        PopupKaryawan pk = new PopupKaryawan();
+        pk.karyawan = this;
+        pk.setVisible(true);
+        pk.setResizable(false);
+        pk.setLocationRelativeTo(null);
     }//GEN-LAST:event_btncarikaryawanActionPerformed
 
     private void btncarilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncarilActionPerformed
         // TODO add your handling code here:
-        PopupLayanan pp = new PopupLayanan();
-        pp.layanan = this;
-        pp.setVisible(true);
-        pp.setResizable(false);
-        pp.setLocationRelativeTo(null);
+        PopupLayanan pl = new PopupLayanan();
+        pl.layanan = this;
+        pl.setVisible(true);
+        pl.setResizable(false);
+        pl.setLocationRelativeTo(null);
     }//GEN-LAST:event_btncarilActionPerformed
 
     private void txtidkaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidkaryawanActionPerformed
@@ -803,22 +818,23 @@ public class FormNota extends javax.swing.JFrame {
 
     private void btntambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntambahActionPerformed
         // TODO add your handling code here:
-         try {
-            String kode = txtidl.getText();
-            String jenislayanan = txtjenisl.getText();
-            String keterangan = txtketerangan.getText();
-            String harga = txtharga.getText();
-            
-            model.addRow(new Object[]{id, jenisl, keterangan, harga});
-            tabletransaksi.setModel(model);
-        } catch (Exception e) {
-            System.out.println("Error: " + e);
-        }
-        txtidl.setText("");
-        txtjenisl.setText("");
-        txtketerangan.setText("");
-        txtharga.setText("");
-        hitung();
+        try {
+              String kode = txtidl.getText();
+              String jenislayanan = txtmodel.getText();
+              String modellk = txtjenisl.getText();
+              String harga = txtharga.getText();
+
+              DefaultTableModel model = (DefaultTableModel) tabletransaksi.getModel(); 
+              model.addRow(new Object[]{kode, jenislayanan, modellk, harga});
+          } catch (Exception e) {
+              System.out.println("Error: " + e);
+          }
+
+          txtidl.setText("");
+          txtmodel.setText("");
+          txtjenisl.setText("");
+          txtharga.setText("");
+          hitung();
     }//GEN-LAST:event_btntambahActionPerformed
 
     private void btnsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsimpanActionPerformed
@@ -826,7 +842,7 @@ public class FormNota extends javax.swing.JFrame {
         Date tanggal = (Date) jtanggal.getValue();
          SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
          String sql = "insert into nota value(?,?,?,?)";
-         String sql2 = "insert into isi value(?,?,?,?)";
+         String sql2 = "insert into isi value(?,?,?,?,?)";
          try {
             PreparedStatement stat = Koneksi.prepareStatement(sql);
             stat.setString(1, txtidnota.getText());
@@ -839,15 +855,17 @@ public class FormNota extends javax.swing.JFrame {
             int tbl = tabletransaksi.getRowCount();
             for(int i = 0; i < tbl; i++){
                 String xid = tabletransaksi.getValueAt(i, 0).toString();
-                String xnama = tabletransaksi.getValueAt(i, 1).toString();
+                String xjenis = tabletransaksi.getValueAt(i, 1).toString();
+                String xmodel = tabletransaksi.getValueAt(i, 2).toString();
                 String xharga = tabletransaksi.getValueAt(i, 3).toString();
                 Double hargaDouble = Double.parseDouble(xharga);
                 
                 PreparedStatement stat2 = Koneksi.prepareStatement(sql2);
                 stat2.setString(1, txtidnota.getText());
                 stat2.setString(2, xid);
-                stat2.setString(3, xnama);
-                stat2.setDouble(4, hargaDouble);
+                stat2.setString(3, xjenis);
+                stat2.setString(4, xmodel);
+                stat2.setDouble(5, hargaDouble);
                 
                 stat2.executeUpdate();
             }
@@ -937,13 +955,13 @@ public class FormNota extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -958,7 +976,6 @@ public class FormNota extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jtanggal;
@@ -972,7 +989,7 @@ public class FormNota extends javax.swing.JFrame {
     private javax.swing.JTextField txtidp;
     private javax.swing.JTextField txtjenisk;
     private javax.swing.JTextField txtjenisl;
-    private javax.swing.JTextArea txtketerangan;
+    private javax.swing.JTextField txtmodel;
     private javax.swing.JTextField txtmodelk;
     private javax.swing.JTextField txtnamakaryawan;
     private javax.swing.JTextField txtnamap;

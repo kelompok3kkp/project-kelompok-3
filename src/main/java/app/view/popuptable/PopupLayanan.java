@@ -164,10 +164,8 @@ public class PopupLayanan extends javax.swing.JFrame {
         // TODO add your handling code here:
         int tablelyn = tablelayanan.getSelectedRow();
         layanan.idl = tablelayanan.getValueAt(tablelyn, 0).toString();
-        layanan.jenisk = tablelayanan.getValueAt(tablelyn, 1).toString();
         layanan.modell = tablelayanan.getValueAt(tablelyn, 2).toString();
-        layanan.jenisl = tablelayanan.getValueAt(tablelyn, 3).toString();
-        layanan.keteranganl = tablelayanan.getValueAt(tablelyn, 4).toString();
+        layanan.jenislayanan = tablelayanan.getValueAt(tablelyn, 3).toString();
         layanan.hargal = tablelayanan.getValueAt(tablelyn, 5).toString();
         layanan.itemTerpilihLayanan();
         this.dispose();
