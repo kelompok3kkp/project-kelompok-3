@@ -11,6 +11,9 @@ import main.java.app.view.master.FormLayananCuci;
 import main.java.app.view.master.FormKendaraan;
 import main.java.app.view.master.FormShift;
 import main.java.app.view.transaksi.FormNota;
+import main.java.app.view.formreport.ReportKaryawan;
+import main.java.app.view.formreport.ReportPelanggan;
+import main.java.app.view.formreport.ReportTransaksi;
 
 /**
  *
@@ -53,6 +56,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnlogout = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mmaster = new javax.swing.JMenu();
         menuKaryawan = new javax.swing.JMenuItem();
@@ -61,8 +65,11 @@ public class Dashboard extends javax.swing.JFrame {
         mKendaraan = new javax.swing.JMenuItem();
         mShift = new javax.swing.JMenuItem();
         mtransaksi = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        mlaporan = new javax.swing.JMenu();
+        mNota = new javax.swing.JMenuItem();
+        lkaryawan = new javax.swing.JMenu();
+        lKaryawan = new javax.swing.JMenuItem();
+        lPelanggan = new javax.swing.JMenuItem();
+        lTransaksi = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,6 +109,8 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnlogout)))
         );
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/assets/gambar/LOGO APLIKASI IMK.jpg"))); // NOI18N
 
         mmaster.setText("Master");
         mmaster.setFocusable(false);
@@ -157,20 +166,48 @@ public class Dashboard extends javax.swing.JFrame {
         mtransaksi.setText("Transaksi");
         mtransaksi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
-        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenuItem1.setText("Nota");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mNota.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        mNota.setText("Nota");
+        mNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mNotaActionPerformed(evt);
             }
         });
-        mtransaksi.add(jMenuItem1);
+        mtransaksi.add(mNota);
 
         jMenuBar1.add(mtransaksi);
 
-        mlaporan.setText("Laporan");
-        mlaporan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jMenuBar1.add(mlaporan);
+        lkaryawan.setText("Laporan");
+        lkaryawan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
+        lKaryawan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lKaryawan.setText("Laporan Karyawan");
+        lKaryawan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lKaryawanActionPerformed(evt);
+            }
+        });
+        lkaryawan.add(lKaryawan);
+
+        lPelanggan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lPelanggan.setText("Laporan Pelanggan");
+        lPelanggan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lPelangganActionPerformed(evt);
+            }
+        });
+        lkaryawan.add(lPelanggan);
+
+        lTransaksi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lTransaksi.setText("Laporan Transaksi");
+        lTransaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lTransaksiActionPerformed(evt);
+            }
+        });
+        lkaryawan.add(lTransaksi);
+
+        jMenuBar1.add(lkaryawan);
 
         setJMenuBar(jMenuBar1);
 
@@ -180,8 +217,13 @@ public class Dashboard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel3)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -190,10 +232,12 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addContainerGap(487, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(69, 69, 69))
         );
 
-        setBounds(0, 0, 727, 657);
+        setBounds(0, 0, 727, 791);
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuKaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuKaryawanActionPerformed
@@ -263,14 +307,41 @@ public class Dashboard extends javax.swing.JFrame {
         form.requestFocus();
     }//GEN-LAST:event_mShiftActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void mNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mNotaActionPerformed
         // TODO add your handling code here:
         FormNota form = new FormNota();
         form.setLocationRelativeTo(this);
         form.setVisible(true);
         form.toFront();
         form.requestFocus();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_mNotaActionPerformed
+
+    private void lPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lPelangganActionPerformed
+        // TODO add your handling code here:
+        ReportPelanggan form = new ReportPelanggan();
+        form.setLocationRelativeTo(this);
+        form.setVisible(true);
+        form.toFront();
+        form.requestFocus();
+    }//GEN-LAST:event_lPelangganActionPerformed
+
+    private void lKaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lKaryawanActionPerformed
+        // TODO add your handling code here:
+        ReportKaryawan form = new ReportKaryawan();
+        form.setLocationRelativeTo(this);
+        form.setVisible(true);
+        form.toFront();
+        form.requestFocus();
+    }//GEN-LAST:event_lKaryawanActionPerformed
+
+    private void lTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lTransaksiActionPerformed
+        // TODO add your handling code here:
+        ReportTransaksi form = new ReportTransaksi();
+        form.setLocationRelativeTo(this);
+        form.setVisible(true);
+        form.toFront();
+        form.requestFocus();
+    }//GEN-LAST:event_lTransaksiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -314,15 +385,19 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnlogout;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem lKaryawan;
+    private javax.swing.JMenuItem lPelanggan;
+    private javax.swing.JMenuItem lTransaksi;
+    private javax.swing.JMenu lkaryawan;
     private javax.swing.JMenuItem mKendaraan;
+    private javax.swing.JMenuItem mNota;
     private javax.swing.JMenuItem mShift;
     private javax.swing.JMenuItem menuKaryawan;
     private javax.swing.JMenuItem menuLayanan;
     private javax.swing.JMenuItem menuPelanggan;
-    private javax.swing.JMenu mlaporan;
     private javax.swing.JMenu mmaster;
     private javax.swing.JMenu mtransaksi;
     // End of variables declaration//GEN-END:variables

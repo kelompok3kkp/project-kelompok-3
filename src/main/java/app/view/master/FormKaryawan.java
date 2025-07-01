@@ -13,6 +13,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import main.java.app.view.formreport.ReportKaryawan;
 
 
 /**
@@ -178,6 +179,7 @@ public class FormKaryawan extends javax.swing.JFrame {
         btncari = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablekaryawan = new javax.swing.JTable();
+        btncetak = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         cbshift = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
@@ -306,19 +308,29 @@ public class FormKaryawan extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tablekaryawan);
 
+        btncetak.setText("Cetak");
+        btncetak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncetakActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btncari)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btncari)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btncetak))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -327,7 +339,8 @@ public class FormKaryawan extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btncari))
+                    .addComponent(btncari)
+                    .addComponent(btncetak))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
                 .addContainerGap())
@@ -522,6 +535,7 @@ public class FormKaryawan extends javax.swing.JFrame {
         // TODO add your handling code here:
         String jenis = null;
         String nama = txtnama.getText().trim();
+        String password = new String(txtpass.getPassword());
         if (klaki.isSelected()){
             jenis = "Laki-Laki";
         }else if (kperempuan.isSelected()){
@@ -556,7 +570,7 @@ public class FormKaryawan extends javax.swing.JFrame {
             stat.setString(5, txtalamat.getText());
             stat.setString(6, cbjabatan.getSelectedItem().toString());
             stat.setString(7, cbshift.getSelectedItem().toString());
-            stat.setString(8, txtpass.getText());
+            stat.setString(8, password);
 
             
             Date tanggal = (Date) jtanggal.getValue();
@@ -577,6 +591,7 @@ public class FormKaryawan extends javax.swing.JFrame {
         // TODO add your handling code here:
         String jenis = null;
         String nama = txtnama.getText().trim();
+        String password = new String(txtpass.getPassword());
         if (klaki.isSelected()){
             jenis = "Laki-Laki";
         } else if (kperempuan.isSelected()){
@@ -599,7 +614,7 @@ public class FormKaryawan extends javax.swing.JFrame {
             stat.setString(4, txtalamat.getText());
             stat.setString(5, cbjabatan.getSelectedItem().toString());
             stat.setString(6, cbshift.getSelectedItem().toString());
-            stat.setString(7, txtpass.getText());
+            stat.setString(7, password);
 
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil diubah");
@@ -709,10 +724,17 @@ public class FormKaryawan extends javax.swing.JFrame {
             jtanggal.setValue(new Date()); // default ke hari ini kalau kosong
         }
         
-    } catch (Exception ex) {
-        JOptionPane.showMessageDialog(this, "Error saat memuat data: " + ex.getMessage());
-    }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error saat memuat data: " + ex.getMessage());
+        }
     }//GEN-LAST:event_tablekaryawanMouseClicked
+
+    private void btncetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakActionPerformed
+        // TODO add your handling code here:
+        ReportKaryawan rt = new ReportKaryawan();
+        rt.setVisible(true);
+        rt.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btncetakActionPerformed
 
     /**
      * @param args the command line arguments
@@ -767,6 +789,7 @@ public class FormKaryawan extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbatal;
     private javax.swing.JButton btncari;
+    private javax.swing.JButton btncetak;
     private javax.swing.JButton btnedit;
     private javax.swing.JButton btnhapus;
     private javax.swing.JButton btnkembali;

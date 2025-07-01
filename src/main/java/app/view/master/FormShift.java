@@ -473,13 +473,14 @@ public class FormShift extends javax.swing.JFrame {
     try {
         PreparedStatement stat = koneksi.prepareStatement(sql);
         stat.setString(1, id);
+        stat.setString(2, cbshift.getSelectedItem().toString());
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         String mulai = sdf.format(spmulai.getValue());
         String selesai = sdf.format(spselesai.getValue());
 
-        stat.setString(2, mulai);
-        stat.setString(3, selesai);
+        stat.setString(3, mulai);
+        stat.setString(4, selesai);
 
         stat.executeUpdate();
         JOptionPane.showMessageDialog(null, "Data shift berhasil disimpan.");

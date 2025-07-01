@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Jun 2025 pada 10.18
+-- Waktu pembuatan: 01 Jul 2025 pada 11.15
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -46,8 +46,8 @@ CREATE TABLE `data_karyawan` (
 --
 
 INSERT INTO `data_karyawan` (`id_karyawan`, `nama_karyawan`, `jenis_kelamin`, `no_telp`, `alamat`, `jabatan`, `shift`, `password`, `tanggal_masuk`) VALUES
-('K001', 'Alip', 'Laki-laki', '0987523', 'Indonesia', 'Admin', 'Pagi', 'admin123', '2025-04-28'),
-('K002', 'bayu', 'Laki-laki', '01234', 'brazil', 'Washerman', 'PAGI', 'karyawan123', '2025-04-30'),
+('K001', 'Arie', 'Laki-laki', '0987523', 'Indonesia', 'Admin', 'Pagi', 'admin123', '2025-04-28'),
+('K002', 'bayu', 'Laki-laki', '01234', 'brazil', 'Washerman', 'Malam', 'karyawan123', '2025-04-30'),
 ('K003', 'Fardan', 'Laki-laki', '0987765432', 'Indonesia', 'Admin', 'PAGI', 'admin123', '2025-06-29');
 
 -- --------------------------------------------------------
@@ -97,7 +97,8 @@ INSERT INTO `data_pelanggan` (`id_pelanggan`, `nama_pelanggan`, `no_telp`, `alam
 ('CS001', 'Bayu', '122345455', 'Indonesia'),
 ('CS002', 'nopal', '012445', 'bogor'),
 ('CS003', 'ucok', '121123', 'asdada'),
-('CS004', 'arie', '12313', 'sdfsf');
+('CS004', 'Alip', '12313', 'sdfsf'),
+('CS005', 'Fardan', '121323', 'Indds');
 
 -- --------------------------------------------------------
 
@@ -118,7 +119,11 @@ CREATE TABLE `isi` (
 --
 
 INSERT INTO `isi` (`id_nota`, `id_layanan`, `jenis_layanan`, `model_kendaraan`, `harga`) VALUES
-('IN0002', 'L006', 'Cuci Mobil Premium', 'Mobil Sedan', 45000.00);
+('IN0001', 'L002', 'Cuci Motor Premium', 'Motor Kecil', 25000.00),
+('IN0003', 'L004', 'Cuci Motor Premium', 'Motor Besar', 30000.00),
+('IN0002', 'L006', 'Cuci Mobil Premium', 'Mobil Sedan', 45000.00),
+('IN0004', 'L012', 'Cuci Mobil Premium', 'Mobil MPV', 60000.00),
+('IN0005', 'L001', 'Cuci Motor Biasa', 'Motor Kecil', 15000.00);
 
 -- --------------------------------------------------------
 
@@ -173,8 +178,11 @@ CREATE TABLE `nota` (
 --
 
 INSERT INTO `nota` (`id_nota`, `tgl_nota`, `id_pelanggan`, `id_karyawan`) VALUES
-('IN0001', '2025-06-30', 'CS001', 'K003'),
-('IN0002', '2025-06-30', 'CS001', 'K001');
+('IN0001', '2025-06-10', 'CS002', 'K002'),
+('IN0002', '2025-06-15', 'CS001', 'K002'),
+('IN0003', '2025-06-16', 'CS002', 'K002'),
+('IN0004', '2025-06-20', 'CS002', 'K003'),
+('IN0005', '2025-07-01', 'CS001', 'K001');
 
 -- --------------------------------------------------------
 
@@ -184,11 +192,18 @@ INSERT INTO `nota` (`id_nota`, `tgl_nota`, `id_pelanggan`, `id_karyawan`) VALUES
 
 CREATE TABLE `shift` (
   `id_shift` varchar(10) NOT NULL,
-  `nama_shift` varchar(50) NOT NULL,
-  `shift` enum('PAGI','MALAM') DEFAULT NULL,
+  `shift` enum('Pagi','Malam') DEFAULT NULL,
   `jam_mulai` time DEFAULT NULL,
   `jam_selesai` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `shift`
+--
+
+INSERT INTO `shift` (`id_shift`, `shift`, `jam_mulai`, `jam_selesai`) VALUES
+('S001', 'Pagi', '09:00:00', '15:00:00'),
+('S002', 'Malam', '15:00:00', '21:00:00');
 
 --
 -- Indexes for dumped tables
@@ -201,17 +216,16 @@ ALTER TABLE `data_karyawan`
   ADD PRIMARY KEY (`id_karyawan`);
 
 --
+-- Indeks untuk tabel `data_kendaraan`
+--
+ALTER TABLE `data_kendaraan`
+  ADD PRIMARY KEY (`id_kendaraan`);
+
+--
 -- Indeks untuk tabel `data_pelanggan`
 --
 ALTER TABLE `data_pelanggan`
   ADD PRIMARY KEY (`id_pelanggan`);
-
---
--- Indeks untuk tabel `isi`
---
-ALTER TABLE `isi`
-  ADD PRIMARY KEY (`id_nota`,`id_layanan`) USING BTREE,
-  ADD KEY `id_layanan` (`id_layanan`) USING BTREE;
 
 --
 -- Indeks untuk tabel `layanan_cuci`
@@ -232,17 +246,6 @@ ALTER TABLE `nota`
 --
 ALTER TABLE `shift`
   ADD PRIMARY KEY (`id_shift`);
-
---
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
---
-
---
--- Ketidakleluasaan untuk tabel `isi`
---
-ALTER TABLE `isi`
-  ADD CONSTRAINT `fk_isi_ke_layanan_cuci` FOREIGN KEY (`id_layanan`) REFERENCES `layanan_cuci` (`id_layanan`),
-  ADD CONSTRAINT `fk_isi_ke_nota` FOREIGN KEY (`id_nota`) REFERENCES `nota` (`id_nota`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

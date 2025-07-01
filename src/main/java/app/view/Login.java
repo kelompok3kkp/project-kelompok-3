@@ -144,7 +144,6 @@ public class Login extends javax.swing.JFrame {
                     
                     main.setLocationRelativeTo(null);
                     main.setVisible(true);
-                    main.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 } else {
                     JOptionPane.showMessageDialog(null, "Nama karyawan kosong di database!");
                 }
