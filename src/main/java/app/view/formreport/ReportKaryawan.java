@@ -202,31 +202,37 @@ public class ReportKaryawan extends javax.swing.JFrame {
     }//GEN-LAST:event_btnkembalikActionPerformed
 
     private void btncetakkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakkActionPerformed
-        // TODO add your handling code here:
-         try {
-            String loginId = UserID.getuserLogin();
-            String loginKaryawan = "Tidak Diketahui";
+                                             
+    try {
+        // Ambil nama karyawan login (jika ingin ditampilkan di laporan)
+        String loginId = UserID.getuserLogin();  // pastikan ini sudah kamu punya
+        String loginKaryawan = "Tidak Diketahui";
 
-            try (PreparedStatement namakaryawan = koneksi.prepareStatement("SELECT *FROM data_karyawan WHERE id_karyawan   = ?")) {
-                namakaryawan.setString(1, loginId);
-                try (ResultSet rsNama = namakaryawan.executeQuery()) {
-                    if (rsNama.next()) {
-                        loginKaryawan = rsNama.getString("nama_karyawan");
-                    }
-                }
+        try (PreparedStatement ps = koneksi.prepareStatement("SELECT nama_karyawan FROM data_karyawan WHERE id_karyawan = ?")) {
+            ps.setString(1, loginId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                loginKaryawan = rs.getString("nama_karyawan");
             }
+        }
 
-            String reportPath = "./src/main/java/app/view/report/ReportKaryawan.jasper";
-            HashMap parameter = new HashMap();
-            parameter.put("KARYAWAN", loginKaryawan);
+        // Lokasi file .jasper
+        String reportPath = "./src/main/java/app/view/report/ReportKaryawan.jasper";
 
-            JasperPrint print = JasperFillManager.fillReport(reportPath,parameter,koneksi);
-            JasperViewer.viewReport(print,false);
+        // Parameter untuk laporan Jasper
+        HashMap<String, Object> parameter = new HashMap<>();
+        parameter.put("KARYAWAN", loginKaryawan);
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Gagal mencetak report: " + e.getMessage());
-            e.printStackTrace();
-        }              
+        // Cetak laporan
+        JasperPrint print = JasperFillManager.fillReport(reportPath, parameter, koneksi);
+        JasperViewer.viewReport(print, false);
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Gagal mencetak laporan: " + e.getMessage());
+        e.printStackTrace();
+    }
+
+           
     }//GEN-LAST:event_btncetakkActionPerformed
 
     /**

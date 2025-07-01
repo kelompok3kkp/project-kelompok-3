@@ -4,19 +4,65 @@
  * and open the template in the editor.
  */
 package main.java.app.view.formreport;
+import java.awt.event.KeyEvent;
+import main.java.app.model.UserID;
+import main.java.app.database.Koneksi;
+import java.sql.*;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
+import java.util.HashMap;
 
 /**
  *
  * @author aliframadhan
  */
 public class ReportBulanan extends javax.swing.JFrame {
-
+private Connection koneksi = new Koneksi().connect();
+    private DefaultTableModel model;
     /**
      * Creates new form ReportBulanan
      */
     public ReportBulanan() {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        datatable();
     }
+    
+    protected void datatable() {
+    DefaultTableModel model = new DefaultTableModel();
+    model.addColumn("Bulan");
+    model.addColumn("Jumlah Transaksi");
+    model.addColumn("Total Pendapatan");
+
+    try {
+        String sql = "SELECT " +
+                     "DATE_FORMAT(n.tgl_nota, '%Y-%m') AS bulan, " +
+                     "COUNT(DISTINCT n.id_nota) AS jumlah_transaksi, " +
+                     "SUM(i.harga) AS total_pendapatan " +
+                     "FROM nota n " +
+                     "JOIN isi i ON n.id_nota = i.id_nota " +
+                     "GROUP BY bulan " +
+                     "ORDER BY bulan";
+
+        Statement stm = koneksi.createStatement();
+        ResultSet res = stm.executeQuery(sql);
+
+        while (res.next()) {
+            String bulan = res.getString("bulan");
+            String jumlah = res.getString("jumlah_transaksi");
+            String pendapatan = res.getString("total_pendapatan");
+            model.addRow(new Object[]{bulan, jumlah, pendapatan});
+        }
+
+        tablebulanan.setModel(model); // Ganti tabelmu dengan nama JTable-mu
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Data gagal dimuat: " + e.getMessage());
+    }
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,21 +73,155 @@ public class ReportBulanan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablebulanan = new javax.swing.JTable();
+        btncetakk = new javax.swing.JButton();
+        btnkembalik = new javax.swing.JButton();
+        btncarib = new javax.swing.JButton();
+        txtcarib = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        tablebulanan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tablebulanan);
+
+        btncetakk.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btncetakk.setText("CETAK");
+        btncetakk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncetakkActionPerformed(evt);
+            }
+        });
+
+        btnkembalik.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnkembalik.setText("KEMBALI");
+        btnkembalik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnkembalikActionPerformed(evt);
+            }
+        });
+
+        btncarib.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btncarib.setText("CARI");
+        btncarib.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncaribActionPerformed(evt);
+            }
+        });
+        btncarib.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btncaribKeyPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 853, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtcarib, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btncarib)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btncetakk)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnkembalik)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtcarib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btncetakk)
+                        .addComponent(btnkembalik)
+                        .addComponent(btncarib)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btncetakkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakkActionPerformed
+        // TODO add your handling code here:
+        try {
+            String loginId = UserID.getuserLogin();
+            String loginKaryawan = "Tidak Diketahui";
+
+            try (PreparedStatement namakaryawan = koneksi.prepareStatement("SELECT *FROM data_karyawan WHERE id_karyawan   = ?")) {
+                namakaryawan.setString(1, loginId);
+                try (ResultSet rsNama = namakaryawan.executeQuery()) {
+                    if (rsNama.next()) {
+                        loginKaryawan = rsNama.getString("nama_karyawan");
+                    }
+                }
+            }
+
+            String reportPath = "./src/main/java/app/view/report/ReportBulanan.jasper";
+            HashMap parameter = new HashMap();
+            parameter.put("KARYAWAN", loginKaryawan);
+
+            JasperPrint print = JasperFillManager.fillReport(reportPath,parameter,koneksi);
+            JasperViewer.viewReport(print,false);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal mencetak report: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btncetakkActionPerformed
+
+    private void btnkembalikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkembalikActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnkembalikActionPerformed
+
+    private void btncaribActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncaribActionPerformed
+        // TODO add your handling code here:
+        datatable();
+    }//GEN-LAST:event_btncaribActionPerformed
+
+    private void btncaribKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btncaribKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            datatable();
+        }
+    }//GEN-LAST:event_btncaribKeyPressed
 
     /**
      * @param args the command line arguments
@@ -79,5 +259,12 @@ public class ReportBulanan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btncarib;
+    private javax.swing.JButton btncetakk;
+    private javax.swing.JButton btnkembalik;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tablebulanan;
+    private javax.swing.JTextField txtcarib;
     // End of variables declaration//GEN-END:variables
 }

@@ -350,6 +350,7 @@ public class FormKaryawan extends javax.swing.JFrame {
         jLabel10.setText("Shift");
 
         cbshift.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cbshift.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pagi", "Malam" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

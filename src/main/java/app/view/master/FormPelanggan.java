@@ -401,7 +401,7 @@ public class FormPelanggan extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat mengecek ID: " + e);
             return;
         }
-        String sql = "INSERT into data_pelanggan values (?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT into data_pelanggan values (?,?,?,?)";
         try{
             PreparedStatement stat = koneksi.prepareStatement(sql);
             stat.setString(1, txtid.getText());
