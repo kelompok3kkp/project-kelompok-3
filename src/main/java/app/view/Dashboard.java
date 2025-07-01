@@ -10,7 +10,8 @@ import main.java.app.view.master.FormPelanggan;
 import main.java.app.view.master.FormLayananCuci;
 import main.java.app.view.master.FormKendaraan;
 import main.java.app.view.master.FormShift;
-import main.java.app.view.transaksi.FormNota;
+import main.java.app.view.transaksi.FormTransaksi;
+import main.java.app.view.transaksi.FormPembayaran;
 import main.java.app.view.formreport.ReportKaryawan;
 import main.java.app.view.formreport.ReportPelanggan;
 import main.java.app.view.formreport.ReportTransaksi;
@@ -66,12 +67,13 @@ public class Dashboard extends javax.swing.JFrame {
         mKendaraan = new javax.swing.JMenuItem();
         mShift = new javax.swing.JMenuItem();
         mtransaksi = new javax.swing.JMenu();
-        mNota = new javax.swing.JMenuItem();
+        menuTransaksi = new javax.swing.JMenuItem();
+        mPembayaran = new javax.swing.JMenuItem();
         lkaryawan = new javax.swing.JMenu();
         lKaryawan = new javax.swing.JMenuItem();
         lPelanggan = new javax.swing.JMenuItem();
         lTransaksi = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        lBulanan = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -168,14 +170,23 @@ public class Dashboard extends javax.swing.JFrame {
         mtransaksi.setText("Transaksi");
         mtransaksi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
-        mNota.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        mNota.setText("Nota");
-        mNota.addActionListener(new java.awt.event.ActionListener() {
+        menuTransaksi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuTransaksi.setText("Transaksi");
+        menuTransaksi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mNotaActionPerformed(evt);
+                menuTransaksiActionPerformed(evt);
             }
         });
-        mtransaksi.add(mNota);
+        mtransaksi.add(menuTransaksi);
+
+        mPembayaran.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        mPembayaran.setText("Pembayaran");
+        mPembayaran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mPembayaranActionPerformed(evt);
+            }
+        });
+        mtransaksi.add(mPembayaran);
 
         jMenuBar1.add(mtransaksi);
 
@@ -209,14 +220,14 @@ public class Dashboard extends javax.swing.JFrame {
         });
         lkaryawan.add(lTransaksi);
 
-        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenuItem1.setText("Laporan Bulanan");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        lBulanan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lBulanan.setText("Laporan Bulanan");
+        lBulanan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                lBulananActionPerformed(evt);
             }
         });
-        lkaryawan.add(jMenuItem1);
+        lkaryawan.add(lBulanan);
 
         jMenuBar1.add(lkaryawan);
 
@@ -318,14 +329,14 @@ public class Dashboard extends javax.swing.JFrame {
         form.requestFocus();
     }//GEN-LAST:event_mShiftActionPerformed
 
-    private void mNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mNotaActionPerformed
+    private void menuTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTransaksiActionPerformed
         // TODO add your handling code here:
-        FormNota form = new FormNota();
+        FormTransaksi form = new FormTransaksi();
         form.setLocationRelativeTo(this);
         form.setVisible(true);
         form.toFront();
         form.requestFocus();
-    }//GEN-LAST:event_mNotaActionPerformed
+    }//GEN-LAST:event_menuTransaksiActionPerformed
 
     private void lPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lPelangganActionPerformed
         // TODO add your handling code here:
@@ -354,13 +365,22 @@ public class Dashboard extends javax.swing.JFrame {
         form.requestFocus();
     }//GEN-LAST:event_lTransaksiActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void lBulananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lBulananActionPerformed
     ReportBulanan form = new ReportBulanan();
         form.setLocationRelativeTo(this);
         form.setVisible(true);
         form.toFront();
         form.requestFocus();    // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_lBulananActionPerformed
+
+    private void mPembayaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mPembayaranActionPerformed
+        // TODO add your handling code here:
+        FormPembayaran form = new FormPembayaran();
+        form.setLocationRelativeTo(this);
+        form.setVisible(true);
+        form.toFront();
+        form.requestFocus();
+    }//GEN-LAST:event_mPembayaranActionPerformed
 
     /**
      * @param args the command line arguments
@@ -391,6 +411,130 @@ public class Dashboard extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -406,18 +550,19 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem lBulanan;
     private javax.swing.JMenuItem lKaryawan;
     private javax.swing.JMenuItem lPelanggan;
     private javax.swing.JMenuItem lTransaksi;
     private javax.swing.JMenu lkaryawan;
     private javax.swing.JMenuItem mKendaraan;
-    private javax.swing.JMenuItem mNota;
+    private javax.swing.JMenuItem mPembayaran;
     private javax.swing.JMenuItem mShift;
     private javax.swing.JMenuItem menuKaryawan;
     private javax.swing.JMenuItem menuLayanan;
     private javax.swing.JMenuItem menuPelanggan;
+    private javax.swing.JMenuItem menuTransaksi;
     private javax.swing.JMenu mmaster;
     private javax.swing.JMenu mtransaksi;
     // End of variables declaration//GEN-END:variables

@@ -137,7 +137,6 @@ public class FormLayananCuci extends javax.swing.JFrame {
         txtcari = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablelayanan = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnkembali = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -273,7 +272,7 @@ public class FormLayananCuci extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -293,65 +292,61 @@ public class FormLayananCuci extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/assets/gambar/LOGO APLIKASI IMK.jpg"))); // NOI18N
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel14))
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel14))
-                                .addGap(49, 49, 49)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jmotor)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(jmobil))
-                                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jmotor)
+                                .addGap(27, 27, 27)
+                                .addComponent(jmobil))
+                            .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel16)
+                                .addComponent(jLabel11))
+                            .addGap(42, 42, 42)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel16)
-                                        .addComponent(jLabel11))
-                                    .addGap(42, 42, 42)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cblayanan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cbmodel, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel13)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtharga, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cblayanan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cbmodel, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel13)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtharga, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnsimpan1)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnbatal1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnsimpan1)
-                                .addGap(18, 18, 18)
                                 .addComponent(btnedit1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnhapus1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnbatal1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(btnhapus1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
                             .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -380,11 +375,10 @@ public class FormLayananCuci extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnsimpan1)
                             .addComponent(btnedit1)
-                            .addComponent(btnhapus1)
-                            .addComponent(btnbatal1)))
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnhapus1))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnbatal1)
+                        .addGap(0, 36, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -438,34 +432,53 @@ public class FormLayananCuci extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1120, 593));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtidActionPerformed
-
-    private void jmotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmotorActionPerformed
-        // TODO add your handling code here:
-        String[] modelMotor = {"Motor Kecil", "Motor Besar"};
-        cbmodel.setModel(new javax.swing.DefaultComboBoxModel<>(modelMotor));
-        
-        String[] layananMotor = {"Cuci Motor Biasa", "Cuci Motor Premium"};
-        cblayanan.setModel(new javax.swing.DefaultComboBoxModel<>(layananMotor));
-    }//GEN-LAST:event_jmotorActionPerformed
-
-    private void jmobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmobilActionPerformed
-        // TODO add your handling code here:
-        String[] modelMobil = {"Mobil Sedan", "Mobil Hatchback", "Mobil SUV", "Mobil MPV", "Mobil Pick-Up"};
-        cbmodel.setModel(new javax.swing.DefaultComboBoxModel<>(modelMobil));
-        
-        String[] layananMobil = {"Cuci Mobil Biasa", "Cuci Mobil Premium"};
-        cblayanan.setModel(new javax.swing.DefaultComboBoxModel<>(layananMobil));
-    }//GEN-LAST:event_jmobilActionPerformed
     
+    private void btnkembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkembaliActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnkembaliActionPerformed
+
+    private void tablelayananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablelayananMouseClicked
+        // TODO add your handling code here:
+        int bar = tablelayanan.getSelectedRow();
+        String a = model.getValueAt(bar, 0).toString();
+        String b = model.getValueAt(bar, 1).toString();
+        String c = model.getValueAt(bar, 2).toString();
+        String d = model.getValueAt(bar, 3).toString();
+        String e = model.getValueAt(bar, 4).toString();
+        String f = model.getValueAt(bar, 5).toString();
+
+        txtid.setText(a);
+
+        if (b.equalsIgnoreCase("motor")) {
+            jmotor.setSelected(true);
+            jmobil.setSelected(false);
+            String[] layananMotor = {"Cuci Motor Biasa", "Cuci Motor Premium"};
+            cblayanan.setModel(new DefaultComboBoxModel<>(layananMotor));
+        } else if (b.equalsIgnoreCase("mobil")) {
+            jmobil.setSelected(true);
+            jmotor.setSelected(false);
+            String[] layananMobil = {"Cuci Mobil Biasa", "Cuci Mobil Premium"};
+            cblayanan.setModel(new DefaultComboBoxModel<>(layananMobil));
+        }
+
+        cbmodel.setSelectedItem(c);
+        cblayanan.setSelectedItem(d);
+        txtketerangan.setText(e);
+        txtharga.setText(f);
+    }//GEN-LAST:event_tablelayananMouseClicked
+
+    private void btncariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncariActionPerformed
+        // TODO add your handling code here:
+        datatable();
+    }//GEN-LAST:event_btncariActionPerformed
+
     private void btnsimpan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsimpan1ActionPerformed
         // TODO add your handling code here:
         String jenis = null;
@@ -594,45 +607,27 @@ public class FormLayananCuci extends javax.swing.JFrame {
         txtid.requestFocus();
     }//GEN-LAST:event_btnbatal1ActionPerformed
 
-    private void btnkembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkembaliActionPerformed
+    private void jmobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmobilActionPerformed
         // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_btnkembaliActionPerformed
+        String[] modelMobil = {"Mobil Sedan", "Mobil Hatchback", "Mobil SUV", "Mobil MPV", "Mobil Pick-Up"};
+        cbmodel.setModel(new javax.swing.DefaultComboBoxModel<>(modelMobil));
 
-    private void btncariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncariActionPerformed
+        String[] layananMobil = {"Cuci Mobil Biasa", "Cuci Mobil Premium"};
+        cblayanan.setModel(new javax.swing.DefaultComboBoxModel<>(layananMobil));
+    }//GEN-LAST:event_jmobilActionPerformed
+
+    private void jmotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmotorActionPerformed
         // TODO add your handling code here:
-        datatable();
-    }//GEN-LAST:event_btncariActionPerformed
+        String[] modelMotor = {"Motor Kecil", "Motor Besar"};
+        cbmodel.setModel(new javax.swing.DefaultComboBoxModel<>(modelMotor));
 
-    private void tablelayananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablelayananMouseClicked
+        String[] layananMotor = {"Cuci Motor Biasa", "Cuci Motor Premium"};
+        cblayanan.setModel(new javax.swing.DefaultComboBoxModel<>(layananMotor));
+    }//GEN-LAST:event_jmotorActionPerformed
+
+    private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
         // TODO add your handling code here:
-        int bar = tablelayanan.getSelectedRow();
-        String a = model.getValueAt(bar, 0).toString();
-        String b = model.getValueAt(bar, 1).toString();
-        String c = model.getValueAt(bar, 2).toString();
-        String d = model.getValueAt(bar, 3).toString();
-        String e = model.getValueAt(bar, 4).toString();
-        String f = model.getValueAt(bar, 5).toString();
-
-        txtid.setText(a);
-
-        if (b.equalsIgnoreCase("motor")) {
-            jmotor.setSelected(true);
-            jmobil.setSelected(false);
-            String[] layananMotor = {"Cuci Motor Biasa", "Cuci Motor Premium"};
-            cblayanan.setModel(new DefaultComboBoxModel<>(layananMotor));
-        } else if (b.equalsIgnoreCase("mobil")) {
-            jmobil.setSelected(true);
-            jmotor.setSelected(false);
-            String[] layananMobil = {"Cuci Mobil Biasa", "Cuci Mobil Premium"};
-            cblayanan.setModel(new DefaultComboBoxModel<>(layananMobil));
-        }
-
-        cbmodel.setSelectedItem(c);
-        cblayanan.setSelectedItem(d);
-        txtketerangan.setText(e);
-        txtharga.setText(f);
-    }//GEN-LAST:event_tablelayananMouseClicked
+    }//GEN-LAST:event_txtidActionPerformed
 
     /**
      * @param args the command line arguments
@@ -686,7 +681,6 @@ public class FormLayananCuci extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;

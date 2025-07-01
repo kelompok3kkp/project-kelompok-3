@@ -107,7 +107,7 @@ INSERT INTO `data_pelanggan` (`id_pelanggan`, `nama_pelanggan`, `no_telp`, `alam
 --
 
 CREATE TABLE `isi` (
-  `id_nota` varchar(50) NOT NULL,
+  `id_transaksi` varchar(50) NOT NULL,
   `id_layanan` varchar(50) NOT NULL,
   `jenis_layanan` varchar(50) NOT NULL,
   `model_kendaraan` varchar(50) DEFAULT NULL,
@@ -118,7 +118,7 @@ CREATE TABLE `isi` (
 -- Dumping data untuk tabel `isi`
 --
 
-INSERT INTO `isi` (`id_nota`, `id_layanan`, `jenis_layanan`, `model_kendaraan`, `harga`) VALUES
+INSERT INTO `isi` (`id_transaksi`, `id_layanan`, `jenis_layanan`, `model_kendaraan`, `harga`) VALUES
 ('IN0001', 'L002', 'Cuci Motor Premium', 'Motor Kecil', 25000.00),
 ('IN0003', 'L004', 'Cuci Motor Premium', 'Motor Besar', 30000.00),
 ('IN0002', 'L006', 'Cuci Mobil Premium', 'Mobil Sedan', 45000.00),
@@ -167,7 +167,7 @@ INSERT INTO `layanan_cuci` (`id_layanan`, `jenis_kendaraan`, `model_kendaraan`, 
 --
 
 CREATE TABLE `nota` (
-  `id_nota` varchar(10) NOT NULL,
+  `id_transaksi` varchar(10) NOT NULL,
   `tgl_nota` date DEFAULT NULL,
   `id_pelanggan` varchar(10) DEFAULT NULL,
   `id_karyawan` varchar(10) DEFAULT NULL
@@ -177,7 +177,7 @@ CREATE TABLE `nota` (
 -- Dumping data untuk tabel `nota`
 --
 
-INSERT INTO `nota` (`id_nota`, `tgl_nota`, `id_pelanggan`, `id_karyawan`) VALUES
+INSERT INTO `nota` (`id_transaksi`, `tgl_nota`, `id_pelanggan`, `id_karyawan`) VALUES
 ('IN0001', '2025-06-10', 'CS002', 'K002'),
 ('IN0002', '2025-06-15', 'CS001', 'K002'),
 ('IN0003', '2025-06-16', 'CS002', 'K002'),
@@ -237,7 +237,7 @@ ALTER TABLE `layanan_cuci`
 -- Indeks untuk tabel `nota`
 --
 ALTER TABLE `nota`
-  ADD PRIMARY KEY (`id_nota`),
+  ADD PRIMARY KEY (`id_transaksi`),
   ADD KEY `id_pelanggan` (`id_pelanggan`),
   ADD KEY `id_karyawan` (`id_karyawan`);
 

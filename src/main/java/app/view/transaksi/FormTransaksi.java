@@ -23,7 +23,7 @@ import main.java.app.view.popuptable.PopupKendaraan;
  *
  * @author frdn1120
  */
-public class FormNota extends javax.swing.JFrame {
+public class FormTransaksi extends javax.swing.JFrame {
 
         public String id, nama, notlp, alamat;
         public String idk, namak, jenisk, notlpk, alamatk, jabatank, shiftk, passwordk, tanggalmasukk;
@@ -34,9 +34,9 @@ public class FormNota extends javax.swing.JFrame {
         
         
     /**
-     * Creates new form FormNota
+     * Creates new form FormTransaksi
      */
-    public FormNota() {
+    public FormTransaksi() {
         initComponents();
         jtanggal.setModel(new javax.swing.SpinnerDateModel());
         JSpinner.DateEditor tgl = new JSpinner.DateEditor(jtanggal, "yyyy-MM-dd");
@@ -92,13 +92,13 @@ public class FormNota extends javax.swing.JFrame {
     
      protected void autonumber(){
         try {
-            String sql = "SELECT id_nota FROM nota order by id_nota asc";
+            String sql = "SELECT id_transaksi FROM transaksi order by id_transaksi asc";
             Statement stat = Koneksi.createStatement();
             ResultSet rs = stat.executeQuery(sql);
-            txtidnota.setText("IN0001");
+            txtidtrx.setText("IN0001");
             while(rs.next()){
-                String id_nota = rs.getString("id_nota").substring(2);
-                int AN = Integer.parseInt(id_nota) +1;
+                String id_transaksi = rs.getString("id_transaksi").substring(2);
+                int AN = Integer.parseInt(id_transaksi) +1;
                 String Nol = "";
                 
                 if(AN<10){
@@ -111,7 +111,7 @@ public class FormNota extends javax.swing.JFrame {
                     Nol = "";
                 }
                 
-                txtidnota.setText("IN" + Nol + AN);
+                txtidtrx.setText("IN" + Nol + AN);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Auto Number Gagal" +e);
@@ -179,7 +179,7 @@ public class FormNota extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabelID = new javax.swing.JLabel();
-        txtidnota = new javax.swing.JTextField();
+        txtidtrx = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -244,7 +244,7 @@ public class FormNota extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Nota Cuci Steam");
+        jLabel1.setText("Transaksi Cuci Steam");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -270,12 +270,12 @@ public class FormNota extends javax.swing.JFrame {
         jLabel2.setText("ID Karyawan");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("ID Nota");
+        jLabel3.setText("ID Transaksi");
 
         jLabelID.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabelID.setText("jLabel4");
 
-        txtidnota.setEnabled(false);
+        txtidtrx.setEnabled(false);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Nama Karyawan");
@@ -347,7 +347,7 @@ public class FormNota extends javax.swing.JFrame {
         );
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setText("Tanggal Nota");
+        jLabel9.setText("Tanggal Transaksi");
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data Kendaraan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
@@ -677,7 +677,7 @@ public class FormNota extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtidnota, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtidtrx, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -714,7 +714,7 @@ public class FormNota extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtidnota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtidtrx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(jtanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -841,11 +841,11 @@ public class FormNota extends javax.swing.JFrame {
         // TODO add your handling code here:
         Date tanggal = (Date) jtanggal.getValue();
          SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
-         String sql = "insert into nota value(?,?,?,?)";
+         String sql = "insert into transaksi value(?,?,?,?)";
          String sql2 = "insert into isi value(?,?,?,?,?)";
          try {
             PreparedStatement stat = Koneksi.prepareStatement(sql);
-            stat.setString(1, txtidnota.getText());
+            stat.setString(1, txtidtrx.getText());
             stat.setString(2, tgl.format(tanggal));
             stat.setString(3, txtidp.getText());
             stat.setString(4, txtidkaryawan.getText());
@@ -861,7 +861,7 @@ public class FormNota extends javax.swing.JFrame {
                 Double hargaDouble = Double.parseDouble(xharga);
                 
                 PreparedStatement stat2 = Koneksi.prepareStatement(sql2);
-                stat2.setString(1, txtidnota.getText());
+                stat2.setString(1, txtidtrx.getText());
                 stat2.setString(2, xid);
                 stat2.setString(3, xjenis);
                 stat2.setString(4, xmodel);
@@ -915,14 +915,18 @@ public class FormNota extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormTransaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormTransaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormTransaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormTransaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -931,7 +935,7 @@ public class FormNota extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormNota().setVisible(true);
+                new FormTransaksi().setVisible(true);
             }
         });
     }
@@ -985,8 +989,8 @@ public class FormNota extends javax.swing.JFrame {
     private javax.swing.JTextField txtidk;
     private javax.swing.JTextField txtidkaryawan;
     private javax.swing.JTextField txtidl;
-    private javax.swing.JTextField txtidnota;
     private javax.swing.JTextField txtidp;
+    private javax.swing.JTextField txtidtrx;
     private javax.swing.JTextField txtjenisk;
     private javax.swing.JTextField txtjenisl;
     private javax.swing.JTextField txtmodel;

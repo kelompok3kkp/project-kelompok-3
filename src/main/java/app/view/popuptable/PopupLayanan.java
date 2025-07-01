@@ -10,7 +10,7 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.KeyEvent;
-import main.java.app.view.transaksi.FormNota;
+import main.java.app.view.transaksi.FormTransaksi;
 
 /**
  *
@@ -19,7 +19,7 @@ import main.java.app.view.transaksi.FormNota;
 public class PopupLayanan extends javax.swing.JFrame {
     private Connection koneksi = new Koneksi().connect();
     private DefaultTableModel model;
-    public FormNota layanan = null;
+    public FormTransaksi layanan = null;
 
     /**
      * Creates new form PopupPelanggan

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package main.java.app.view.formreport;
+
 import java.awt.event.KeyEvent;
 import main.java.app.model.UserID;
 import main.java.app.database.Koneksi;
@@ -14,19 +15,23 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 import java.util.HashMap;
+import java.io.InputStream;
+
 
 /**
  *
  * @author aliframadhan
  */
 public class ReportBulanan extends javax.swing.JFrame {
-private Connection koneksi = new Koneksi().connect();
+    private Connection koneksi = new Koneksi().connect();
     private DefaultTableModel model;
+
     /**
      * Creates new form ReportBulanan
      */
     public ReportBulanan() {
         initComponents();
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         datatable();
     }
@@ -39,11 +44,11 @@ private Connection koneksi = new Koneksi().connect();
 
     try {
         String sql = "SELECT " +
-                     "DATE_FORMAT(n.tgl_nota, '%Y-%m') AS bulan, " +
-                     "COUNT(DISTINCT n.id_nota) AS jumlah_transaksi, " +
+                     "DATE_FORMAT(t.tgl_nota, '%Y-%m') AS bulan, " +
+                     "COUNT(DISTINCT t.id_transaksi) AS jumlah_transaksi, " +
                      "SUM(i.harga) AS total_pendapatan " +
-                     "FROM nota n " +
-                     "JOIN isi i ON n.id_nota = i.id_nota " +
+                     "FROM transaksi t " +
+                     "JOIN isi i ON t.id_transaksi = i.id_transaksi " +
                      "GROUP BY bulan " +
                      "ORDER BY bulan";
 
@@ -56,12 +61,11 @@ private Connection koneksi = new Koneksi().connect();
             String pendapatan = res.getString("total_pendapatan");
             model.addRow(new Object[]{bulan, jumlah, pendapatan});
         }
-
-        tablebulanan.setModel(model); // Ganti tabelmu dengan nama JTable-mu
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Data gagal dimuat: " + e.getMessage());
+            tablebulanan.setModel(model);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Data gagal dimuat: " + e.getMessage());
+        }
     }
-}
 
 
     /**
@@ -172,7 +176,7 @@ private Connection koneksi = new Koneksi().connect();
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -181,27 +185,31 @@ private Connection koneksi = new Koneksi().connect();
     private void btncetakkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakkActionPerformed
         // TODO add your handling code here:
         try {
-            String loginId = UserID.getuserLogin();
+            // Ambil nama karyawan login (jika ingin ditampilkan di laporan)
+            String loginId = UserID.getuserLogin();  // pastikan ini sudah kamu punya
             String loginKaryawan = "Tidak Diketahui";
 
-            try (PreparedStatement namakaryawan = koneksi.prepareStatement("SELECT *FROM data_karyawan WHERE id_karyawan   = ?")) {
-                namakaryawan.setString(1, loginId);
-                try (ResultSet rsNama = namakaryawan.executeQuery()) {
-                    if (rsNama.next()) {
-                        loginKaryawan = rsNama.getString("nama_karyawan");
-                    }
+            try (PreparedStatement ps = koneksi.prepareStatement("SELECT nama_karyawan FROM data_karyawan WHERE id_karyawan = ?")) {
+                ps.setString(1, loginId);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    loginKaryawan = rs.getString("nama_karyawan");
                 }
             }
 
-            String reportPath = "./src/main/java/app/view/report/ReportBulanan.jasper";
-            HashMap parameter = new HashMap();
+            // Lokasi file .jasper
+            String reportPath = "./src/main/java/app/view/report/ReportKaryawan.jasper";
+
+            // Parameter untuk laporan Jasper
+            HashMap<String, Object> parameter = new HashMap<>();
             parameter.put("KARYAWAN", loginKaryawan);
 
-            JasperPrint print = JasperFillManager.fillReport(reportPath,parameter,koneksi);
-            JasperViewer.viewReport(print,false);
+            // Cetak laporan
+            JasperPrint print = JasperFillManager.fillReport(reportPath, parameter, koneksi);
+            JasperViewer.viewReport(print, false);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Gagal mencetak report: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Gagal mencetak laporan: " + e.getMessage());
             e.printStackTrace();
         }
     }//GEN-LAST:event_btncetakkActionPerformed

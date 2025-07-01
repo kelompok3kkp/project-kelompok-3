@@ -41,11 +41,11 @@ public class ReportTransaksi extends javax.swing.JFrame {
             String cariitem = txtcarit.getText();
             
             try {
-                String sql = "SELECT *FROM nota WHERE id_nota LIKE '%" + cariitem + "%' "
+                String sql = "SELECT *FROM transaksi WHERE id_transaksi LIKE '%" + cariitem + "%' "
                         + "OR tgl_nota LIKE '%" + cariitem + "%' "
                         + "OR id_pelanggan LIKE '%" + cariitem + "%' "
                         + "OR id_karyawan LIKE '%" + cariitem + "%' "
-                        + "ORDER BY id_nota ASC";
+                        + "ORDER BY id_transaksi ASC";
             
                 Statement stat = koneksi.createStatement();
                 ResultSet hasil = stat.executeQuery(sql);
@@ -70,12 +70,12 @@ public class ReportTransaksi extends javax.swing.JFrame {
         String cariitem = txtcarit.getText();
         
         try {
-            String sql2 = "SELECT *FROM isi WHERE id_nota LIKE '%" + cariitem + "%' "
+            String sql2 = "SELECT *FROM isi WHERE id_transaksi LIKE '%" + cariitem + "%' "
                         + "OR id_layanan LIKE '%" + cariitem + "%' "
                         + "OR jenis_layanan LIKE '%" + cariitem + "%' "
                         + "OR model_kendaraan LIKE '%" + cariitem + "%' "
                         + "OR harga LIKE '%" + cariitem + "%' "
-                        + "ORDER BY id_nota ASC";
+                        + "ORDER BY id_transaksi ASC";
             
                 Statement stat2 = koneksi.createStatement();
                 ResultSet hasil = stat2.executeQuery(sql2);
@@ -110,7 +110,7 @@ public class ReportTransaksi extends javax.swing.JFrame {
         btnkembalik = new javax.swing.JButton();
         btncarip = new javax.swing.JButton();
         txtcarit = new javax.swing.JTextField();
-        btncetakk1 = new javax.swing.JButton();
+        btncetakk = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableisi = new javax.swing.JTable();
@@ -151,11 +151,11 @@ public class ReportTransaksi extends javax.swing.JFrame {
             }
         });
 
-        btncetakk1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btncetakk1.setText("CETAK");
-        btncetakk1.addActionListener(new java.awt.event.ActionListener() {
+        btncetakk.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btncetakk.setText("CETAK");
+        btncetakk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btncetakk1ActionPerformed(evt);
+                btncetakkActionPerformed(evt);
             }
         });
 
@@ -172,7 +172,7 @@ public class ReportTransaksi extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btncarip)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btncetakk1)
+                        .addComponent(btncetakk)
                         .addGap(18, 18, 18)
                         .addComponent(btnkembalik)))
                 .addContainerGap())
@@ -186,7 +186,7 @@ public class ReportTransaksi extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnkembalik)
                         .addComponent(btncarip)
-                        .addComponent(btncetakk1)))
+                        .addComponent(btncetakk)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -267,9 +267,9 @@ public class ReportTransaksi extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btncaripKeyPressed
 
-    private void btncetakk1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakk1ActionPerformed
+    private void btncetakkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakkActionPerformed
         // TODO add your handling code here:
-        try {
+       try {
             String loginId = UserID.getuserLogin();
             String loginKaryawan = "Tidak Diketahui";
 
@@ -293,7 +293,7 @@ public class ReportTransaksi extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Gagal mencetak report: " + e.getMessage());
             e.printStackTrace();
         }
-    }//GEN-LAST:event_btncetakk1ActionPerformed
+    }//GEN-LAST:event_btncetakkActionPerformed
 
     /**
      * @param args the command line arguments
@@ -332,7 +332,7 @@ public class ReportTransaksi extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btncarip;
-    private javax.swing.JButton btncetakk1;
+    private javax.swing.JButton btncetakk;
     private javax.swing.JButton btnkembalik;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
