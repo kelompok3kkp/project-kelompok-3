@@ -7,16 +7,17 @@ package main.java.app.view.transaksi;
 
 import main.java.app.database.Koneksi;
 import java.sql.*;
+import java.util.Date;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.util.HashMap;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
-import java.util.HashMap;
+import java.io.InputStream;
 
 /**
  *
@@ -185,28 +186,35 @@ public class FormPembayaran extends javax.swing.JFrame {
     }
     
     public void cetakStruk(String idBayar) {
-    try {
-        // 1. Path ke file .jasper Anda (file hasil kompilasi dari .jrxml)
-        // Pastikan path ini benar sesuai lokasi file di project Anda.
-        String reportPath = "./src/main/java/app/view/report/Nota.jasper";
+        try {
+            HashMap<String, Object> params = new HashMap<>();
+            params.put("id_pembayaran", idBayar);
+            System.out.println("Cetak id_pembayaran = " + idBayar);
 
-        // 2. Siapkan parameter yang akan dikirim ke report
-        // Nama "id_pembayaran" HARUS SAMA PERSIS dengan nama parameter yang Anda buat di iReport.
-        HashMap<String, Object> parameters = new HashMap<>();
-        parameters.put("id_pembayaran", idBayar);
+            Connection conn = new Koneksi().connect();
 
-        // 3. Koneksi database (pastikan variabel 'koneksi' bisa diakses)
-        // Jika 'koneksi' hanya ada di method lain, Anda bisa memanggil Koneksi.connect() lagi.
-        Connection conn = Koneksi.connect();
+            InputStream jrxml = getClass().getResourceAsStream("/main/java/app/view/report/Nota.jrxml");
+            if (jrxml == null) {
+                throw new RuntimeException("Nota.jrxml tidak ditemukan di classpath: /main/java/app/view/report/Nota.jrxml");
+            }
 
-        // 4. Isi report dengan data dan tampilkan menggunakan JasperViewer
-        JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, parameters, conn);
-        JasperViewer.viewReport(jasperPrint, false); // 'false' agar aplikasi tidak langsung keluar saat report ditutup
+            JasperReport jasperReport = JasperCompileManager.compileReport(jrxml);
+            JasperPrint jp = JasperFillManager.fillReport(jasperReport, params, conn);
+            JasperViewer.viewReport(jp, false);
 
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Gagal mencetak struk: " + e.getMessage(), "Error Cetak", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            Throwable root = e;
+            while (root.getCause() != null) root = root.getCause();
+            JOptionPane.showMessageDialog(
+                this,
+                "Gagal mencetak struk:\n" + e.getMessage() +
+                (root != e ? ("\nRoot cause: " + root.getMessage()) : ""),
+                "Error Cetak",
+                JOptionPane.ERROR_MESSAGE
+            );
+            e.printStackTrace();
+        }
     }
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
