@@ -536,7 +536,7 @@ public class FormKendaraan extends javax.swing.JFrame {
             return;
         }
         try{
-            String sql = "UPDATE data_kendaraan set id_pelanggan=?, jenis_kendaraan=?, model_kendaraan=?, plat_nomor=? WHERE id_pelanggan='"+txtid.getText()+"'";
+            String sql = "UPDATE data_kendaraan set id_pelanggan=?, jenis_kendaraan=?, model_kendaraan=?, plat_nomor=? WHERE id_kendaraan='"+txtid.getText()+"'";
             PreparedStatement stat = koneksi.prepareStatement(sql);
             stat.setString(1, cbpelanggan.getSelectedItem().toString());
             stat.setString(2, jenis);
