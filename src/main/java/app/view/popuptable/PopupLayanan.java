@@ -31,7 +31,7 @@ public class PopupLayanan extends javax.swing.JFrame {
     }
     
     protected void datatable(){
-        Object[] Baris = {"ID Layanan", "Jenis Kendaraan", "Model Kendaraan", "Jenis Layanan", "Keterangan", "Harga"};
+        Object[] Baris = {"ID Layanan", "Jenis Kendaraan", "Model Kendaraan", "Harga"};
             model = new DefaultTableModel(null, Baris);
             String cariitem = txtcari.getText();
             
@@ -39,8 +39,6 @@ public class PopupLayanan extends javax.swing.JFrame {
                 String sql = "SELECT *FROM layanan_cuci WHERE id_layanan LIKE '%" + cariitem + "%' " 
                         + "OR jenis_kendaraan LIKE '%" + cariitem + "%' " 
                         + "OR model_kendaraan LIKE '%" + cariitem + "%' " 
-                        + "OR jenis_layanan LIKE '%" + cariitem + "%' " 
-                        + "OR keterangan LIKE '%" + cariitem + "%' "
                         + "OR harga LIKE '%" + cariitem + "%' "
                         + "ORDER BY id_layanan ASC";
                 Statement stat = koneksi.createStatement();
@@ -52,8 +50,6 @@ public class PopupLayanan extends javax.swing.JFrame {
                         hasil.getString(2),
                         hasil.getString(3),
                         hasil.getString(4),
-                        hasil.getString(5),
-                        hasil.getString(6),
                     });
                 }
                 tablelayanan.setModel(model);
@@ -164,9 +160,9 @@ public class PopupLayanan extends javax.swing.JFrame {
         // TODO add your handling code here:
         int tablelyn = tablelayanan.getSelectedRow();
         layanan.idl = tablelayanan.getValueAt(tablelyn, 0).toString();
+        layanan.jenisk = tablelayanan.getValueAt(tablelyn , 1).toString();
         layanan.modell = tablelayanan.getValueAt(tablelyn, 2).toString();
-        layanan.jenislayanan = tablelayanan.getValueAt(tablelyn, 3).toString();
-        layanan.hargal = tablelayanan.getValueAt(tablelyn, 5).toString();
+        layanan.hargal = tablelayanan.getValueAt(tablelyn, 3).toString();
         layanan.itemTerpilihLayanan();
         this.dispose();
     }//GEN-LAST:event_tablelayananMouseClicked

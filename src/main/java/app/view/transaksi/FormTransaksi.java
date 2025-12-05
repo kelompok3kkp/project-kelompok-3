@@ -70,7 +70,7 @@ public class FormTransaksi extends javax.swing.JFrame {
      protected void aktif(){
         txtidl.requestFocus();
         jtanggal.setEditor(new JSpinner.DateEditor(jtanggal,"yyy/MM/dd"));
-        Object[] Baris = {"ID Layanan", "Jenis Layanan", "Model Kendaraan", "Harga"};
+        Object[] Baris = {"ID Layanan", "Model Kendaraan", "Harga"};
         model = new DefaultTableModel(null, Baris);
         tabletransaksi.setModel(model);
     }
@@ -82,7 +82,6 @@ public class FormTransaksi extends javax.swing.JFrame {
         txtidkaryawan.setText("");
         txtnamakaryawan.setText("");
         txtidl.setText("");
-        txtmodel.setText("");
         txtharga.setText("");
         txtidk.setText("");
         txtjenisk.setText("");
@@ -137,7 +136,6 @@ public class FormTransaksi extends javax.swing.JFrame {
         PopupLayanan pp = new PopupLayanan();
         pp.layanan = this;
         txtidl.setText(idl);
-        txtmodel.setText(jenislayanan);
         txtjenisl.setText(modell);
         txtharga.setText(hargal);
     }
@@ -152,7 +150,7 @@ public class FormTransaksi extends javax.swing.JFrame {
       public void hitung(){
           int total = 0;
           for(int i = 0; i < tabletransaksi.getRowCount(); i++){
-              double amount = Double.valueOf(tabletransaksi.getValueAt(i, 3).toString());
+              double amount = Double.valueOf(tabletransaksi.getValueAt(i, 2).toString());
               total += amount;
           }
           txttotal.setText(Double.toString(total));
@@ -205,8 +203,6 @@ public class FormTransaksi extends javax.swing.JFrame {
         jLabelNama = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        txtmodel = new javax.swing.JTextField();
         txtidl = new javax.swing.JTextField();
         btncaril = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
@@ -436,11 +432,6 @@ public class FormTransaksi extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("ID Layanan");
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel16.setText("Jenis Layanan");
-
-        txtmodel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         txtidl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtidl.setEnabled(false);
 
@@ -470,17 +461,13 @@ public class FormTransaksi extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel16)
-                                    .addComponent(jLabel20))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtharga)
-                                    .addComponent(txtmodel, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                .addComponent(jLabel20)
+                                .addGap(72, 72, 72)
+                                .addComponent(txtharga))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtjenisl, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)))
+                                .addComponent(txtjenisl)))
                         .addGap(77, 77, 77))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel10)
@@ -500,17 +487,13 @@ public class FormTransaksi extends javax.swing.JFrame {
                     .addComponent(btncaril))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(txtmodel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtjenisl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
                     .addComponent(txtharga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data Karyawan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
@@ -609,7 +592,7 @@ public class FormTransaksi extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 906, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnhapus)))
@@ -619,7 +602,7 @@ public class FormTransaksi extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnhapus)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -661,23 +644,23 @@ public class FormTransaksi extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnsimpan)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnbatal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnkeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel21)
-                                .addGap(18, 18, 18)
-                                .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtidtrx, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(btnsimpan)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnbatal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnkeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel21)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtidtrx, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -698,9 +681,11 @@ public class FormTransaksi extends javax.swing.JFrame {
                                             .addComponent(jtanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btntambah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 123, Short.MAX_VALUE)))
-                .addContainerGap())
+                                    .addComponent(btntambah, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(133, 133, 133))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -738,7 +723,7 @@ public class FormTransaksi extends javax.swing.JFrame {
                     .addComponent(btnkeluar)
                     .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
         jScrollPane4.setViewportView(jPanel1);
@@ -820,18 +805,16 @@ public class FormTransaksi extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
               String kode = txtidl.getText();
-              String jenislayanan = txtmodel.getText();
               String modellk = txtjenisl.getText();
               String harga = txtharga.getText();
 
               DefaultTableModel model = (DefaultTableModel) tabletransaksi.getModel(); 
-              model.addRow(new Object[]{kode, jenislayanan, modellk, harga});
+              model.addRow(new Object[]{kode, modellk, harga});
           } catch (Exception e) {
               System.out.println("Error: " + e);
           }
 
           txtidl.setText("");
-          txtmodel.setText("");
           txtjenisl.setText("");
           txtharga.setText("");
           hitung();
@@ -842,7 +825,7 @@ public class FormTransaksi extends javax.swing.JFrame {
         Date tanggal = (Date) jtanggal.getValue();
          SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
          String sql = "insert into transaksi value(?,?,?,?)";
-         String sql2 = "insert into isi value(?,?,?,?,?)";
+         String sql2 = "insert into isi value(?,?,?)";
          try {
             PreparedStatement stat = Koneksi.prepareStatement(sql);
             stat.setString(1, txtidtrx.getText());
@@ -856,16 +839,13 @@ public class FormTransaksi extends javax.swing.JFrame {
             for(int i = 0; i < tbl; i++){
                 String xid = tabletransaksi.getValueAt(i, 0).toString();
                 String xjenis = tabletransaksi.getValueAt(i, 1).toString();
-                String xmodel = tabletransaksi.getValueAt(i, 2).toString();
-                String xharga = tabletransaksi.getValueAt(i, 3).toString();
+                String xharga = tabletransaksi.getValueAt(i, 2).toString();
                 Double hargaDouble = Double.parseDouble(xharga);
                 
                 PreparedStatement stat2 = Koneksi.prepareStatement(sql2);
                 stat2.setString(1, txtidtrx.getText());
                 stat2.setString(2, xid);
-                stat2.setString(3, xjenis);
-                stat2.setString(4, xmodel);
-                stat2.setDouble(5, hargaDouble);
+                stat2.setDouble(3, hargaDouble);
                 
                 stat2.executeUpdate();
             }
@@ -958,7 +938,6 @@ public class FormTransaksi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -993,7 +972,6 @@ public class FormTransaksi extends javax.swing.JFrame {
     private javax.swing.JTextField txtidtrx;
     private javax.swing.JTextField txtjenisk;
     private javax.swing.JTextField txtjenisl;
-    private javax.swing.JTextField txtmodel;
     private javax.swing.JTextField txtmodelk;
     private javax.swing.JTextField txtnamakaryawan;
     private javax.swing.JTextField txtnamap;
