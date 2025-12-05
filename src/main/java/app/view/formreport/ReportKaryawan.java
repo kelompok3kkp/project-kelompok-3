@@ -35,7 +35,7 @@ public class ReportKaryawan extends javax.swing.JFrame {
 
     
      protected void datatable(){
-        Object[] Baris = {"ID Karyawan", "Nama Karyawan", "Jenis Kelamin", "No. Telepon", "Alamat", "Jabatan","Shift", "Password", "Tanggal Masuk"};
+        Object[] Baris = {"ID Karyawan", "Nama Karyawan", "Jenis Kelamin", "No. Telepon", "Alamat", "Jabatan", "Password", "Tanggal Masuk"};
             model = new DefaultTableModel(null, Baris);
             String cariitem = txtcarik.getText();
             
@@ -46,7 +46,6 @@ public class ReportKaryawan extends javax.swing.JFrame {
                         + "OR no_telp LIKE '%" + cariitem + "%' " 
                         + "OR alamat LIKE '%" + cariitem + "%' " 
                         + "OR jabatan LIKE '%" + cariitem + "%' " 
-                        + "OR shift LIKE '%" + cariitem + "%' "
                         + "OR password LIKE '%" + cariitem + "%' " 
                         + "ORDER BY id_karyawan ASC";
                 Statement stat = koneksi.createStatement();
@@ -62,7 +61,6 @@ public class ReportKaryawan extends javax.swing.JFrame {
                         hasil.getString(6),
                         hasil.getString(7),
                         hasil.getString(8),
-                        hasil.getString(9),
                     });
                 }
                 tablekaryawan.setModel(model);
