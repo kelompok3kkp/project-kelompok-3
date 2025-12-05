@@ -291,7 +291,7 @@ public class FormPembayaran extends javax.swing.JFrame {
         });
 
         cbpembayaran.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cbpembayaran.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tunai", "Transfer", "E-Wallet" }));
+        cbpembayaran.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tunai", "Transfer" }));
 
         btnbatal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnbatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/assets/icons/batal.png"))); // NOI18N

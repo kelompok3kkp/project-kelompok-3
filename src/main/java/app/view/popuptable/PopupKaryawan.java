@@ -32,7 +32,7 @@ public class PopupKaryawan extends javax.swing.JFrame {
     }
     
    protected void datatable(){
-        Object[] Baris = {"ID Karyawan", "Nama Karyawan", "Jenis Kelamin", "No. Telepon", "Alamat", "Jabatan","Shift", "Password", "Tanggal Masuk"};
+        Object[] Baris = {"ID Karyawan", "Nama Karyawan", "Jenis Kelamin", "No. Telepon", "Alamat", "Jabatan", "Grup Kerja", "Password", "Tanggal Masuk"};
             model = new DefaultTableModel(null, Baris);
             String cariitem = txtcari.getText();
             
@@ -43,7 +43,7 @@ public class PopupKaryawan extends javax.swing.JFrame {
                         + "OR no_telp LIKE '%" + cariitem + "%' " 
                         + "OR alamat LIKE '%" + cariitem + "%' " 
                         + "OR jabatan LIKE '%" + cariitem + "%' " 
-                        + "OR shift LIKE '%" + cariitem + "%' "
+                        + "OR grup_kerja LIKE '%" + cariitem + "%' "
                         + "OR password LIKE '%" + cariitem + "%' " 
                         + "ORDER BY id_karyawan ASC";
                 Statement stat = koneksi.createStatement();

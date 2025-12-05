@@ -9,7 +9,7 @@ import main.java.app.view.master.FormKaryawan;
 import main.java.app.view.master.FormPelanggan;
 import main.java.app.view.master.FormLayananCuci;
 import main.java.app.view.master.FormKendaraan;
-import main.java.app.view.master.FormShift;
+import main.java.app.view.master.FormJadwal;
 import main.java.app.view.transaksi.FormTransaksi;
 import main.java.app.view.transaksi.FormPembayaran;
 import main.java.app.view.formreport.ReportKaryawan;
@@ -65,7 +65,7 @@ public class Dashboard extends javax.swing.JFrame {
         menuLayanan = new javax.swing.JMenuItem();
         menuPelanggan = new javax.swing.JMenuItem();
         mKendaraan = new javax.swing.JMenuItem();
-        mShift = new javax.swing.JMenuItem();
+        mJadwal = new javax.swing.JMenuItem();
         mtransaksi = new javax.swing.JMenu();
         menuTransaksi = new javax.swing.JMenuItem();
         mPembayaran = new javax.swing.JMenuItem();
@@ -114,7 +114,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(btnlogout)))
         );
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/assets/gambar/LOGO APLIKASI IMK.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/assets/gambar/logoadrstemple1.png"))); // NOI18N
 
         mmaster.setText("Master");
         mmaster.setFocusable(false);
@@ -156,14 +156,14 @@ public class Dashboard extends javax.swing.JFrame {
         });
         mmaster.add(mKendaraan);
 
-        mShift.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        mShift.setText("Shift");
-        mShift.addActionListener(new java.awt.event.ActionListener() {
+        mJadwal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        mJadwal.setText("Jadwal");
+        mJadwal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mShiftActionPerformed(evt);
+                mJadwalActionPerformed(evt);
             }
         });
-        mmaster.add(mShift);
+        mmaster.add(mJadwal);
 
         jMenuBar1.add(mmaster);
 
@@ -244,7 +244,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
+                        .addGap(55, 55, 55)
                         .addComponent(jLabel3)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -254,9 +254,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addGap(69, 69, 69))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         setBounds(0, 0, 727, 791);
@@ -320,14 +320,14 @@ public class Dashboard extends javax.swing.JFrame {
         form.requestFocus();
     }//GEN-LAST:event_mKendaraanActionPerformed
 
-    private void mShiftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mShiftActionPerformed
+    private void mJadwalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mJadwalActionPerformed
         // TODO add your handling code here:
-        FormShift form = new FormShift();
+        FormJadwal form = new FormJadwal();
         form.setLocationRelativeTo(this);
         form.setVisible(true);
         form.toFront();
         form.requestFocus();
-    }//GEN-LAST:event_mShiftActionPerformed
+    }//GEN-LAST:event_mJadwalActionPerformed
 
     private void menuTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTransaksiActionPerformed
         // TODO add your handling code here:
@@ -556,9 +556,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JMenuItem lPelanggan;
     private javax.swing.JMenuItem lTransaksi;
     private javax.swing.JMenu lkaryawan;
+    private javax.swing.JMenuItem mJadwal;
     private javax.swing.JMenuItem mKendaraan;
     private javax.swing.JMenuItem mPembayaran;
-    private javax.swing.JMenuItem mShift;
     private javax.swing.JMenuItem menuKaryawan;
     private javax.swing.JMenuItem menuLayanan;
     private javax.swing.JMenuItem menuPelanggan;
