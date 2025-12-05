@@ -124,28 +124,38 @@ public class FormKendaraan extends javax.swing.JFrame {
         }
     }
     
-    private void loadNamaPelanggan() {
+        private void loadNamaPelanggan() {
         String id = (String) cbpelanggan.getSelectedItem();
-        if (id != null) {
-            try {
-                String sql = "SELECT nama_pelanggan FROM data_pelanggan WHERE id_pelanggan = ?";
-                PreparedStatement ps = koneksi.prepareStatement(sql);
-                ps.setString(1, id);
-                ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
-                    String namaPelanggan = rs.getString("nama_pelanggan");
-                    txtnamapelanggan.setText(namaPelanggan);
-                } else {
-                    txtnamapelanggan.setText("");
-                }
-                rs.close();
-                ps.close();
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(this, "Gagal mengambil nama pelanggan: " + e.getMessage());
+
+        System.out.println(">>> ID dari combobox: [" + id + "]");
+
+        if (id == null || id.trim().isEmpty()) {
+            txtnamapelanggan.setText("");
+            return;
+        }
+
+        try {
+            String sql = "SELECT nama_pelanggan FROM data_pelanggan WHERE id_pelanggan = ?";
+            PreparedStatement ps = koneksi.prepareStatement(sql);
+            ps.setString(1, id.trim()); 
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String namaPelanggan = rs.getString(1); 
+                System.out.println(">>> Nama ditemukan: " + namaPelanggan);
+                txtnamapelanggan.setText(namaPelanggan);
+            } else {
+                System.out.println(">>> Tidak ada data pelanggan dengan ID itu");
+                txtnamapelanggan.setText("");
             }
+
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Gagal mengambil nama pelanggan: " + e.getMessage());
+            e.printStackTrace();
         }
     }
-
     
     /**
      * This method is called from within the constructor to initialize the form.
