@@ -65,15 +65,13 @@ public class ReportTransaksi extends javax.swing.JFrame {
     }
     
     protected void datatable_isi(){
-        Object[] Baris2 = {"ID Nota", "ID Layanan", "Jenis Layanan", "Model kendaraan", "Harga"};
+        Object[] Baris2 = {"ID Nota", "ID Layanan", "Harga"};
         modelisi = new DefaultTableModel(null, Baris2);
         String cariitem = txtcarit.getText();
         
         try {
             String sql2 = "SELECT *FROM isi WHERE id_transaksi LIKE '%" + cariitem + "%' "
                         + "OR id_layanan LIKE '%" + cariitem + "%' "
-                        + "OR jenis_layanan LIKE '%" + cariitem + "%' "
-                        + "OR model_kendaraan LIKE '%" + cariitem + "%' "
                         + "OR harga LIKE '%" + cariitem + "%' "
                         + "ORDER BY id_transaksi ASC";
             
@@ -84,9 +82,7 @@ public class ReportTransaksi extends javax.swing.JFrame {
                     modelisi.addRow(new Object[]{
                         hasil.getString(1),
                         hasil.getString(2),
-                        hasil.getString(3),
-                        hasil.getString(4),
-                        hasil.getString(5)
+                        hasil.getString(3)
                     });
                 }
                 tableisi.setModel(modelisi);

@@ -518,7 +518,7 @@ public class FormKaryawan extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat mengecek ID: " + e);
             return;
         }
-        String sql = "INSERT into data_karyawan values (?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT into data_karyawan values (?,?,?,?,?,?,?,?)";
         try{
             PreparedStatement stat = koneksi.prepareStatement(sql);
             stat.setString(1, txtid.getText());
@@ -532,7 +532,7 @@ public class FormKaryawan extends javax.swing.JFrame {
             
             Date tanggal = (Date) jtanggal.getValue();
             SimpleDateFormat tgl = new SimpleDateFormat("yyyy-MM-dd");
-            stat.setString(9, tgl.format(tanggal));
+            stat.setString(8, tgl.format(tanggal));
 
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan.");
