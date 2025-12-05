@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 05 Des 2025 pada 15.25
+-- Waktu pembuatan: 05 Des 2025 pada 17.24
 -- Versi server: 12.0.2-MariaDB
 -- Versi PHP: 8.1.29
 
@@ -45,9 +45,14 @@ CREATE TABLE `data_karyawan` (
 --
 
 INSERT INTO `data_karyawan` (`id_karyawan`, `nama_karyawan`, `jenis_kelamin`, `no_telp`, `alamat`, `jabatan`, `password`, `tanggal_masuk`) VALUES
-('K001', 'Arie', 'Laki-laki', '0987523', 'Indonesia', 'Admin', 'admin123', '2025-04-28'),
-('K002', 'bayu', 'Laki-laki', '01234', 'brazil', 'Washerman', 'karyawan123', '2025-04-30'),
-('K003', 'Fardan', 'Laki-laki', '0987765432', 'Indonesiadsdsaa', 'Admin', 'admin123', '2025-06-29');
+('K001', 'Supratman', 'Laki-laki', '085215158809', 'Citayam', 'Admin', 'admin123', '2025-04-28'),
+('K002', 'Odoy', 'Laki-laki', '0881234315', 'Bambu Kuning', 'Washerman', 'admin123', '2025-04-30'),
+('K003', 'Asep', 'Laki-laki', '0987765432', 'Bojonggede', 'Washerman', 'admin123', '2025-06-29'),
+('K004', 'Auqqi', 'Laki-laki', '0813623742', 'Bambu Kuning', 'Washerman', 'admin123', '2025-12-05'),
+('K005', 'Adit', 'Laki-laki', '082387242', 'Bojonggede', 'Washerman', 'admin123', '2025-12-05'),
+('K006', 'Ilham', 'Laki-laki', '08237642324', 'Citayam', 'Washerman', 'admini123', '2025-12-05'),
+('K007', 'Bowo', 'Laki-laki', '081387425', 'Bambu Kuning', 'Washerman', 'admin123', '2025-12-05'),
+('K008', 'Sugi', 'Laki-laki', '081326427462', 'Bojonggede', 'Washerman', 'admin123', '2025-12-05');
 
 -- --------------------------------------------------------
 
@@ -68,13 +73,9 @@ CREATE TABLE `data_kendaraan` (
 --
 
 INSERT INTO `data_kendaraan` (`id_kendaraan`, `id_pelanggan`, `jenis_kendaraan`, `model_kendaraan`, `plat_nomor`) VALUES
-('KD001', 'CS001', 'Motor', 'Motor Kecil', 'b123fvdsf'),
-('KD002', 'CS002', 'Mobil', 'Mobil MPV', 'b1234bd'),
-('KD003', 'CS001', 'Mobil', 'Mobil Sedan', 'B 4 YU'),
-('KD004', 'CS002', 'Motor', 'Motor Besar', 'N 0 Pal'),
-('KD005', 'CS003', 'Motor', 'Motor Besar', 'B 123BDa'),
-('KD006', 'CS003', 'Mobil', 'Mobil Hatchback', 'd12334BS'),
-('KD007', 'CS005', 'Motor', 'Motor Kecil', 'B1231BS');
+('KD001', 'CS001', 'Mobil', 'Mobil', ' B 4 TAK'),
+('KD002', 'CS002', 'Motor', 'Motor Kecil', 'F 762 K'),
+('KD003', 'CS003', 'Motor', 'Motor Besar', 'T 65 FG');
 
 -- --------------------------------------------------------
 
@@ -94,11 +95,9 @@ CREATE TABLE `data_pelanggan` (
 --
 
 INSERT INTO `data_pelanggan` (`id_pelanggan`, `nama_pelanggan`, `no_telp`, `alamat`) VALUES
-('CS001', 'Bayu', '122345455', 'Indonesia'),
-('CS002', 'nopal', '012445', 'bogor'),
-('CS003', 'ucok', '121123', 'asdada'),
-('CS004', 'Alip', '12313', 'sdfsf'),
-('CS005', 'Fardan', '121323', 'Indds');
+('CS001', 'Ucok', '12345', 'Indonesia'),
+('CS002', 'Reza', '0828423234', 'Condet'),
+('CS003', 'Arie', '087263742', 'Citayam');
 
 -- --------------------------------------------------------
 
@@ -118,7 +117,12 @@ CREATE TABLE `grup_kerja` (
 --
 
 INSERT INTO `grup_kerja` (`id_grup`, `id_karyawan`, `nama_karyawan`, `grup_jadwal`) VALUES
-('G001', 'K001', 'Arie', 'Grup A');
+('G001', 'K002', 'Odoy', 'Grup A'),
+('G002', 'K003', 'Asep', 'Grup A'),
+('G003', 'K004', 'Auqqi', 'Grup B'),
+('G004', 'K005', 'Adit', 'Grup B'),
+('G005', 'K006', 'Ilham', 'Grup C'),
+('G006', 'K007', 'Bowo', 'Grup C');
 
 -- --------------------------------------------------------
 
@@ -129,8 +133,6 @@ INSERT INTO `grup_kerja` (`id_grup`, `id_karyawan`, `nama_karyawan`, `grup_jadwa
 CREATE TABLE `isi` (
   `id_transaksi` varchar(50) NOT NULL,
   `id_layanan` varchar(50) NOT NULL,
-  `jenis_layanan` varchar(50) NOT NULL,
-  `model_kendaraan` varchar(50) DEFAULT NULL,
   `harga` decimal(15,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -138,13 +140,9 @@ CREATE TABLE `isi` (
 -- Dumping data untuk tabel `isi`
 --
 
-INSERT INTO `isi` (`id_transaksi`, `id_layanan`, `jenis_layanan`, `model_kendaraan`, `harga`) VALUES
-('IN0001', 'L002', 'Cuci Motor Premium', 'Motor Kecil', 25000.00),
-('IN0003', 'L004', 'Cuci Motor Premium', 'Motor Besar', 30000.00),
-('IN0002', 'L006', 'Cuci Mobil Premium', 'Mobil Sedan', 45000.00),
-('IN0004', 'L012', 'Cuci Mobil Premium', 'Mobil MPV', 60000.00),
-('IN0005', 'L001', 'Cuci Motor Biasa', 'Motor Kecil', 15000.00),
-('IN0006', 'L006', 'Cuci Mobil Premium', 'Mobil Sedan', 45000.00);
+INSERT INTO `isi` (`id_transaksi`, `id_layanan`, `harga`) VALUES
+('IN0005', 'L003', 50000.00),
+('IN0006', 'L001', 15000.00);
 
 -- --------------------------------------------------------
 
@@ -156,8 +154,6 @@ CREATE TABLE `layanan_cuci` (
   `id_layanan` varchar(10) NOT NULL,
   `jenis_kendaraan` enum('motor','mobil') NOT NULL,
   `model_kendaraan` varchar(50) NOT NULL,
-  `jenis_layanan` varchar(50) NOT NULL,
-  `keterangan` text DEFAULT NULL,
   `harga` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -165,21 +161,10 @@ CREATE TABLE `layanan_cuci` (
 -- Dumping data untuk tabel `layanan_cuci`
 --
 
-INSERT INTO `layanan_cuci` (`id_layanan`, `jenis_kendaraan`, `model_kendaraan`, `jenis_layanan`, `keterangan`, `harga`) VALUES
-('L001', 'motor', 'Motor Kecil', 'Cuci Motor Biasa', '1. Cuci seluruh bagian luar motor\n2. Pembersihan detail: sela bodi, \n3. kolong spakbor, velg\n4. Pembersihan rantai\n5. Semprotan air bertekanan tinggi\n6. Pengeringan dengan lap microfiber', 15000.00),
-('L002', 'motor', 'Motor Kecil', 'Cuci Motor Premium', '1. Semua layanan dari \"Cuci Motor Biasa\"\n2. Poles ringan bodi motor (plastik & tangki)\n3. Coating pelindung cat\n4. Pelumasan rantai (jika ada)\n5. Cuci dan pengharum helm', 25000.00),
-('L003', 'motor', 'Motor Besar', 'Cuci Motor Biasa', '1. Cuci seluruh bagian luar motor\n2. Pembersihan detail: sela bodi, \n3. kolong spakbor, velg\n4. Pembersihan rantai\n5. Semprotan air bertekanan tinggi\n6. Pengeringan dengan lap microfiber', 20000.00),
-('L004', 'motor', 'Motor Besar', 'Cuci Motor Premium', '1. Semua layanan dari \"Cuci Motor Biasa\"\n2. Poles ringan bodi motor (plastik & tangki)\n3. Coating pelindung cat\n4. Pelumasan rantai (jika ada)\n5. Cuci dan pengharum helm', 30000.00),
-('L005', 'mobil', 'Mobil Sedan', 'Cuci Mobil Biasa', '1. Cuci seluruh bagian luar mobil ...', 35000.00),
-('L006', 'mobil', 'Mobil Sedan', 'Cuci Mobil Premium', '1. Semua layanan dari \"Cuci Mobil Biasa\" ...', 45000.00),
-('L007', 'mobil', 'Mobil Hatchback', 'Cuci Mobil Biasa', '...', 40000.00),
-('L008', 'mobil', 'Mobil Hatchback', 'Cuci Mobil Premium', '...', 50000.00),
-('L009', 'mobil', 'Mobil SUV', 'Cuci Mobil Biasa', '...', 55000.00),
-('L010', 'mobil', 'Mobil SUV', 'Cuci Mobil Premium', '...', 65000.00),
-('L011', 'mobil', 'Mobil MPV', 'Cuci Mobil Biasa', '...', 50000.00),
-('L012', 'mobil', 'Mobil MPV', 'Cuci Mobil Premium', '...', 60000.00),
-('L013', 'mobil', 'Mobil Pick-Up', 'Cuci Mobil Biasa', '...', 35000.00),
-('L014', 'mobil', 'Mobil Pick-Up', 'Cuci Mobil Premium', '...', 40000.00);
+INSERT INTO `layanan_cuci` (`id_layanan`, `jenis_kendaraan`, `model_kendaraan`, `harga`) VALUES
+('L001', 'motor', 'Motor Kecil', 15000.00),
+('L002', 'motor', 'Motor Besar', 20000.00),
+('L003', 'mobil', 'Mobil', 50000.00);
 
 -- --------------------------------------------------------
 
@@ -193,17 +178,6 @@ CREATE TABLE `nota` (
   `id_pelanggan` varchar(10) DEFAULT NULL,
   `id_karyawan` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `nota`
---
-
-INSERT INTO `nota` (`id_transaksi`, `tgl_nota`, `id_pelanggan`, `id_karyawan`) VALUES
-('IN0001', '2025-06-10', 'CS002', 'K002'),
-('IN0002', '2025-06-15', 'CS001', 'K002'),
-('IN0003', '2025-06-16', 'CS002', 'K002'),
-('IN0004', '2025-06-20', 'CS002', 'K003'),
-('IN0005', '2025-07-01', 'CS001', 'K001');
 
 -- --------------------------------------------------------
 
@@ -226,11 +200,8 @@ CREATE TABLE `pembayaran` (
 --
 
 INSERT INTO `pembayaran` (`id_pembayaran`, `tanggal_transaksi`, `id_transaksi`, `harga`, `diskon`, `metode_pembayaran`, `total_bayar`) VALUES
-('TRX001', '2025-09-30', 'IN0003', 30000.00, 10, 'Tunai', 27000.00),
-('TRX002', '2025-09-30', 'IN0001', 25000.00, 10, 'Tunai', 22500.00),
-('TRX003', '2025-09-30', 'IN0002', 45000.00, 5, 'Tunai', 42750.00),
-('TRX004', '2025-09-30', 'IN0004', 60000.00, 10, 'Tunai', 54000.00),
-('TRX005', '2025-11-05', 'IN0005', 15000.00, 10, 'Tunai', 13500.00);
+('TRX001', '2025-12-05', 'IN0005', 50000.00, 0, 'Tunai', 50000.00),
+('TRX002', '2025-12-05', 'IN0006', 15000.00, 0, 'Tunai', 15000.00);
 
 -- --------------------------------------------------------
 
@@ -250,12 +221,12 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `tgl_nota`, `id_pelanggan`, `id_karyawan`) VALUES
-('IN0001', '2025-06-10', 'CS002', 'K002'),
-('IN0002', '2025-06-15', 'CS001', 'K002'),
-('IN0003', '2025-06-16', 'CS002', 'K002'),
-('IN0004', '2025-06-20', 'CS002', 'K003'),
-('IN0005', '2025-07-01', 'CS001', 'K001'),
-('IN0006', '2025-09-30', 'CS001', 'K001');
+('IN0001', '2025-12-05', 'CS003', 'K005'),
+('IN0002', '2025-12-05', 'CS001', 'K002'),
+('IN0003', '2025-12-05', 'CS001', 'K002'),
+('IN0004', '2025-12-05', 'CS001', 'K002'),
+('IN0005', '2025-12-05', 'CS001', 'K002'),
+('IN0006', '2025-12-05', 'CS002', 'K003');
 
 --
 -- Indexes for dumped tables
