@@ -185,11 +185,13 @@ public class ReportBulanan extends javax.swing.JFrame {
     private void btncetakkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakkActionPerformed
         // TODO add your handling code here:
         try {
-            // Ambil nama karyawan login (jika ingin ditampilkan di laporan)
-            String loginId = UserID.getuserLogin();  // pastikan ini sudah kamu punya
+            // Ambil ID user yang login
+            String loginId = UserID.getuserLogin();
             String loginKaryawan = "Tidak Diketahui";
 
-            try (PreparedStatement ps = koneksi.prepareStatement("SELECT nama_karyawan FROM data_karyawan WHERE id_karyawan = ?")) {
+            // Cari nama karyawan dari tabel data_karyawan
+            try (PreparedStatement ps = koneksi.prepareStatement(
+                    "SELECT nama_karyawan FROM data_karyawan WHERE id_karyawan = ?")) {
                 ps.setString(1, loginId);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
@@ -197,20 +199,25 @@ public class ReportBulanan extends javax.swing.JFrame {
                 }
             }
 
-            // Lokasi file .jasper
-            String reportPath = "./src/main/java/app/view/report/ReportKaryawan.jasper";
+            // Lokasi file .jasper laporan omset bulanan
+            String reportPath = "./src/main/java/app/view/report/ReportBulanan.jasper";
 
             // Parameter untuk laporan Jasper
             HashMap<String, Object> parameter = new HashMap<>();
             parameter.put("KARYAWAN", loginKaryawan);
 
-            // Cetak laporan
+            // Cetak / tampilkan laporan
             JasperPrint print = JasperFillManager.fillReport(reportPath, parameter, koneksi);
             JasperViewer.viewReport(print, false);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Gagal mencetak laporan: " + e.getMessage());
-            e.printStackTrace();
+            Throwable root = e.getCause();
+            String msg = e.getMessage();
+            if (root != null) {
+                msg += "\n\nDetail SQL: " + root.getMessage();
+                root.printStackTrace();  // cek di console
+            }
+            JOptionPane.showMessageDialog(this, "Gagal mencetak laporan:\n" + msg);
         }
     }//GEN-LAST:event_btncetakkActionPerformed
 

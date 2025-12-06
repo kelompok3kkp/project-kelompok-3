@@ -62,10 +62,10 @@ public class Dashboard extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         mmaster = new javax.swing.JMenu();
         menuKaryawan = new javax.swing.JMenuItem();
+        mJadwal = new javax.swing.JMenuItem();
         menuLayanan = new javax.swing.JMenuItem();
         menuPelanggan = new javax.swing.JMenuItem();
         mKendaraan = new javax.swing.JMenuItem();
-        mJadwal = new javax.swing.JMenuItem();
         mtransaksi = new javax.swing.JMenu();
         menuTransaksi = new javax.swing.JMenuItem();
         mPembayaran = new javax.swing.JMenuItem();
@@ -129,6 +129,15 @@ public class Dashboard extends javax.swing.JFrame {
         });
         mmaster.add(menuKaryawan);
 
+        mJadwal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        mJadwal.setText("Jadwal");
+        mJadwal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mJadwalActionPerformed(evt);
+            }
+        });
+        mmaster.add(mJadwal);
+
         menuLayanan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         menuLayanan.setText("Layanan");
         menuLayanan.addActionListener(new java.awt.event.ActionListener() {
@@ -155,15 +164,6 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
         mmaster.add(mKendaraan);
-
-        mJadwal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        mJadwal.setText("Jadwal");
-        mJadwal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mJadwalActionPerformed(evt);
-            }
-        });
-        mmaster.add(mJadwal);
 
         jMenuBar1.add(mmaster);
 
@@ -239,14 +239,13 @@ public class Dashboard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel3)))
+                .addContainerGap()
+                .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(63, 63, 63))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
