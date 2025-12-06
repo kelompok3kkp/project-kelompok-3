@@ -46,7 +46,7 @@ FROM
 			<staticText>
 				<reportElement x="0" y="34" width="555" height="20" uuid="ce4ee97f-f0e5-41a6-a5df-790b00526be6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Jl. Raya Tengah No.80, Gedong, Pasar Rebo, Jakarta Timur 13760]]></text>
+				<text><![CDATA[Jl Raya Bojonggede No.13 Bojong Baru (Kicir) Bogor]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="34" width="555" height="1" uuid="6cdff331-26e8-490e-a9de-107e3ba6183d"/>
@@ -280,7 +280,7 @@ FROM
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Jakarta, ]]></text>
+				<text><![CDATA[Bogor,]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="396" y="147" width="160" height="20" uuid="0ee3e06d-313a-472d-add4-3ca6929320c4"/>

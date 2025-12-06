@@ -37,7 +37,7 @@ ORDER BY
 			<staticText>
 				<reportElement x="0" y="41" width="555" height="20" uuid="913859e7-e66e-4733-9b8b-b14499dd43ee"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Jl. Raya Tengah No.80, Gedong, Pasar Rebo, Jakarta Timur 13760]]></text>
+				<text><![CDATA[Jl Raya Bojonggede No.13 Bojong Baru (Kicir) Bogor]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="40" width="555" height="1" uuid="4f8c3855-20cd-477f-8050-1dc2145ef148"/>
@@ -181,7 +181,7 @@ ORDER BY
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Jakarta, ]]></text>
+				<text><![CDATA[Bogor,]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
 				<reportElement x="437" y="11" width="117" height="20" uuid="dafde633-0a9d-488c-98ea-8ad3d595f2b0"/>

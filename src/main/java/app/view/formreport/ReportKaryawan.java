@@ -200,37 +200,35 @@ public class ReportKaryawan extends javax.swing.JFrame {
     }//GEN-LAST:event_btnkembalikActionPerformed
 
     private void btncetakkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakkActionPerformed
-                                             
-    try {
-        // Ambil nama karyawan login (jika ingin ditampilkan di laporan)
-        String loginId = UserID.getuserLogin();  // pastikan ini sudah kamu punya
-        String loginKaryawan = "Tidak Diketahui";
+        // TODO add your handling code here:
+        try {
+            // Ambil nama karyawan login (jika ingin ditampilkan di laporan)
+            String loginId = UserID.getuserLogin();  // pastikan ini sudah kamu punya
+            String loginKaryawan = "Tidak Diketahui";
 
-        try (PreparedStatement ps = koneksi.prepareStatement("SELECT nama_karyawan FROM data_karyawan WHERE id_karyawan = ?")) {
-            ps.setString(1, loginId);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                loginKaryawan = rs.getString("nama_karyawan");
+            try (PreparedStatement ps = koneksi.prepareStatement("SELECT nama_karyawan FROM data_karyawan WHERE id_karyawan = ?")) {
+                ps.setString(1, loginId);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    loginKaryawan = rs.getString("nama_karyawan");
+                }
             }
+
+            // Lokasi file .jasper
+            String reportPath = "./src/main/java/app/view/report/ReportKaryawan.jasper";
+
+            // Parameter untuk laporan Jasper
+            HashMap<String, Object> parameter = new HashMap<>();
+            parameter.put("KARYAWAN", loginKaryawan);
+
+            // Cetak laporan
+            JasperPrint print = JasperFillManager.fillReport(reportPath, parameter, koneksi);
+            JasperViewer.viewReport(print, false);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal mencetak laporan: " + e.getMessage());
+            e.printStackTrace();
         }
-
-        // Lokasi file .jasper
-        String reportPath = "./src/main/java/app/view/report/ReportKaryawan.jasper";
-
-        // Parameter untuk laporan Jasper
-        HashMap<String, Object> parameter = new HashMap<>();
-        parameter.put("KARYAWAN", loginKaryawan);
-
-        // Cetak laporan
-        JasperPrint print = JasperFillManager.fillReport(reportPath, parameter, koneksi);
-        JasperViewer.viewReport(print, false);
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Gagal mencetak laporan: " + e.getMessage());
-        e.printStackTrace();
-    }
-
-           
     }//GEN-LAST:event_btncetakkActionPerformed
 
     /**
