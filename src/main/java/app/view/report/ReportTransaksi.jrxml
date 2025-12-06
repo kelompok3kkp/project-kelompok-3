@@ -4,7 +4,7 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="KARYAWAN" class="java.lang.String"/>
-	<queryString language="SQL">
+	<queryString>
 		<![CDATA[SELECT
      transaksi.`id_transaksi` AS transaksi_id_transaksi,
      transaksi.`tgl_nota` AS transaksi_tgl_nota,
@@ -12,7 +12,6 @@
      transaksi.`id_karyawan` AS transaksi_id_karyawan,
      isi.`id_transaksi` AS isi_id_transaksi,
      isi.`id_layanan` AS isi_id_layanan,
-     isi.`jenis_layanan` AS isi_jenis_layanan,
      isi.`model_kendaraan` AS isi_model_kendaraan,
      isi.`harga` AS isi_harga
 FROM
@@ -25,6 +24,7 @@ FROM
 	<field name="isi_id_layanan" class="java.lang.String"/>
 	<field name="isi_jenis_layanan" class="java.lang.String"/>
 	<field name="isi_harga" class="java.math.BigDecimal"/>
+	<field name="field1" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -33,7 +33,7 @@ FROM
 			<staticText>
 				<reportElement x="0" y="41" width="555" height="20" uuid="1187c3c7-6365-4975-8a9a-fdfd2a922861"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Jl. Raya Tengah No.80, Gedong, Pasar Rebo, Jakarta Timur 13760]]></text>
+				<text><![CDATA[Jl Raya Bojonggede No.13 Bojong Baru (Kicir) Bogor]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="0" width="555" height="40" uuid="f4f482f0-acf5-4791-bc6a-e60d09ef9331"/>
@@ -266,7 +266,7 @@ FROM
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Jakarta, ]]></text>
+				<text><![CDATA[Bogor,]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="395" y="111" width="160" height="20" uuid="8ee6118c-3ddc-4376-9379-99368c9df49c"/>
