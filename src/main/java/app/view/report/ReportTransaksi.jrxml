@@ -6,25 +6,25 @@
 	<parameter name="KARYAWAN" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
-     transaksi.`id_transaksi` AS transaksi_id_transaksi,
-     transaksi.`tgl_nota` AS transaksi_tgl_nota,
-     transaksi.`id_pelanggan` AS transaksi_id_pelanggan,
-     transaksi.`id_karyawan` AS transaksi_id_karyawan,
-     isi.`id_transaksi` AS isi_id_transaksi,
-     isi.`id_layanan` AS isi_id_layanan,
-     isi.`model_kendaraan` AS isi_model_kendaraan,
-     isi.`harga` AS isi_harga
+    transaksi.id_transaksi     AS transaksi_id_transaksi,
+    transaksi.tgl_nota         AS transaksi_tgl_nota,
+    transaksi.id_pelanggan     AS transaksi_id_pelanggan,
+    transaksi.id_karyawan      AS transaksi_id_karyawan,
+    isi.id_layanan             AS isi_id_layanan,
+    isi.harga                  AS isi_harga
 FROM
-     `isi` isi INNER JOIN `transaksi` transaksi ON isi.`id_transaksi` = transaksi.`id_transaksi`]]>
+    transaksi
+    INNER JOIN isi ON transaksi.id_transaksi = isi.id_transaksi
+ORDER BY
+    transaksi.id_transaksi ASC;
+]]>
 	</queryString>
 	<field name="transaksi_id_transaksi" class="java.lang.String"/>
 	<field name="transaksi_tgl_nota" class="java.sql.Date"/>
 	<field name="transaksi_id_pelanggan" class="java.lang.String"/>
 	<field name="transaksi_id_karyawan" class="java.lang.String"/>
 	<field name="isi_id_layanan" class="java.lang.String"/>
-	<field name="isi_jenis_layanan" class="java.lang.String"/>
 	<field name="isi_harga" class="java.math.BigDecimal"/>
-	<field name="field1" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -54,7 +54,7 @@ FROM
 	<columnHeader>
 		<band height="21" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="1" width="75" height="20" uuid="0309a22a-a251-4e6b-8267-5f345e8d5bc4"/>
+				<reportElement x="0" y="1" width="93" height="20" uuid="0309a22a-a251-4e6b-8267-5f345e8d5bc4"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -68,7 +68,7 @@ FROM
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="75" y="1" width="100" height="20" uuid="c1568c1f-d7d4-46ae-9414-ee2aa4e2b1f3"/>
+				<reportElement x="93" y="1" width="112" height="20" uuid="c1568c1f-d7d4-46ae-9414-ee2aa4e2b1f3"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -82,7 +82,7 @@ FROM
 				<text><![CDATA[Tanggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="175" y="1" width="86" height="20" uuid="91571a11-aa12-4bc3-a582-08014140e834"/>
+				<reportElement x="437" y="1" width="118" height="20" uuid="781883ef-8e39-4bbe-9bbb-8d29b8ccd840"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -93,10 +93,10 @@ FROM
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[ID Pelanggan]]></text>
+				<text><![CDATA[Harga]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="261" y="1" width="94" height="20" uuid="7d9914c2-a89f-4958-aec5-f0a18d09a257"/>
+				<reportElement x="316" y="1" width="121" height="20" uuid="7d9914c2-a89f-4958-aec5-f0a18d09a257"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -110,7 +110,7 @@ FROM
 				<text><![CDATA[ID Layanan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="355" y="1" width="100" height="20" uuid="6a4c6312-05fb-4ac0-8433-62c2c0b85736"/>
+				<reportElement x="205" y="1" width="111" height="20" uuid="91571a11-aa12-4bc3-a582-08014140e834"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -121,28 +121,14 @@ FROM
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Jenis Layanan]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="455" y="1" width="100" height="20" uuid="781883ef-8e39-4bbe-9bbb-8d29b8ccd840"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Harga]]></text>
+				<text><![CDATA[ID Pelanggan]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="75" height="20" uuid="c8caf924-f845-4e3d-bc36-aad5ab10c7d8"/>
+				<reportElement x="0" y="0" width="93" height="20" uuid="c8caf924-f845-4e3d-bc36-aad5ab10c7d8"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -154,7 +140,7 @@ FROM
 				<textFieldExpression><![CDATA[$F{transaksi_id_transaksi}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="75" y="0" width="100" height="20" uuid="abf12122-c674-4123-882e-31e027bb2ca7"/>
+				<reportElement x="93" y="0" width="112" height="20" uuid="abf12122-c674-4123-882e-31e027bb2ca7"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -166,7 +152,7 @@ FROM
 				<textFieldExpression><![CDATA[$F{transaksi_tgl_nota}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="175" y="0" width="86" height="20" uuid="dbb7f42c-29bf-4ab3-a191-fd8b072d31bf"/>
+				<reportElement x="437" y="0" width="118" height="20" uuid="ee6d7e49-8702-401b-8793-00690470658d"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -175,10 +161,10 @@ FROM
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{transaksi_id_pelanggan}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{isi_harga}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="261" y="0" width="94" height="20" uuid="96ff44ce-fba0-4aae-b868-04a86cd211e1"/>
+				<reportElement x="316" y="0" width="121" height="20" uuid="96ff44ce-fba0-4aae-b868-04a86cd211e1"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -190,7 +176,7 @@ FROM
 				<textFieldExpression><![CDATA[$F{isi_id_layanan}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="355" y="0" width="100" height="20" uuid="41d151d5-809c-48c4-a63d-b9fb0fd01804"/>
+				<reportElement x="205" y="0" width="111" height="20" uuid="dbb7f42c-29bf-4ab3-a191-fd8b072d31bf"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -199,19 +185,7 @@ FROM
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{isi_jenis_layanan}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="455" y="0" width="100" height="20" uuid="ee6d7e49-8702-401b-8793-00690470658d"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{isi_harga}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{transaksi_id_pelanggan}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
