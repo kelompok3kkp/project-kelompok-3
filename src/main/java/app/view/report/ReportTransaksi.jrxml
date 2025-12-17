@@ -16,8 +16,7 @@ FROM
     transaksi
     INNER JOIN isi ON transaksi.id_transaksi = isi.id_transaksi
 ORDER BY
-    transaksi.id_transaksi ASC;
-]]>
+    transaksi.id_transaksi ASC;]]>
 	</queryString>
 	<field name="transaksi_id_transaksi" class="java.lang.String"/>
 	<field name="transaksi_tgl_nota" class="java.sql.Date"/>
@@ -229,14 +228,14 @@ ORDER BY
 				<text><![CDATA[Dikeluarkan oleh,]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="438" y="11" width="117" height="20" uuid="38960ad1-9a8c-4540-b86b-89c13a2fbaf2"/>
+				<reportElement x="430" y="11" width="124" height="20" uuid="38960ad1-9a8c-4540-b86b-89c13a2fbaf2"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="395" y="11" width="42" height="20" uuid="1381861a-2f28-4a23-bbaa-69ef9208d049"/>
+				<reportElement x="396" y="11" width="34" height="20" uuid="1381861a-2f28-4a23-bbaa-69ef9208d049"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>

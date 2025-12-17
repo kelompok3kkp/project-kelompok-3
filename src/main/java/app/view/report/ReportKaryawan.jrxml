@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="787556ac-a37c-4b4d-afca-c371ad31daf2">
-	<property name="ireport.zoom" value="1.7715610000000188"/>
+	<property name="ireport.zoom" value="1.464100000000024"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="KARYAWAN" class="java.lang.String"/>
@@ -276,7 +276,7 @@ FROM
 				<textFieldExpression><![CDATA[$P{KARYAWAN}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="396" y="42" width="42" height="20" uuid="d189ea33-e69b-47df-976b-b8d60b3b7eec"/>
+				<reportElement x="396" y="42" width="35" height="20" uuid="d189ea33-e69b-47df-976b-b8d60b3b7eec"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -290,11 +290,11 @@ FROM
 				<text><![CDATA[Admin]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="438" y="42" width="117" height="20" uuid="6dcff95a-40c7-4f1f-8095-236a136051c4"/>
+				<reportElement x="431" y="42" width="124" height="20" uuid="6dcff95a-40c7-4f1f-8095-236a136051c4"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMMM yyyy", new java.util.Locale("id")).format(new Date())]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="396" y="147" width="158" height="1" uuid="d248179e-b346-4463-9ac2-87cfa4dcd032"/>

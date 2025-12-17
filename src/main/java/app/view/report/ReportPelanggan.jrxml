@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="00f494e3-d565-4e2e-9c10-beb2feacc55e">
-	<property name="ireport.zoom" value="1.7715610000000077"/>
+	<property name="ireport.zoom" value="1.948717100000009"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="KARYAWAN" class="java.lang.String"/>
@@ -187,18 +187,18 @@
 	<summary>
 		<band height="159" splitType="Stretch">
 			<staticText>
-				<reportElement x="396" y="24" width="42" height="20" uuid="534bf0e7-785d-47cf-b46b-405439842410"/>
+				<reportElement x="396" y="24" width="36" height="20" uuid="534bf0e7-785d-47cf-b46b-405439842410"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Bogor,]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="438" y="24" width="117" height="20" uuid="63d1f092-4a07-4653-b2c1-d25bf0cd7d39"/>
+				<reportElement x="432" y="24" width="123" height="20" uuid="63d1f092-4a07-4653-b2c1-d25bf0cd7d39"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMMM yyyy", new java.util.Locale("id")).format(new Date())]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="396" y="44" width="159" height="20" uuid="98ce653d-48b3-43ed-a25f-354c98889297"/>

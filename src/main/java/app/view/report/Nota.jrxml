@@ -242,7 +242,7 @@ WHERE p.id_pembayaran = $P{id_pembayaran}]]>
 		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="67" splitType="Stretch">
+		<band height="68" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="20" width="555" height="20" uuid="b4ffb49f-8be4-44bb-99d4-b7369ab90798"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
