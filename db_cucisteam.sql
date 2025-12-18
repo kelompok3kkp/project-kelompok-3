@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Waktu pembuatan: 05 Des 2025 pada 17.24
--- Versi server: 12.0.2-MariaDB
--- Versi PHP: 8.1.29
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 18 Des 2025 pada 11.31
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,7 +36,7 @@ CREATE TABLE `data_karyawan` (
   `no_telp` varchar(15) DEFAULT NULL,
   `alamat` text DEFAULT NULL,
   `jabatan` varchar(50) DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `tanggal_masuk` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -142,7 +142,8 @@ CREATE TABLE `isi` (
 
 INSERT INTO `isi` (`id_transaksi`, `id_layanan`, `harga`) VALUES
 ('IN0005', 'L003', 50000.00),
-('IN0006', 'L001', 15000.00);
+('IN0006', 'L001', 15000.00),
+('IN0007', 'L002', 20000.00);
 
 -- --------------------------------------------------------
 
@@ -201,7 +202,8 @@ CREATE TABLE `pembayaran` (
 
 INSERT INTO `pembayaran` (`id_pembayaran`, `tanggal_transaksi`, `id_transaksi`, `harga`, `diskon`, `metode_pembayaran`, `total_bayar`) VALUES
 ('TRX001', '2025-12-05', 'IN0005', 50000.00, 0, 'Tunai', 50000.00),
-('TRX002', '2025-12-05', 'IN0006', 15000.00, 0, 'Tunai', 15000.00);
+('TRX002', '2025-12-05', 'IN0006', 15000.00, 0, 'Tunai', 15000.00),
+('TRX003', '2025-12-18', 'IN0007', 20000.00, 0, 'Tunai', 20000.00);
 
 -- --------------------------------------------------------
 
@@ -226,7 +228,8 @@ INSERT INTO `transaksi` (`id_transaksi`, `tgl_nota`, `id_pelanggan`, `id_karyawa
 ('IN0003', '2025-12-05', 'CS001', 'K002'),
 ('IN0004', '2025-12-05', 'CS001', 'K002'),
 ('IN0005', '2025-12-05', 'CS001', 'K002'),
-('IN0006', '2025-12-05', 'CS002', 'K003');
+('IN0006', '2025-12-05', 'CS002', 'K003'),
+('IN0007', '2025-12-18', 'CS003', 'K005');
 
 --
 -- Indexes for dumped tables
