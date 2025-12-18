@@ -28,32 +28,52 @@ ORDER BY
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="65" splitType="Stretch">
+		<band height="129" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="41" width="555" height="20" uuid="1187c3c7-6365-4975-8a9a-fdfd2a922861"/>
+				<reportElement x="84" y="0" width="466" height="30" uuid="61024d96-f0ff-4121-a3c6-f2784851856e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ADR CAR WASH]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="84" height="81" uuid="63885088-dc2e-4b25-b7fc-482c5aafd344"/>
+				<imageExpression><![CDATA["D:\\Alip\\Kuliah\\Semester 6\\Pemrograman Visual\\Kelompok\\project-kelompok-3\\src\\main\\java\\assets\\gambar\\logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="84" y="30" width="466" height="17" uuid="76c43d0a-526f-4e88-8a64-a55bba4fa08a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Jl Raya Bojonggede No.13 Bojong Baru (Kicir) Bogor]]></text>
+				<text><![CDATA[Jl. Raya Bojonggede No.13, Bojong Baru, Kecamatan Bojonggede,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="40" uuid="f4f482f0-acf5-4791-bc6a-e60d09ef9331"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="24" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Laporan Transaksi
-]]></text>
+				<reportElement x="84" y="47" width="466" height="17" uuid="b0fcf452-6012-47aa-bf17-27373eb6fd6f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Kabupaten Bogor, Jawa Barat 16920]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="84" y="64" width="466" height="17" uuid="dd2c197b-9164-4e0f-aa62-a0e84478cc11"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Telepon: 085215158809]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="40" width="555" height="1" uuid="4261f791-f7b1-4f17-90b3-4c8bb447447c"/>
+				<reportElement x="0" y="89" width="555" height="1" uuid="d71be3f2-2868-41cd-a442-2689ce2092e6"/>
 			</line>
+			<staticText>
+				<reportElement x="0" y="101" width="555" height="23" uuid="14846ea2-794f-401f-b329-452e37230622"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Laporan Data Transaksi]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="21" splitType="Stretch">
+		<band height="45" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="1" width="93" height="20" uuid="0309a22a-a251-4e6b-8267-5f345e8d5bc4"/>
+				<reportElement x="0" y="25" width="93" height="20" uuid="0309a22a-a251-4e6b-8267-5f345e8d5bc4"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -67,7 +87,7 @@ ORDER BY
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="93" y="1" width="112" height="20" uuid="c1568c1f-d7d4-46ae-9414-ee2aa4e2b1f3"/>
+				<reportElement x="93" y="25" width="112" height="20" uuid="c1568c1f-d7d4-46ae-9414-ee2aa4e2b1f3"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -81,7 +101,7 @@ ORDER BY
 				<text><![CDATA[Tanggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="437" y="1" width="118" height="20" uuid="781883ef-8e39-4bbe-9bbb-8d29b8ccd840"/>
+				<reportElement x="437" y="25" width="118" height="20" uuid="781883ef-8e39-4bbe-9bbb-8d29b8ccd840"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -95,7 +115,7 @@ ORDER BY
 				<text><![CDATA[Harga]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="316" y="1" width="121" height="20" uuid="7d9914c2-a89f-4958-aec5-f0a18d09a257"/>
+				<reportElement x="316" y="25" width="121" height="20" uuid="7d9914c2-a89f-4958-aec5-f0a18d09a257"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -109,7 +129,7 @@ ORDER BY
 				<text><![CDATA[ID Layanan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="205" y="1" width="111" height="20" uuid="91571a11-aa12-4bc3-a582-08014140e834"/>
+				<reportElement x="205" y="25" width="111" height="20" uuid="91571a11-aa12-4bc3-a582-08014140e834"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
