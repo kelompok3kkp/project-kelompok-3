@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="787556ac-a37c-4b4d-afca-c371ad31daf2">
-	<property name="ireport.zoom" value="1.464100000000024"/>
+	<property name="ireport.zoom" value="1.7715610000000295"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="KARYAWAN" class="java.lang.String"/>
@@ -35,31 +35,52 @@ FROM
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="56" splitType="Stretch">
+		<band height="141" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="34" uuid="953fb708-1a92-4115-b5f2-ad94db545a5c"/>
+				<reportElement x="84" y="0" width="466" height="30" uuid="aecabf89-0135-40c1-af0f-605aaefc74f0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="24" isBold="true"/>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ADR CAR WASH]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="84" height="81" uuid="491e3a37-358f-4939-8ce5-870257dc598e"/>
+				<imageExpression><![CDATA["D:\\Alip\\Kuliah\\Semester 6\\Pemrograman Visual\\Kelompok\\project-kelompok-3\\src\\main\\java\\assets\\gambar\\logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="84" y="30" width="466" height="17" uuid="3813f551-9baf-4e4e-b7e0-6763382bd84e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Jl. Raya Bojonggede No.13, Bojong Baru, Kecamatan Bojonggede,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="84" y="47" width="466" height="17" uuid="0b9e4224-891b-4526-a085-e3f2c085fb6d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Kabupaten Bogor, Jawa Barat 16920]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="84" y="64" width="466" height="17" uuid="e5d5d296-3884-4400-a939-3655fbe1b3a5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Telepon: 085215158809]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="89" width="555" height="1" uuid="0f64e83b-d235-4207-ba18-283000999dd3"/>
+			</line>
+			<staticText>
+				<reportElement x="-1" y="117" width="555" height="23" uuid="8525fcb6-25b8-4b3a-a5f2-42baae6a38c5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18"/>
 				</textElement>
 				<text><![CDATA[Laporan Data Karyawan]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="0" y="34" width="555" height="20" uuid="ce4ee97f-f0e5-41a6-a5df-790b00526be6"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Jl Raya Bojonggede No.13 Bojong Baru (Kicir) Bogor]]></text>
-			</staticText>
-			<line>
-				<reportElement x="0" y="34" width="555" height="1" uuid="6cdff331-26e8-490e-a9de-107e3ba6183d"/>
-			</line>
 		</band>
 	</title>
 	<pageHeader>
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="20" splitType="Stretch">
+		<band height="45" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="63" height="20" uuid="1e713799-5e4a-46b8-add4-d1f4812dcd18"/>
+				<reportElement x="0" y="25" width="63" height="20" uuid="1e713799-5e4a-46b8-add4-d1f4812dcd18"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -71,7 +92,7 @@ FROM
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="63" y="0" width="115" height="20" uuid="804298d0-d2bd-4bad-8e6c-ae762b11da32"/>
+				<reportElement x="63" y="25" width="115" height="20" uuid="804298d0-d2bd-4bad-8e6c-ae762b11da32"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -83,7 +104,7 @@ FROM
 				<text><![CDATA[Nama]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="178" y="0" width="79" height="20" uuid="db242f1b-0454-4f5b-ad36-744ef017f123"/>
+				<reportElement x="178" y="25" width="79" height="20" uuid="db242f1b-0454-4f5b-ad36-744ef017f123"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -95,7 +116,7 @@ FROM
 				<text><![CDATA[Jenis Kelamin]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="257" y="0" width="79" height="20" uuid="48fd9990-cfbb-45f3-a0be-d479be7735e0"/>
+				<reportElement x="257" y="25" width="79" height="20" uuid="48fd9990-cfbb-45f3-a0be-d479be7735e0"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -107,7 +128,7 @@ FROM
 				<text><![CDATA[No. Telp]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="336" y="0" width="98" height="20" uuid="646746e6-b83d-46fa-a98e-25b2701740da"/>
+				<reportElement x="336" y="25" width="98" height="20" uuid="646746e6-b83d-46fa-a98e-25b2701740da"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -119,7 +140,7 @@ FROM
 				<text><![CDATA[Alamat]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="434" y="0" width="79" height="20" uuid="cfadbc30-9ae3-4888-b312-8f00b058756e"/>
+				<reportElement x="434" y="25" width="79" height="20" uuid="cfadbc30-9ae3-4888-b312-8f00b058756e"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -131,7 +152,7 @@ FROM
 				<text><![CDATA[Jabatan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="513" y="0" width="41" height="20" uuid="4aeb8731-fc09-4519-9eec-c8ec10013690"/>
+				<reportElement x="513" y="25" width="41" height="20" uuid="4aeb8731-fc09-4519-9eec-c8ec10013690"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
