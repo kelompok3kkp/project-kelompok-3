@@ -24,31 +24,52 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="55" splitType="Stretch">
+		<band height="127" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="34" uuid="ef17eae4-0592-43af-b91a-d33593438924"/>
+				<reportElement x="84" y="0" width="466" height="30" uuid="331e0550-b68f-4373-81ed-d309e8e1af1f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="24" isBold="true"/>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ADR CAR WASH]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="84" height="81" uuid="6c7a157e-1559-46eb-8f1f-031b9c7491b6"/>
+				<imageExpression><![CDATA["D:\\Alip\\Kuliah\\Semester 6\\Pemrograman Visual\\Kelompok\\project-kelompok-3\\src\\main\\java\\assets\\gambar\\logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="84" y="30" width="466" height="17" uuid="8edef7b5-b662-4429-9b73-ca893ef6f671"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Jl. Raya Bojonggede No.13, Bojong Baru, Kecamatan Bojonggede,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="84" y="47" width="466" height="17" uuid="9011388e-9c94-4071-9ab9-ede8af5e2efd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Kabupaten Bogor, Jawa Barat 16920]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="84" y="64" width="466" height="17" uuid="5975641d-76e9-47fe-aeec-50b8351057cb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Telepon: 085215158809]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="89" width="555" height="1" uuid="d5122407-15ac-46ea-8143-92f2195b7e45"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="101" width="555" height="23" uuid="13cc3467-3eff-4d69-bb0f-e294b73dc22c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18"/>
 				</textElement>
 				<text><![CDATA[Laporan Data Pelanggan]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="0" y="34" width="555" height="20" uuid="ee5b2024-aea2-49a9-b3a8-9ffd628f6ba3"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Jl Raya Bojonggede No.13 Bojong Baru (Kicir) Bogor]]></text>
-			</staticText>
-			<line>
-				<reportElement x="0" y="34" width="555" height="1" uuid="cfbccdfb-1704-49cd-bb92-15125466933d"/>
-			</line>
 		</band>
 	</title>
 	<pageHeader>
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="20" splitType="Stretch">
+		<band height="39" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="77" height="20" uuid="80c434f4-aca3-48fd-888e-9f991dbaa71c"/>
+				<reportElement x="0" y="19" width="77" height="20" uuid="80c434f4-aca3-48fd-888e-9f991dbaa71c"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -62,7 +83,7 @@
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="77" y="0" width="167" height="20" uuid="8965d11e-20d2-49af-a857-00509d5b65a3"/>
+				<reportElement x="77" y="19" width="167" height="20" uuid="8965d11e-20d2-49af-a857-00509d5b65a3"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -76,7 +97,7 @@
 				<text><![CDATA[Nama]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="244" y="0" width="173" height="20" uuid="d6aac53b-eb0c-4b33-959c-e0e5e5f1de4d"/>
+				<reportElement x="244" y="19" width="173" height="20" uuid="d6aac53b-eb0c-4b33-959c-e0e5e5f1de4d"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -90,7 +111,7 @@
 				<text><![CDATA[No. Telp]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="417" y="0" width="138" height="20" uuid="264e1f63-3b6e-44b0-8942-6f8e086d394e"/>
+				<reportElement x="417" y="19" width="138" height="20" uuid="264e1f63-3b6e-44b0-8942-6f8e086d394e"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
