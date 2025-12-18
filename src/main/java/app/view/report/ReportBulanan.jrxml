@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d8e5b171-d5e2-4921-9bde-9873bc642fd9">
-	<property name="ireport.zoom" value="3.452271214393105"/>
-	<property name="ireport.x" value="672"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.zoom" value="1.771561000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="KARYAWAN" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT 
@@ -25,23 +25,43 @@ ORDER BY
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="64" splitType="Stretch">
+		<band height="147" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="40" uuid="9bcd1fdb-ba34-4bf1-a92c-7e15160d334c"/>
+				<reportElement x="84" y="0" width="466" height="30" uuid="ca461e5a-e81f-42cf-a089-727b76d22043"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="24" isBold="true"/>
+					<font size="20" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Laporan Omset Bulanan
-]]></text>
+				<text><![CDATA[ADR CAR WASH]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="84" height="81" uuid="a820fca7-9133-4c4b-85b1-533bbf2d6cb0"/>
+				<imageExpression><![CDATA["D:\\Alip\\Kuliah\\Semester 6\\Pemrograman Visual\\Kelompok\\project-kelompok-3\\src\\main\\java\\assets\\gambar\\logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="84" y="30" width="466" height="17" uuid="0609bf6c-a463-4231-9da8-d71542571dc5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Jl. Raya Bojonggede No.13, Bojong Baru, Kecamatan Bojonggede,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="41" width="555" height="20" uuid="913859e7-e66e-4733-9b8b-b14499dd43ee"/>
+				<reportElement x="84" y="47" width="466" height="17" uuid="990face4-487e-4e82-b1e0-39cda3ce4a7a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Jl Raya Bojonggede No.13 Bojong Baru (Kicir) Bogor]]></text>
+				<text><![CDATA[Kabupaten Bogor, Jawa Barat 16920]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="84" y="64" width="466" height="17" uuid="7b54f91a-9d24-431c-9631-c0fd20dfcf6f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Telepon: 085215158809]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="40" width="555" height="1" uuid="4f8c3855-20cd-477f-8050-1dc2145ef148"/>
+				<reportElement x="0" y="89" width="555" height="1" uuid="2df512fd-f4ec-4a33-b53b-bb4d0e46a3e8"/>
 			</line>
+			<staticText>
+				<reportElement x="0" y="101" width="555" height="23" uuid="8660867d-dd78-4338-ac21-ac065d20cc85"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Laporan Pendapatan Bulanan]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
