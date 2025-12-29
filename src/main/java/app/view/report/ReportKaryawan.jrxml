@@ -315,7 +315,11 @@ FROM
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMMM yyyy", new java.util.Locale("id")).format(new Date())]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat(
+    "EEEE, dd MMMM yyyy",
+    new java.util.Locale("id","ID")
+).format(new java.util.Date())
+]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="396" y="147" width="158" height="1" uuid="d248179e-b346-4463-9ac2-87cfa4dcd032"/>
