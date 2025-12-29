@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d8e5b171-d5e2-4921-9bde-9873bc642fd9">
-	<property name="ireport.zoom" value="1.771561000000002"/>
+	<property name="ireport.zoom" value="1.9487171000000025"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="KARYAWAN" class="java.lang.String"/>
@@ -197,18 +197,22 @@ ORDER BY
 				<text><![CDATA[Dikeluarkan oleh,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="394" y="11" width="37" height="20" uuid="6d0262c5-15a6-442a-9f20-a9200298d164"/>
+				<reportElement x="394" y="11" width="34" height="20" uuid="6d0262c5-15a6-442a-9f20-a9200298d164"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Bogor, ]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="431" y="11" width="123" height="20" uuid="dafde633-0a9d-488c-98ea-8ad3d595f2b0"/>
+				<reportElement x="428" y="11" width="126" height="20" uuid="dafde633-0a9d-488c-98ea-8ad3d595f2b0"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMMM yyyy", new java.util.Locale("id")).format(new Date())]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat(
+    "EEEE, dd MMMM yyyy",
+    new java.util.Locale("id","ID")
+).format(new java.util.Date())
+]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="394" y="96" width="160" height="1" uuid="0ccae787-94ff-43ef-938a-7fee662c0bcb"/>
